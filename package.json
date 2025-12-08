@@ -1,0 +1,19 @@
+{
+    "name": "pokeapi-multiframework-lab",
+    "version": "0.0.0",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "dev": "bun run --filter './apps/*' dev",
+        "build": "bun run --filter './apps/*' build",
+        "lint": "bun run --filter './apps/*' --filter './packages/*' lint",
+        "clean": "bun run --filter './apps/*' --filter './packages/*' clean"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "packageManager": "bun@1.1.38"
+}
