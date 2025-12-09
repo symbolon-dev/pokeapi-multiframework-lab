@@ -1,5 +1,5 @@
 import antfu from '@antfu/eslint-config'
+import { baseOptions } from '@repo/config/eslint'
 import { tanstackConfig } from '@tanstack/eslint-config'
-import { baseOptions } from '../../packages/config/eslint.js'
 
 export default [...antfu(baseOptions, { react: true }), ...tanstackConfig]

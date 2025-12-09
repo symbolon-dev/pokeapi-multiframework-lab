@@ -11,6 +11,8 @@
         "format": "prettier --write ."
     },
     "devDependencies": {
-        "@nuxt/eslint": "^1.11.0"
+        "@nuxt/eslint": "^1.11.0",
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*"
     }
 }

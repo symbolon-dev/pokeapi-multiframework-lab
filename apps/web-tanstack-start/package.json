@@ -11,6 +11,8 @@
         "format": "prettier --write ."
     },
     "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
         "@tanstack/eslint-config": "^0.3.4"
     }
 }

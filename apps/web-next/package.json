@@ -11,6 +11,8 @@
         "format": "prettier --write ."
     },
     "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
         "eslint-config-next": "^16.0.8"
     }
 }

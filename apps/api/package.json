@@ -10,5 +10,7 @@
         "lint": "eslint .",
         "format": "prettier --write ."
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@repo/config": "workspace:*"
+    }
 }

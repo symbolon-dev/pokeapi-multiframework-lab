@@ -1,5 +1,5 @@
 import antfu from '@antfu/eslint-config'
+import { baseOptions } from '@repo/config/eslint'
 import nextConfig from 'eslint-config-next'
-import { baseOptions } from '../../packages/config/eslint.js'
 
 export default [...antfu(baseOptions, { react: true }), ...nextConfig]

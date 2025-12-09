@@ -21,15 +21,24 @@
     "apps/api": {
       "name": "@pokeapi/api",
       "version": "0.0.1",
+      "devDependencies": {
+        "@repo/config": "workspace:*",
+      },
     },
     "apps/comparsion": {
       "name": "@pokeapi/comparsion",
       "version": "0.0.1",
+      "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
+      },
     },
     "apps/web-next": {
       "name": "@pokeapi/web-next",
       "version": "0.0.1",
       "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
         "eslint-config-next": "^16.0.8",
       },
     },
@@ -38,18 +47,34 @@
       "version": "0.0.1",
       "devDependencies": {
         "@nuxt/eslint": "^1.11.0",
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
       },
     },
     "apps/web-sveltekit": {
       "name": "@pokeapi/web-sveltekit",
       "version": "0.0.1",
+      "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
+      },
     },
     "apps/web-tanstack-start": {
       "name": "@pokeapi/web-tanstack-start",
       "version": "0.0.1",
       "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@repo/styles": "workspace:*",
         "@tanstack/eslint-config": "^0.3.4",
       },
+    },
+    "packages/config": {
+      "name": "@repo/config",
+      "version": "0.0.1",
+    },
+    "packages/styles": {
+      "name": "@repo/styles",
+      "version": "0.0.1",
     },
   },
   "packages": {
@@ -242,6 +267,10 @@
     "@pokeapi/web-sveltekit": ["@pokeapi/web-sveltekit@workspace:apps/web-sveltekit"],
 
     "@pokeapi/web-tanstack-start": ["@pokeapi/web-tanstack-start@workspace:apps/web-tanstack-start"],
+
+    "@repo/config": ["@repo/config@workspace:packages/config"],
+
+    "@repo/styles": ["@repo/styles@workspace:packages/styles"],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.53.3", "", { "os": "android", "cpu": "arm" }, "sha512-mRSi+4cBjrRLoaal2PnqH82Wqyb+d3HsPUN/W+WslCXsZsyHa9ZeQQX/pQsZaVIWDkPcpV6jJ+3KLbTbgnwv8w=="],
 

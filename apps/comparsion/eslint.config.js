@@ -1,4 +1,4 @@
 import antfu from '@antfu/eslint-config'
-import { baseOptions } from '../../packages/config/eslint.js'
+import { baseOptions } from '@repo/config/eslint'
 
 export default antfu(baseOptions, { astro: true })
