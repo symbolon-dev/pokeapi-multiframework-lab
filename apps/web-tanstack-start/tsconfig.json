@@ -1,0 +1,11 @@
+{
+    "extends": "../../packages/config/tsconfig.web.json",
+    "compilerOptions": {
+        "jsx": "preserve",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules", "dist"]
+}

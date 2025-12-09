@@ -5,6 +5,7 @@ Testing and comparing different web frameworks by building the same app with eac
 ## Frameworks
 
 ### Frontend Frameworks
+
 - Next.js
 - Nuxt
 - SvelteKit
@@ -12,6 +13,7 @@ Testing and comparing different web frameworks by building the same app with eac
 - Astro.js (Comparison web app)
 
 ### Backend API
+
 - Hono (API layer for fetching, filtering, and sorting PokeAPI data)
 
 ## Setup

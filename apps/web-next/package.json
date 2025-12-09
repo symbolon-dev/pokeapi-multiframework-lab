@@ -1,0 +1,16 @@
+{
+    "name": "@pokeapi/web-next",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint .",
+        "format": "prettier --write ."
+    },
+    "devDependencies": {
+        "eslint-config-next": "^16.0.8"
+    }
+}

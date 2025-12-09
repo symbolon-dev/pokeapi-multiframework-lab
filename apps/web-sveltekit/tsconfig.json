@@ -1,0 +1,16 @@
+{
+    "extends": "../../packages/config/tsconfig.web.json",
+    "compilerOptions": {
+        "paths": {
+            "$lib": ["./src/lib"],
+            "$lib/*": ["./src/lib/*"]
+        }
+    },
+    "include": [
+        "src/**/*.d.ts",
+        "src/**/*.ts",
+        "src/**/*.js",
+        "src/**/*.svelte"
+    ],
+    "exclude": ["node_modules", ".svelte-kit"]
+}

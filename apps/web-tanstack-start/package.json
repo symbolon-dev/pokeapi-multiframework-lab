@@ -1,0 +1,16 @@
+{
+    "name": "@pokeapi/web-tanstack-start",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "start": "vite preview",
+        "lint": "eslint .",
+        "format": "prettier --write ."
+    },
+    "devDependencies": {
+        "@tanstack/eslint-config": "^0.3.4"
+    }
+}

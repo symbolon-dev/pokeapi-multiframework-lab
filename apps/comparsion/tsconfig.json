@@ -1,0 +1,11 @@
+{
+    "extends": "../../packages/config/tsconfig.web.json",
+    "compilerOptions": {
+        "jsx": "preserve",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
+    "exclude": ["node_modules", "dist", ".astro"]
+}

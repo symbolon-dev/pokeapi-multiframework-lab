@@ -1,0 +1,14 @@
+{
+    "name": "@pokeapi/web-sveltekit",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "eslint .",
+        "format": "prettier --write ."
+    },
+    "devDependencies": {}
+}
