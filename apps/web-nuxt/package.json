@@ -9,7 +9,9 @@
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "lint": "eslint .",
-        "format": "prettier --write ."
+        "lint:fix": "eslint --fix .",
+        "format": "prettier --write .",
+        "check": "prettier --write . && eslint --fix"
     },
     "dependencies": {
         "nuxt": "^4.2.1",
