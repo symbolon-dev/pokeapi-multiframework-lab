@@ -1,7 +1,10 @@
 import antfu from '@antfu/eslint-config'
-import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 import { baseOptions } from '@repo/config/eslint'
+import { withNuxt } from './.nuxt/eslint.config.mjs'
 
-export default createConfigForNuxt().prepend(
-    ...antfu(baseOptions, { vue: true }),
+export default withNuxt(
+    antfu({
+        ...baseOptions,
+        vue: true,
+    }),
 )

@@ -1,11 +1,22 @@
 {
-    "extends": "../../packages/config/tsconfig.web.json",
     "compilerOptions": {
-        "paths": {
-            "@/*": ["./*"],
-            "~/*": ["./*"]
-        }
+        "strict": true,
+        "forceConsistentCasingInFileNames": true
     },
-    "include": [".nuxt/types/**/*", "**/*.ts", "**/*.tsx", "**/*.vue"],
-    "exclude": ["node_modules", ".nuxt"]
+    "include": ["app/**/*", "**/*.vue", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", ".nuxt", "dist"],
+    "references": [
+        {
+            "path": "./.nuxt/tsconfig.app.json"
+        },
+        {
+            "path": "./.nuxt/tsconfig.server.json"
+        },
+        {
+            "path": "./.nuxt/tsconfig.shared.json"
+        },
+        {
+            "path": "./.nuxt/tsconfig.node.json"
+        }
+    ]
 }
