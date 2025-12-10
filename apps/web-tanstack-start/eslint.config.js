@@ -1,5 +1,16 @@
 import antfu from '@antfu/eslint-config'
 import { baseOptions } from '@repo/config/eslint'
-import { tanstackConfig } from '@tanstack/eslint-config'
+import tanstackQuery from '@tanstack/eslint-plugin-query'
 
-export default [...antfu(baseOptions, { react: true }), ...tanstackConfig]
+export default antfu(
+    {
+        ...baseOptions,
+        react: true,
+    },
+    {
+        plugins: {
+            '@tanstack/query': tanstackQuery,
+        },
+        rules: tanstackQuery.configs.recommended.rules,
+    },
+)

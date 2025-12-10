@@ -6,6 +6,12 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "eslint.config.js",
+        "prettier.config.js",
+        "vite.config.ts"
+    ],
     "exclude": ["node_modules", "dist"]
 }
