@@ -18,6 +18,7 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier --write .",
+        "check": "prettier --write . && eslint --fix",
         "clean": "bun run --filter './apps/*' --filter './packages/*' clean",
         "prepare": "husky"
     },
