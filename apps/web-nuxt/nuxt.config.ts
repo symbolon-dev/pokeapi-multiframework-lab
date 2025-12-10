@@ -14,9 +14,4 @@ export default defineNuxtConfig({
             '@tailwindcss/postcss': {},
         },
     },
-    typescript: {
-        tsConfig: {
-            extends: '../../packages/config/tsconfig.web.json',
-        },
-    },
 })

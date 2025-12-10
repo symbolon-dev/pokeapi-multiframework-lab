@@ -1,10 +1,4 @@
 {
-    "compilerOptions": {
-        "strict": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "include": ["app/**/*", "**/*.vue", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules", ".nuxt", "dist"],
     "references": [
         {
             "path": "./.nuxt/tsconfig.app.json"
@@ -18,5 +12,7 @@
         {
             "path": "./.nuxt/tsconfig.node.json"
         }
-    ]
+    ],
+    // https://nuxt.com/docs/guide/concepts/typescript
+    "files": []
 }
