@@ -9,7 +9,6 @@
     ],
     "packageManager": "bun@1.1.38",
     "engines": {
-        "node": ">=20.0.0",
         "bun": ">=1.1.0"
     },
     "scripts": {
@@ -17,22 +16,14 @@
         "build": "bun run --filter './apps/*' build",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "format": "prettier --write .",
-        "check": "prettier --write . && eslint --fix",
         "clean": "bun run --filter './apps/*' --filter './packages/*' clean",
         "prepare": "husky"
     },
     "devDependencies": {
         "@antfu/eslint-config": "latest",
-        "@nuxt/eslint": "^1.11.0",
-        "@tanstack/eslint-config": "^0.3.4",
         "@types/bun": "latest",
         "eslint": "^9.39.1",
-        "eslint-config-next": "^16.0.8",
-        "eslint-plugin-format": "^1.1.0",
         "husky": "^9.1.7",
-        "lint-staged": "^16.2.7",
-        "prettier": "^3.7.4",
-        "prettier-plugin-tailwindcss": "^0.7.2"
+        "lint-staged": "^16.2.7"
     }
 }
