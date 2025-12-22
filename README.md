@@ -1,3 +1,5 @@
+[![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
+
 # PokéAPI Multi-Framework Lab
 
 Testing and comparing different web frameworks by building the same app with each one, using the [PokéAPI](https://pokeapi.co/).
