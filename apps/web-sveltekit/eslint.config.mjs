@@ -6,7 +6,7 @@ export default antfu(
 		svelte: true,
 		typescript: {
 			tsconfigPath: './tsconfig.json',
-			filesTypeAware: ['**/*.{ts,svelte}'],
+			// filesTypeAware: ['**/*.{ts,svelte}'],
 		},
 		stylistic: {
 			indent: 'tab',

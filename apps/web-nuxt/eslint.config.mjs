@@ -10,7 +10,7 @@ export default withNuxt(
             },
             typescript: {
                 tsconfigPath: './tsconfig.json',
-                filesTypeAware: ['**/*.{ts,vue}'],
+                // filesTypeAware: ['**/*.{ts,vue}'],
             },
             stylistic: {
                 indent: 4,
