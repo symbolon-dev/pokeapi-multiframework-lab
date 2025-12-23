@@ -1,4 +1,5 @@
 import antfu from '@antfu/eslint-config';
+import pluginAstro from 'eslint-plugin-astro';
 import tailwind from 'eslint-plugin-better-tailwindcss';
 
 export default antfu(
@@ -14,6 +15,7 @@ export default antfu(
         },
         formatters: true,
     },
+    ...pluginAstro.configs['jsx-a11y-recommended'],
     {
         name: 'project-strict',
         rules: {
