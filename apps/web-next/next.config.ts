@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
     reactCompiler: true,
-    cacheComponents: true,
+    // cacheComponents: true,
     images: {
         remotePatterns: [
             {
@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
         qualities: [75, 85, 95],
     },
-    transpilePackages: ['tailwindcss', 'postcss'],
+    // transpilePackages: ['tailwindcss', 'postcss'],
 };
 
 export default nextConfig;

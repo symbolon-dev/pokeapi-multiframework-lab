@@ -1,9 +1,10 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+
 import process from 'node:process';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
     ssr: true,
-
     devtools: { enabled: true },
 
     app: {
@@ -28,13 +29,13 @@ export default defineNuxtConfig({
     },
 
     modules: [
-        '@nuxthub/core',
-        '@nuxt/image',
-        '@nuxt/icon',
-        'dayjs-nuxt',
-        '@vueuse/nuxt',
-        '@nuxt/hints',
         '@nuxt/eslint',
+        '@nuxt/fonts',
+        '@nuxt/hints',
+        '@nuxt/icon',
+        '@nuxt/image',
+        '@vueuse/nuxt',
+        'dayjs-nuxt',
     ],
 
     eslint: {
@@ -59,4 +60,4 @@ export default defineNuxtConfig({
             sourcemap: false,
         },
     },
-});
+})
