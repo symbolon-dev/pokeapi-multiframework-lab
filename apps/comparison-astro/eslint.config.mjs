@@ -15,6 +15,7 @@ export default antfu(
         },
         formatters: true,
     },
+    // JSX-a11y: Only needed for React islands
     ...pluginAstro.configs['jsx-a11y-recommended'],
     {
         name: 'project-strict',
