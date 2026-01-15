@@ -14,8 +14,8 @@
     "scripts": {
         "dev": "bun run --filter './apps/*' dev",
         "build": "bun run --filter './apps/*' build",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix",
+        "lint": "bun run --filter './apps/*' lint",
+        "lint:fix": "bun run --filter './apps/*' lint:fix",
         "clean": "bun run --filter './apps/*' --filter './packages/*' clean",
         "prepare": "husky"
     },

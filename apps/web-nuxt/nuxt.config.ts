@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
-import process from 'node:process';
+// import process from 'node:process';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
@@ -60,4 +59,4 @@ export default defineNuxtConfig({
             sourcemap: false,
         },
     },
-})
+});

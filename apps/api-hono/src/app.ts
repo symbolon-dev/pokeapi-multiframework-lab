@@ -1,22 +1,22 @@
+import type { PokemonData } from '@/types/pokemon';
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
+import { type PinoLogger, pinoLogger } from 'hono-pino';
 import { cors } from 'hono/cors';
 import { etag } from 'hono/etag';
 import { secureHeaders } from 'hono/secure-headers';
-import { type PinoLogger,pinoLogger } from 'hono-pino';
-import pino from 'pino';
 
+import pino from 'pino';
 import { env } from '@/config/env';
 import { rateLimiter } from '@/middleware/rate-limiter';
 import { pokemonRoutes } from '@/routes/pokemon';
-import type { PokemonData } from '@/types/pokemon';
 
 type AppVariables = {
     Variables: {
         pokemonCache: PokemonData[];
         logger: PinoLogger;
-    }
-}
+    };
+};
 
 export const createApp = (pokemonCache: PokemonData[]) => {
     const app = new OpenAPIHono<AppVariables>();
@@ -25,20 +25,20 @@ export const createApp = (pokemonCache: PokemonData[]) => {
     app.use('*', pinoLogger({
         pino: env.NODE_ENV === 'development'
             ? pino({
-                level: 'debug',
-                transport: {
-                    target: 'pino-pretty',
-                    options: { colorize: true }
-                }
-            })
-            : pino({ level: 'info' })
+                    level: 'debug',
+                    transport: {
+                        target: 'pino-pretty',
+                        options: { colorize: true },
+                    },
+                })
+            : pino({ level: 'info' }),
     }));
-    app.use('*', rateLimiter({ windowMs: 15 * 60 * 1000, max: 500 }));  // 500 requests per 15 minutes
+    app.use('*', rateLimiter({ windowMs: 15 * 60 * 1000, max: 500 })); // 500 requests per 15 minutes
     app.use('*', secureHeaders());
     app.use('*', cors({
         origin: env.CORS_ORIGINS,
         credentials: true,
-        maxAge: 86400 // 24 hours
+        maxAge: 86400, // 24 hours
     }));
 
     // Set pokemon cache in context
@@ -57,7 +57,7 @@ export const createApp = (pokemonCache: PokemonData[]) => {
     });
 
     // Health check
-    app.get('/health', (c) => c.json({ status: 'ok', timestamp: Date.now() }));
+    app.get('/health', c => c.json({ status: 'ok', timestamp: Date.now() }));
 
     // Routes
     app.route('/api/pokemon', pokemonRoutes);
@@ -68,8 +68,8 @@ export const createApp = (pokemonCache: PokemonData[]) => {
         info: {
             version: '1.0.0',
             title: 'Pokemon API',
-            description: 'API for browsing and filtering Pokemon data'
-        }
+            description: 'API for browsing and filtering Pokemon data',
+        },
     });
 
     // Swagger UI
@@ -85,14 +85,14 @@ export const createApp = (pokemonCache: PokemonData[]) => {
             error: env.NODE_ENV === 'production'
                 ? 'Internal Server Error'
                 : err.message,
-            status: 500
+            status: 500,
         }, 500);
     });
 
     app.notFound((c) => {
         return c.json({
             error: 'Route not found',
-            status: 404
+            status: 404,
         }, 404);
     });
 
