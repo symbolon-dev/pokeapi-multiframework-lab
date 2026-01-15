@@ -13,36 +13,42 @@ export const Route = createFileRoute('/')({ component: App });
 function App() {
     const features = [
         {
+            id: 'server-functions',
             icon: <Zap className="h-12 w-12 text-cyan-400" />,
             title: 'Powerful Server Functions',
             description:
         'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
         },
         {
+            id: 'ssr',
             icon: <Server className="h-12 w-12 text-cyan-400" />,
             title: 'Flexible Server Side Rendering',
             description:
         'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
         },
         {
+            id: 'api-routes',
             icon: <RouteIcon className="h-12 w-12 text-cyan-400" />,
             title: 'API Routes',
             description:
         'Build type-safe API endpoints alongside your application. No separate backend needed.',
         },
         {
+            id: 'type-safety',
             icon: <Shield className="h-12 w-12 text-cyan-400" />,
             title: 'Strongly Typed Everything',
             description:
         'End-to-end type safety from server to client. Catch errors before they reach production.',
         },
         {
+            id: 'streaming',
             icon: <Waves className="h-12 w-12 text-cyan-400" />,
             title: 'Full Streaming Support',
             description:
         'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
         },
         {
+            id: 'next-gen',
             icon: <Sparkles className="h-12 w-12 text-cyan-400" />,
             title: 'Next Generation Ready',
             description:
@@ -52,13 +58,13 @@ function App() {
 
     return (
         <div className={`
-            min-h-screen bg-gradient-to-b from-slate-900 via-slate-800
+            min-h-screen bg-linear-to-b from-slate-900 via-slate-800
             to-slate-900
         `}
         >
             <section className="relative overflow-hidden px-6 py-20 text-center">
                 <div className={`
-                    absolute inset-0 bg-gradient-to-r from-cyan-500/10
+                    absolute inset-0 bg-linear-to-r from-cyan-500/10
                     via-blue-500/10 to-purple-500/10
                 `}
                 >
@@ -74,16 +80,14 @@ function App() {
                             `}
                         />
                         <h1 className={`
-                            text-6xl font-black
-                            [letter-spacing:-0.08em]
-                            text-white
+                            text-6xl font-black tracking-[-0.08em] text-white
                             md:text-7xl
                         `}
                         >
                             <span className="text-gray-300">TANSTACK</span>
                             {' '}
                             <span className={`
-                                bg-gradient-to-r from-cyan-400 to-blue-400
+                                bg-linear-to-r from-cyan-400 to-blue-400
                                 bg-clip-text text-transparent
                             `}
                             >
@@ -138,9 +142,9 @@ function App() {
                     lg:grid-cols-3
                 `}
                 >
-                    {features.map((feature, index) => (
+                    {features.map(feature => (
                         <div
-                            key={index}
+                            key={feature.id}
                             className={`
                                 rounded-xl border border-slate-700
                                 bg-slate-800/50 p-6 backdrop-blur-sm

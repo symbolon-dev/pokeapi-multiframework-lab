@@ -1,6 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { getPunkSongs } from '@/data/demo.punk-songs';
 
+type PunkSong = {
+    id: number;
+    name: string;
+    artist: string;
+};
+
 export const Route = createFileRoute('/demo/start/ssr/data-only')({
     ssr: 'data-only',
     component: RouteComponent,
@@ -8,17 +14,16 @@ export const Route = createFileRoute('/demo/start/ssr/data-only')({
 });
 
 function RouteComponent() {
-    const punkSongs = Route.useLoaderData();
+    const punkSongs: PunkSong[] = Route.useLoaderData();
 
     return (
         <div
             className={`
-                flex min-h-screen items-center justify-center bg-gradient-to-br
+                flex min-h-screen items-center justify-center bg-linear-to-br
                 from-zinc-800 to-black p-4 text-white
             `}
             style={{
-                backgroundImage:
-          'radial-gradient(50% 50% at 20% 60%, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)',
+                backgroundImage: 'radial-gradient(50% 50% at 20% 60%, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)',
             }}
         >
             <div className={`
