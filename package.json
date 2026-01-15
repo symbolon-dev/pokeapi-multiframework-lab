@@ -16,6 +16,8 @@
         "build": "bun run --filter './apps/*' build",
         "lint": "bun run --filter './apps/*' lint",
         "lint:fix": "bun run --filter './apps/*' lint:fix",
+        "typecheck": "bun run --filter './apps/*' typecheck",
+        "check": "bun run --filter './apps/*' check",
         "clean": "bun run --filter './apps/*' --filter './packages/*' clean",
         "prepare": "husky"
     },

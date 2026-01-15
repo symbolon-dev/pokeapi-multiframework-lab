@@ -7,7 +7,9 @@
         "build": "next build",
         "start": "next start",
         "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint:fix": "eslint . --fix",
+        "typecheck": "tsc --noEmit",
+        "check": "bun lint && bun typecheck"
     },
     "dependencies": {
         "next": "16.1.1",

@@ -8,10 +8,14 @@
         "preview": "astro preview",
         "astro": "astro",
         "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint:fix": "eslint . --fix",
+        "typecheck": "astro check",
+        "check": "bun lint && bun typecheck"
     },
     "dependencies": {
-        "astro": "^5.16.6"
+        "@astrojs/check": "^0.9.6",
+        "astro": "^5.16.6",
+        "typescript": "^5.9.3"
     },
     "devDependencies": {
         "@antfu/eslint-config": "^6.7.1",

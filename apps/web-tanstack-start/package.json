@@ -8,7 +8,9 @@
         "preview": "vite preview",
         "test": "vitest run",
         "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint:fix": "eslint . --fix",
+        "typecheck": "tsc --noEmit",
+        "check": "bun lint && bun typecheck"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.0.6",
