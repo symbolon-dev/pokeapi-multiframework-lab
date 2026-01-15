@@ -7,7 +7,8 @@ import { queryPokemon } from '@/utils/filters';
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 20;
 
-export function getPokemon(c: Context) {
+// TODO: Define proper return type
+export function getPokemon(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
     if (pokemonCache === undefined || pokemonCache.length === 0) {
@@ -41,7 +42,8 @@ export function getPokemon(c: Context) {
     }, 200);
 }
 
-export function getPokemonById(c: Context) {
+// TODO: Define proper return type
+export function getPokemonById(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
     if (pokemonCache === undefined || pokemonCache.length === 0) {
@@ -60,7 +62,8 @@ export function getPokemonById(c: Context) {
     return c.json(result, 200);
 }
 
-export function getTypes(c: Context) {
+// TODO: Define proper return type
+export function getTypes(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
     if (pokemonCache === undefined || pokemonCache.length === 0) {
@@ -76,7 +79,8 @@ export function getTypes(c: Context) {
     return c.json({ types }, 200);
 }
 
-export async function getTypeByName(c: Context) {
+// TODO: Define proper return type
+export async function getTypeByName(c: Context): Promise<any> {
     const typeName = c.req.param('type').toLowerCase();
 
     const typeDetails = await fetchTypeDetails(typeName);
@@ -89,7 +93,8 @@ export async function getTypeByName(c: Context) {
     return c.json(typeDetails, 200);
 }
 
-export function getGenerations(c: Context) {
+// TODO: Define proper return type
+export function getGenerations(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
     if (pokemonCache === undefined || pokemonCache.length === 0) {

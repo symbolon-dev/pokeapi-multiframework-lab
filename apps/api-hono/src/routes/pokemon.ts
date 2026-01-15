@@ -1,5 +1,4 @@
 import { createRoute, OpenAPIHono } from '@hono/zod-openapi';
-
 import { getGenerations, getPokemon, getPokemonById, getTypeByName, getTypes } from '@/controllers/pokemon';
 import { GenerationsResponseSchema, PokemonDataSchema, PokemonListResponseSchema, TypeDetailsSchema, TypesResponseSchema } from '@/schemas/pokemon';
 import { ErrorResponseSchema, PokemonIdParamSchema, PokemonListQuerySchema, TypeParamSchema } from '@/schemas/query';
