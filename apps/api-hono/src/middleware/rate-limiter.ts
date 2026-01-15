@@ -7,7 +7,7 @@ type RateLimiterOptions = {
 };
 
 // Simple in-memory rate limiter - for production use Redis-based solution
-export const rateLimiter = (options: RateLimiterOptions = {}) => {
+export function rateLimiter(options: RateLimiterOptions = {}) {
     let requests = new Map<string, number[]>();
     let lastPrune = Date.now();
 
@@ -16,7 +16,7 @@ export const rateLimiter = (options: RateLimiterOptions = {}) => {
     const maxIPs = options.maxIPs ?? 500;
     const pruneInterval = 60 * 1000; // 1 minute
 
-    const prune = () => {
+    const prune = (): void => {
         const now = Date.now();
         const windowStart = now - windowMs;
 
@@ -68,4 +68,4 @@ export const rateLimiter = (options: RateLimiterOptions = {}) => {
 
         await next();
     };
-};
+}

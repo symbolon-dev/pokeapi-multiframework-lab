@@ -18,7 +18,7 @@ type AppVariables = {
     };
 };
 
-export const createApp = (pokemonCache: PokemonData[]) => {
+export function createApp(pokemonCache: PokemonData[]): OpenAPIHono<AppVariables> {
     const app = new OpenAPIHono<AppVariables>();
 
     // Global middleware
@@ -97,6 +97,6 @@ export const createApp = (pokemonCache: PokemonData[]) => {
     });
 
     return app;
-};
+}
 
 export type AppType = ReturnType<typeof createApp>;

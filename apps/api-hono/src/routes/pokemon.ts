@@ -10,42 +10,42 @@ const getPokemonRoute = createRoute({
     method: 'get',
     path: '/',
     request: {
-        query: PokemonListQuerySchema
+        query: PokemonListQuerySchema,
     },
     responses: {
         200: {
             content: {
                 'application/json': {
-                    schema: PokemonListResponseSchema
-                }
+                    schema: PokemonListResponseSchema,
+                },
             },
-            description: 'Retrieve paginated and filtered list of Pokemon'
+            description: 'Retrieve paginated and filtered list of Pokemon',
         },
         400: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Invalid query parameters'
+            description: 'Invalid query parameters',
         },
         500: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Internal server error'
+            description: 'Internal server error',
         },
         503: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Service unavailable - cache not loaded'
-        }
-    }
+            description: 'Service unavailable - cache not loaded',
+        },
+    },
 });
 
 const getTypesRoute = createRoute({
@@ -55,62 +55,62 @@ const getTypesRoute = createRoute({
         200: {
             content: {
                 'application/json': {
-                    schema: TypesResponseSchema
-                }
+                    schema: TypesResponseSchema,
+                },
             },
-            description: 'Retrieve all available Pokemon types'
+            description: 'Retrieve all available Pokemon types',
         },
         500: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Internal server error'
+            description: 'Internal server error',
         },
         503: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Service unavailable - cache not loaded'
-        }
-    }
+            description: 'Service unavailable - cache not loaded',
+        },
+    },
 });
 
 const getTypeByNameRoute = createRoute({
     method: 'get',
     path: '/types/{type}',
     request: {
-        params: TypeParamSchema
+        params: TypeParamSchema,
     },
     responses: {
         200: {
             content: {
                 'application/json': {
-                    schema: TypeDetailsSchema
-                }
+                    schema: TypeDetailsSchema,
+                },
             },
-            description: 'Retrieve detailed information about a specific type including damage relations'
+            description: 'Retrieve detailed information about a specific type including damage relations',
         },
         404: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Type not found'
+            description: 'Type not found',
         },
         500: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Internal server error'
-        }
-    }
+            description: 'Internal server error',
+        },
+    },
 });
 
 const getGenerationsRoute = createRoute({
@@ -120,79 +120,78 @@ const getGenerationsRoute = createRoute({
         200: {
             content: {
                 'application/json': {
-                    schema: GenerationsResponseSchema
-                }
+                    schema: GenerationsResponseSchema,
+                },
             },
-            description: 'Retrieve all available Pokemon generations'
+            description: 'Retrieve all available Pokemon generations',
         },
         500: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Internal server error'
+            description: 'Internal server error',
         },
         503: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Service unavailable - cache not loaded'
-        }
-    }
+            description: 'Service unavailable - cache not loaded',
+        },
+    },
 });
-
 
 const getPokemonByIdRoute = createRoute({
     method: 'get',
     path: '/{id}',
     request: {
-        params: PokemonIdParamSchema
+        params: PokemonIdParamSchema,
     },
     responses: {
         200: {
             content: {
                 'application/json': {
-                    schema: PokemonDataSchema
-                }
+                    schema: PokemonDataSchema,
+                },
             },
-            description: 'Retrieve a Pokemon by ID'
+            description: 'Retrieve a Pokemon by ID',
         },
         400: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Invalid Pokemon ID'
+            description: 'Invalid Pokemon ID',
         },
         404: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Pokemon not found'
+            description: 'Pokemon not found',
         },
         500: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Internal server error'
+            description: 'Internal server error',
         },
         503: {
             content: {
                 'application/json': {
-                    schema: ErrorResponseSchema
-                }
+                    schema: ErrorResponseSchema,
+                },
             },
-            description: 'Service unavailable - cache not loaded'
-        }
-    }
+            description: 'Service unavailable - cache not loaded',
+        },
+    },
 });
 
 pokemonRoutes.openapi(getPokemonRoute, getPokemon);

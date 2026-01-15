@@ -1,9 +1,11 @@
+import process from 'node:process';
+
 import { createApp } from '@/app';
 import { env } from '@/config/env';
 import { initializePokemonCache } from '@/services/pokemon';
 import { logger } from '@/utils/logger';
 
-const startServer = async () => {
+async function startServer(): Promise<void> {
     const port = env.PORT;
     const pokemonCache = await initializePokemonCache();
 
@@ -11,23 +13,27 @@ const startServer = async () => {
 
     const server = Bun.serve({
         fetch: app.fetch,
-        port: port
+        port,
     });
 
     logger.info(`API ready at http://localhost:${port}`);
     logger.info(`${pokemonCache.length} Pokémon in cache`);
 
-    const shutdown = async (signal: string) => {
+    const shutdown = async (signal: string): Promise<void> => {
         logger.info(`${signal} received, shutting down gracefully...`);
 
-        server.stop();
+        void server.stop();
 
         logger.info('Server closed, exiting process');
-        process.exit(0);
+        void process.exit(0);
     };
 
-    process.on('SIGINT', () => shutdown('SIGINT'));
-    process.on('SIGTERM', () => shutdown('SIGTERM'));
-};
+    process.on('SIGINT', () => {
+        void shutdown('SIGINT');
+    });
+    process.on('SIGTERM', () => {
+        void shutdown('SIGTERM');
+    });
+}
 
-startServer().catch(err => logger.error({ err }, 'Error on start'));
+void startServer().catch(err => logger.error({ err }, 'Error on start'));
