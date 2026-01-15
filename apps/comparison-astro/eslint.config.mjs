@@ -1,6 +1,5 @@
 import antfu from '@antfu/eslint-config';
 import pluginAstro from 'eslint-plugin-astro';
-import tailwind from 'eslint-plugin-better-tailwindcss';
 
 export default antfu(
     {
@@ -35,17 +34,17 @@ export default antfu(
             '@typescript-eslint/no-explicit-any': 'warn',
         },
     },
-    {
-        name: 'tailwind-config',
-        files: ['**/*.astro'],
-        plugins: {
-            'better-tailwindcss': tailwind,
-        },
-        rules: {
-            ...tailwind.configs.stylistic.rules,
-            'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', {
-                indent: 4,
-            }],
-        },
-    },
+    // {
+    //     name: 'tailwind-config',
+    //     files: ['**/*.astro'],
+    //     plugins: {
+    //         'better-tailwindcss': tailwind,
+    //     },
+    //     rules: {
+    //         ...tailwind.configs.stylistic.rules,
+    //         'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', {
+    //             indent: 4,
+    //         }],
+    //     },
+    // },
 );
