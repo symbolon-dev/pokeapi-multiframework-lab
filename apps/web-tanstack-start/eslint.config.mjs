@@ -25,6 +25,9 @@ export default antfu(
     {
         name: 'project-strict',
         rules: {
+            // Prefer safe array callbacks
+            // 'array-callback-return': ['error', { allowImplicit: false }],
+
             // Prefer arrow functions over function declarations
             // 'antfu/top-level-function': 'off',
             // 'prefer-arrow-callback': 'error',
