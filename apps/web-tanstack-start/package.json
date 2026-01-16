@@ -1,5 +1,5 @@
 {
-    "name": "tanstack",
+    "name": "@repo/tanstack",
     "type": "module",
     "private": true,
     "scripts": {
@@ -13,7 +13,7 @@
         "check": "bun lint && bun typecheck"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.0.6",
+        "@tailwindcss/vite": "^4.1.17",
         "@tanstack/react-devtools": "^0.7.0",
         "@tanstack/react-router": "^1.132.0",
         "@tanstack/react-router-devtools": "^1.132.0",
@@ -24,7 +24,7 @@
         "nitro": "latest",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
-        "tailwindcss": "^4.0.6",
+        "tailwindcss": "^4.1.17",
         "vite-tsconfig-paths": "^6.0.2"
     },
     "devDependencies": {
@@ -43,7 +43,7 @@
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "jsdom": "^27.0.0",
         "typescript": "^5.7.2",
-        "vite": "^7.1.7",
+        "vite": "^7.2.7",
         "vitest": "^3.0.5",
         "web-vitals": "^5.1.0"
     }

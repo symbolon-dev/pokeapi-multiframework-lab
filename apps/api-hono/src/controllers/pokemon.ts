@@ -7,7 +7,10 @@ import { queryPokemon } from '@/utils/filters';
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 20;
 
-// TODO: Define proper return type
+// Using `any` as return type for all handlers - Hono's Context.json() returns complex
+// Response objects with typed status codes; validation is handled by OpenAPI route definitions
+
+// eslint-disable-next-line ts/no-explicit-any
 export function getPokemon(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
@@ -42,7 +45,7 @@ export function getPokemon(c: Context): any {
     }, 200);
 }
 
-// TODO: Define proper return type
+// eslint-disable-next-line ts/no-explicit-any
 export function getPokemonById(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
@@ -62,7 +65,7 @@ export function getPokemonById(c: Context): any {
     return c.json(result, 200);
 }
 
-// TODO: Define proper return type
+// eslint-disable-next-line ts/no-explicit-any
 export function getTypes(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
@@ -79,7 +82,7 @@ export function getTypes(c: Context): any {
     return c.json({ types }, 200);
 }
 
-// TODO: Define proper return type
+// eslint-disable-next-line ts/no-explicit-any
 export async function getTypeByName(c: Context): Promise<any> {
     const typeName = c.req.param('type').toLowerCase();
 
@@ -93,7 +96,7 @@ export async function getTypeByName(c: Context): Promise<any> {
     return c.json(typeDetails, 200);
 }
 
-// TODO: Define proper return type
+// eslint-disable-next-line ts/no-explicit-any
 export function getGenerations(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
 
