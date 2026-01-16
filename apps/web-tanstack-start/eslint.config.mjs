@@ -37,7 +37,7 @@ export default antfu(
             '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 
             // Warn when using `any`; allowed only for external data or edge cases
-            '@typescript-eslint/no-explicit-any': 'error',
+            '@typescript-eslint/no-explicit-any': 'warn',
         },
     },
     {

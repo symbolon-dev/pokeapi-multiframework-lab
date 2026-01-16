@@ -56,7 +56,7 @@ export default antfu(
         rules: {
             ...tailwind.configs.stylistic.rules,
             'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', {
-                indent: 'tab',
+                indent: 4,
             }],
         },
     },
