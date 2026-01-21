@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // import process from 'node:process';
-// import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
     ssr: true,
@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 
     compatibilityDate: '2025-07-15',
 
-    // css: ['~/assets/css/tailwind.css'],
+    css: ['~/assets/css/tailwind.css'],
 
     dayjs: {
         locales: ['en'],
@@ -53,13 +53,11 @@ export default defineNuxtConfig({
         public: {},
     },
 
-    // vite: {
-    //     // Vite plugin type incompatibility with @tailwindcss/vite
-
-    //     // eslint-disable-next-line ts/no-explicit-any
-    //     plugins: [tailwindcss() as any],
-    //     build: {
-    //         sourcemap: false,
-    //     },
-    // },
+    vite: {
+        // @ts-expect-error https://github.com/tailwindlabs/tailwindcss/issues/18802
+        plugins: [tailwindcss()],
+        build: {
+            sourcemap: false,
+        },
+    },
 });
