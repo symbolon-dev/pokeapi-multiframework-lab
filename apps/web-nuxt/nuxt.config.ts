@@ -22,10 +22,10 @@ export default defineNuxtConfig({
 
     css: ['~/assets/css/tailwind.css'],
 
-    dayjs: {
-        locales: ['en'],
-        defaultLocale: 'en',
-    },
+    // dayjs: {
+    //     locales: ['en'],
+    //     defaultLocale: 'en',
+    // },
 
     modules: [
         '@nuxt/eslint',
@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/image',
         '@vueuse/nuxt',
-        'dayjs-nuxt',
+        // 'dayjs-nuxt',
     ],
 
     eslint: {
