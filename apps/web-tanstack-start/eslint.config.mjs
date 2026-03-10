@@ -25,14 +25,6 @@ export default antfu(
     {
         name: 'project-strict',
         rules: {
-            // Prefer safe array callbacks
-            // 'array-callback-return': ['error', { allowImplicit: false }],
-
-            // Prefer arrow functions over function declarations
-            // 'antfu/top-level-function': 'off',
-            // 'prefer-arrow-callback': 'error',
-            // 'func-style': ['warn', 'expression'],
-
             // Prefer type over interface for consistency
             '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 
@@ -62,7 +54,7 @@ export default antfu(
             },
         },
         rules: {
-            ...tailwind.configs.stylistic.rules,
+            ...tailwind.configs.stylistic.rules, // recommended has some issues with false positives, so using stylistic as a base
             'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', {
                 indent: 4,
             }],

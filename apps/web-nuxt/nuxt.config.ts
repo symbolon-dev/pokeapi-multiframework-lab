@@ -54,7 +54,7 @@ export default defineNuxtConfig({
     },
 
     vite: {
-        // @ts-expect-error https://github.com/tailwindlabs/tailwindcss/issues/18802
+        // @ts-expect-error - Vite plugin types are not compatible with Nuxt's Vite configuration
         plugins: [tailwindcss()],
         build: {
             sourcemap: false,

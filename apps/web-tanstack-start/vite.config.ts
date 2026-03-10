@@ -22,12 +22,6 @@ const config = defineConfig({
             },
         }),
     ],
-    optimizeDeps: {
-        include: ['react-use'],
-    },
-    ssr: {
-        noExternal: ['react-use'],
-    },
 });
 
 export default config;
