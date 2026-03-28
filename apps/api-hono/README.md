@@ -25,9 +25,9 @@ Server runs on `http://localhost:8000`. API docs at `/ui`.
 
 - `GET /api/pokemon` - List with filters & pagination
 - `GET /api/pokemon/:id` - Single Pokemon
-- `GET /api/pokemon/types` - All types
+- `GET /api/pokemon/types` - Type list
 - `GET /api/pokemon/types/:type` - Type details
-- `GET /api/pokemon/generations` - All generations
+- `GET /api/pokemon/generations` - Generation list
 - `GET /health` - Health check
 - `GET /ui` - Swagger UI
 
@@ -60,14 +60,10 @@ curl "http://localhost:8000/api/pokemon/25"
 
 # Type details
 curl "http://localhost:8000/api/pokemon/types/fire"
+
+# Type list
+curl "http://localhost:8000/api/pokemon/types"
+
+# Generation list
+curl "http://localhost:8000/api/pokemon/generations"
 ```
-
-## Production TODOs
-
-- [ ] Migrate rate limiter from in-memory to Redis
-- [ ] Add unit + integration tests
-- [ ] Implement circuit breaker for PokeAPI failures
-- [ ] Add cache eviction policy and size limits
-- [ ] Setup monitoring and logging aggregation
-- [ ] Containerize with Docker
-- [ ] Setup CI/CD pipeline
