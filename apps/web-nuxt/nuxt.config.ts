@@ -53,6 +53,11 @@ export default defineNuxtConfig({
         public: {},
     },
 
+    routeRules: {
+        '/api/generations': { isr: 3600 },
+        '/api/types': { isr: 3600 },
+    },
+
     vite: {
         // @ts-expect-error - Vite plugin types are not compatible with Nuxt's Vite configuration
         plugins: [tailwindcss()],
