@@ -19,6 +19,7 @@ export default withNuxt(
                 semi: true,
             },
             formatters: true,
+            ignores: ['*.config.ts', '*.config.mts'],
         },
         {
             name: 'project-strict',
