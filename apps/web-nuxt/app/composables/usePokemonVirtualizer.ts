@@ -1,0 +1,32 @@
+import type { Pokemon } from '~/types/pokemon';
+import { useVirtualizer } from '@tanstack/vue-virtual';
+
+export function usePokemonVirtualizer(
+    parentRef: Ref<HTMLElement | null>,
+    allPokemon: ComputedRef<Pokemon[]>,
+    hasNextPage: Ref<boolean>,
+    isFetchingNextPage: Ref<boolean>,
+    fetchNextPage: () => unknown,
+) {
+    const virtualizer = useVirtualizer(computed(() => ({
+        count: hasNextPage.value ? allPokemon.value.length + 1 : allPokemon.value.length,
+        getScrollElement: () => parentRef.value,
+        estimateSize: () => 60, // estimated row height in px – adjust to match actual card height
+        overscan: 5, // items rendered outside viewport to prevent blank flashes
+    })));
+
+    const virtualItems = computed(() => virtualizer.value.getVirtualItems());
+    const totalSize = computed(() => virtualizer.value.getTotalSize());
+
+    watchEffect(() => {
+        const last = virtualItems.value.at(-1);
+        if (!last || !hasNextPage.value || isFetchingNextPage.value)
+            return;
+
+        if (last.index >= allPokemon.value.length) {
+            void fetchNextPage();
+        }
+    });
+
+    return { virtualItems, totalSize };
+}

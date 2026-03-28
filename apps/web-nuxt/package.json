@@ -19,6 +19,8 @@
         "@nuxt/hints": "1.0.0-alpha.4",
         "@nuxt/icon": "2.1.1",
         "@nuxt/image": "2.0.0",
+        "@tanstack/vue-query": "^5.95.2",
+        "@tanstack/vue-virtual": "^3.13.23",
         "@vueuse/nuxt": "^11.0.0",
         "dayjs-nuxt": "^2.1.2",
         "eslint": "^9.0.0",
