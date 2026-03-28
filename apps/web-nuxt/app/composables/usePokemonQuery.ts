@@ -43,6 +43,8 @@ export function usePokemonQuery(
         getNextPageParam: lastPage =>
             lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
         initialPageParam: 1,
+        staleTime: 30_000, // 30s
+        gcTime: 5 * 60_000, // 5m
     });
 
     const allPokemon = computed(() =>

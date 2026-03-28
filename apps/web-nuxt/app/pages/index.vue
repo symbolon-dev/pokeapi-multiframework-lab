@@ -9,8 +9,8 @@ const generation = ref<number | undefined>();
 const sortOrder = ref<SortOrder>('id-asc');
 const parentRef = ref<HTMLElement | null>(null);
 
-const { data: generations } = await useLazyFetch<number[]>('/api/generations');
-const { data: types } = await useLazyFetch<string[]>('/api/types');
+const { data: generations } = useFetch<number[]>('/api/generations');
+const { data: types } = useFetch<string[]>('/api/types');
 
 function toggleType(type: string) {
     const idx = selectedTypes.value.indexOf(type);

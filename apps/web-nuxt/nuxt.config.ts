@@ -54,8 +54,10 @@ export default defineNuxtConfig({
     },
 
     routeRules: {
-        '/api/generations': { isr: 3600 },
-        '/api/types': { isr: 3600 },
+        '/': { prerender: true },
+        '/api/generations': { isr: 3_600 }, // 1h
+        '/api/types': { isr: 3_600 }, // 1h
+        '/api/search': { swr: 30 }, // 30s
     },
 
     vite: {
