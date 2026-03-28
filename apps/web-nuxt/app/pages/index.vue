@@ -22,7 +22,7 @@ function toggleType(type: string) {
     }
 }
 
-const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status } = usePokemonQuery(
+const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage } = usePokemonQuery(
     searchTerm,
     selectedTypes,
     generation,
@@ -109,14 +109,9 @@ const { virtualItems, totalSize } = usePokemonVirtualizer(
             Max. 2 types selected
         </p>
 
-        <div v-if="status === 'pending'">
-            Loading...
-        </div>
-
         <!-- TODO: adjust height to match actual card height once design is finalized (see usePokemonVirtualizer estimateSize) -->
         <!-- Virtual scroller: inline styles required – TanStack Virtual needs exact px values at runtime, Tailwind classes won't work here -->
         <div
-            v-else
             ref="parentRef"
             style="height: 600px; overflow-y: auto;"
         >
@@ -132,17 +127,15 @@ const { virtualItems, totalSize } = usePokemonVirtualizer(
                         width: '100%',
                     }"
                 >
-                    <template v-if="item.index >= allPokemon.length">
-                        <div>Loading more...</div>
-                    </template>
-                    <template v-else>
-                        <div class="capitalize">
-                            ID: {{ allPokemon[item.index]?.id }} |
-                            Name: {{ allPokemon[item.index]?.name }} |
-                            Generation: {{ allPokemon[item.index]?.generation }} |
-                            Types: {{ allPokemon[item.index]?.types.join(', ') }}
-                        </div>
-                    </template>
+                    <NuxtLink
+                        :to="`/details/${allPokemon[item.index]?.id}`"
+                        class="capitalize"
+                    >
+                        ID: {{ allPokemon[item.index]?.id }} |
+                        Name: {{ allPokemon[item.index]?.name }} |
+                        Generation: {{ allPokemon[item.index]?.generation }} |
+                        Types: {{ allPokemon[item.index]?.types.join(', ') }}
+                    </NuxtLink>
                 </div>
             </div>
         </div>

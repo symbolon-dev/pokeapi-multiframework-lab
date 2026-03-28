@@ -8,6 +8,8 @@ export function usePokemonVirtualizer(
     isFetchingNextPage: Ref<boolean>,
     fetchNextPage: () => unknown,
 ) {
+    const savedScrollPosition = ref(0);
+
     const virtualizer = useVirtualizer(computed(() => ({
         count: hasNextPage.value ? allPokemon.value.length + 1 : allPokemon.value.length,
         getScrollElement: () => parentRef.value,
@@ -26,6 +28,23 @@ export function usePokemonVirtualizer(
         if (last.index >= allPokemon.value.length) {
             void fetchNextPage();
         }
+    });
+
+    onMounted(() => {
+        const el = parentRef.value;
+        if (!el)
+            return;
+        el.addEventListener('scroll', () => {
+            savedScrollPosition.value = el.scrollTop;
+        }, { passive: true });
+    });
+
+    onActivated(async () => {
+        await nextTick();
+        if (parentRef.value) {
+            parentRef.value.scrollTop = savedScrollPosition.value;
+        }
+        virtualizer.value.measure();
     });
 
     return { virtualItems, totalSize };
