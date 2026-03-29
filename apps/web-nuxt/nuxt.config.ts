@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
@@ -70,6 +71,12 @@ export default defineNuxtConfig({
     vite: {
         // @ts-expect-error - Vite plugin types are not compatible with Nuxt's Vite configuration
         plugins: [tailwindcss()],
+        resolve: {
+            alias: {
+                // Bun workspaces don't create node_modules symlinks — postcss-import needs this for CSS @import
+                '@repo/styles': fileURLToPath(new URL('../../packages/styles/src', import.meta.url)),
+            },
+        },
         build: {
             sourcemap: false,
         },
