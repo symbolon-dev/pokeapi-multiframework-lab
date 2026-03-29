@@ -35,8 +35,14 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/image',
         '@vueuse/nuxt',
+        'shadcn-nuxt',
         // 'dayjs-nuxt',
     ],
+
+    shadcn: {
+        prefix: '',
+        componentDir: '@/components/ui',
+    },
 
     eslint: {
         config: {
