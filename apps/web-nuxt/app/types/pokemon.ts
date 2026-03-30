@@ -36,3 +36,34 @@ export type Pokemon = {
         minLevel?: number;
     }[];
 };
+
+export type DamageRelations = {
+    doubleDamageTo: string[];
+    doubleDamageFrom: string[];
+    halfDamageTo: string[];
+    halfDamageFrom: string[];
+    noDamageTo: string[];
+    noDamageFrom: string[];
+};
+
+export type TypeData = {
+    id: number;
+    name: string;
+    damageRelations: DamageRelations;
+};
+
+export type TypeEffectivenessEntry = {
+    type: string;
+    multiplier: 0 | 0.25 | 0.5 | 1 | 2 | 4;
+};
+
+export type TypeEffectiveness = {
+    immune: TypeEffectivenessEntry[];
+    resistant: TypeEffectivenessEntry[];
+    normal: TypeEffectivenessEntry[];
+    weak: TypeEffectivenessEntry[];
+};
+
+export type PokemonDetail = Pokemon & {
+    typeEffectiveness: TypeEffectiveness;
+};

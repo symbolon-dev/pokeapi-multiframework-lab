@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import type { PokemonDetail } from '~/types/pokemon';
+
 const route = useRoute();
 const router = useRouter();
 
 const id = route.params.id as string;
 
-const { data: pokemon } = await useFetch(`/api/pokemon/${id}`);
+const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
+    return $fetch<PokemonDetail>(`/api/pokemon/${id}`);
+});
 </script>
 
 <template>
@@ -12,6 +16,6 @@ const { data: pokemon } = await useFetch(`/api/pokemon/${id}`);
         <button @click="router.back()">
             Back
         </button>
-        <pre>{{ JSON.stringify(pokemon, null, 2) }}</pre>
+        <pre>{{ JSON.stringify(data, null, 2) }}</pre>
     </div>
 </template>
