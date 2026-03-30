@@ -33,10 +33,18 @@ export function mapPokemonData(parsed: PokemonDetails, generation: number): Poke
     };
 }
 
+const ARTWORK_BASE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
+
+function extractIdFromUrl(url: string): number {
+    return Number(url.replace(/\/$/, '').split('/').pop());
+}
+
 function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | null): MappedEvolution[] {
+    const id = extractIdFromUrl(chain.species.url);
     const current: MappedEvolution = {
         name: chain.species.name,
-        url: chain.species.url,
+        id,
+        sprite: `${ARTWORK_BASE_URL}/${id}.png`,
         minLevel: minLevel ?? undefined,
     };
 

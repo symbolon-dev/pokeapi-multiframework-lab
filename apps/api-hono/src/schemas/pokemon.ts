@@ -25,7 +25,8 @@ export const PokemonDataSchema = z.object({
     evolutions: z.array(
         z.object({
             name: z.string().openapi({ example: 'raichu' }),
-            url: z.string().openapi({ example: 'https://pokeapi.co/api/v2/pokemon-species/26/' }),
+            id: z.number().openapi({ example: 26 }),
+            sprite: z.string().openapi({ example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png' }),
             minLevel: z.number().optional().openapi({ example: 16 }),
         }).openapi({ description: 'Evolution details' }),
     ).openapi({ description: 'List of possible evolutions' }),
@@ -49,7 +50,8 @@ export const GenerationsResponseSchema = z.object({
 
 export const MappedEvolutionSchema = z.object({
     name: z.string(),
-    url: z.string(),
+    id: z.number(),
+    sprite: z.string(),
     minLevel: z.number().optional(),
 });
 
