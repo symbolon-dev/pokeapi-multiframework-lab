@@ -3,13 +3,15 @@ import process from 'node:process';
 import { createApp } from '@/app';
 import { env } from '@/config/env';
 import { initializePokemonCache } from '@/services/pokemon';
+import { initializeTypeCache } from '@/services/types';
 import { logger } from '@/utils/logger';
 
 async function startServer(): Promise<void> {
     const port = env.PORT;
     const pokemonCache = await initializePokemonCache();
+    const typeCache = await initializeTypeCache();
 
-    const app = createApp(pokemonCache);
+    const app = createApp(pokemonCache, typeCache);
 
     const server = Bun.serve({
         fetch: app.fetch,
@@ -18,6 +20,7 @@ async function startServer(): Promise<void> {
 
     logger.info(`API ready at http://localhost:${port}`);
     logger.info(`${pokemonCache.length} Pokémon in cache`);
+    logger.info(`${Object.keys(typeCache).length} Types in cache`);
 
     const shutdown = async (signal: string): Promise<void> => {
         logger.info(`${signal} received, shutting down gracefully...`);

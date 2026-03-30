@@ -1,8 +1,9 @@
 import type { Context } from 'hono';
 
-import type { PokemonData, QueryParams } from '@/types/pokemon';
+import type { PokemonData, QueryParams, TypeDetails } from '@/types/pokemon';
 import { fetchTypeDetails } from '@/utils/fetchers';
 import { queryPokemon } from '@/utils/filters';
+import { calculateTypeEffectiveness } from '@/utils/mappers';
 
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 20;
@@ -48,6 +49,7 @@ export function getPokemon(c: Context): any {
 // eslint-disable-next-line ts/no-explicit-any
 export function getPokemonById(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as PokemonData[];
+    const typeCache = c.get('typeCache') as Record<string, TypeDetails>;
 
     if (pokemonCache === undefined || pokemonCache.length === 0) {
         const logger = c.get('logger') as { error: (message: string) => void };
@@ -62,7 +64,9 @@ export function getPokemonById(c: Context): any {
         return c.json({ error: 'Pokémon not found', status: 404 }, 404);
     }
 
-    return c.json(result, 200);
+    const typeEffectiveness = calculateTypeEffectiveness(result.types, typeCache);
+
+    return c.json({ ...result, typeEffectiveness }, 200);
 }
 
 // eslint-disable-next-line ts/no-explicit-any

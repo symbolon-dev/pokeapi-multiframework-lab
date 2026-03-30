@@ -1,4 +1,4 @@
-import type { PokemonData } from '@/types/pokemon';
+import type { PokemonData, TypeDetails } from '@/types/pokemon';
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { type PinoLogger, pinoLogger } from 'hono-pino';
@@ -14,11 +14,12 @@ import { pokemonRoutes } from '@/routes/pokemon';
 type AppVariables = {
     Variables: {
         pokemonCache: PokemonData[];
+        typeCache: Record<string, TypeDetails>;
         logger: PinoLogger;
     };
 };
 
-export function createApp(pokemonCache: PokemonData[]): OpenAPIHono<AppVariables> {
+export function createApp(pokemonCache: PokemonData[], typeCache: Record<string, TypeDetails>): OpenAPIHono<AppVariables> {
     const app = new OpenAPIHono<AppVariables>();
 
     // Global middleware
@@ -44,6 +45,7 @@ export function createApp(pokemonCache: PokemonData[]): OpenAPIHono<AppVariables
     // Set pokemon cache in context
     app.use('*', async (c, next) => {
         c.set('pokemonCache', pokemonCache);
+        c.set('typeCache', typeCache);
         await next();
     });
 

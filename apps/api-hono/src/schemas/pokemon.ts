@@ -85,3 +85,19 @@ export const TypeDetailsSchema = z.object({
     name: z.string().openapi({ example: 'fire', description: 'Type name' }),
     damageRelations: DamageRelationsSchema,
 }).openapi('TypeDetails');
+
+export const TypeEffectivenessEntrySchema = z.object({
+    type: z.string().openapi({ example: 'water' }),
+    multiplier: z.union([z.literal(0), z.literal(0.25), z.literal(0.5), z.literal(1), z.literal(2), z.literal(4)]),
+});
+
+export const TypeEffectivenessSchema = z.object({
+    immune: z.array(TypeEffectivenessEntrySchema),
+    resistant: z.array(TypeEffectivenessEntrySchema),
+    normal: z.array(TypeEffectivenessEntrySchema),
+    weak: z.array(TypeEffectivenessEntrySchema),
+}).openapi('TypeEffectiveness');
+
+export const PokemonDetailResponseSchema = PokemonDataSchema.extend({
+    typeEffectiveness: TypeEffectivenessSchema,
+}).openapi('PokemonDetailResponse');
