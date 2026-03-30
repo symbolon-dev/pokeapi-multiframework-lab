@@ -14,7 +14,7 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
 
 <template>
     <div class="p-4">
-        <button @click="router.back()">
+        <button @click="router.push('/')">
             Back
         </button>
 
