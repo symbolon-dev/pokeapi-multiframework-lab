@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { PokemonDetail } from '~/types/pokemon';
 
-const route = useRoute();
 const router = useRouter();
+
+const route = useRoute();
 const id = route.params.id as string;
 
 const isShiny = ref(false);
@@ -45,7 +46,7 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
 
         <div>
             <p class="text-2xl font-bold capitalize">
-                #{{ String(data?.id).padStart(4, '0') }} {{ data?.name }}
+                #{{ String(data?.id).padStart(3, '0') }} {{ data?.name }}
             </p>
             <p>
                 Height: {{ data?.height ? `${(data.height / 10).toFixed(1)} m` : '—' }}
@@ -99,7 +100,7 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
                             class="mb-1"
                         />
                         <span class="text-sm capitalize">
-                            #{{ String(evo?.id).padStart(4, '0') }} {{ evo.name }}</span>
+                            #{{ String(evo?.id).padStart(3, '0') }} {{ evo.name }}</span>
                         <span
                             v-if="evo.minLevel" class="
                                 text-xs text-muted-foreground
