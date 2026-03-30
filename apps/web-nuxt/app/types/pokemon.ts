@@ -32,7 +32,8 @@ export type Pokemon = {
     };
     evolutions: {
         name: string;
-        url: string;
+        id: number;
+        sprite: string;
         minLevel?: number;
     }[];
 };

@@ -49,5 +49,19 @@ export default withNuxt(
                 }],
             },
         },
+        {
+            name: 'a11y-overrides',
+            files: ['**/*.vue'],
+            rules: {
+                'vue-a11y/label-has-for': ['error', {
+                    components: ['Label'],
+                    controlComponents: ['Switch'],
+                    required: {
+                        some: ['nesting', 'id'],
+                    },
+                    allowChildren: true,
+                }],
+            },
+        },
     ),
 );
