@@ -63,8 +63,8 @@ export default defineNuxtConfig({
 
     routeRules: {
         '/': { prerender: true },
-        '/api/generations': { isr: 86_400 }, // 24h
-        '/api/types': { isr: 86_400 },       // 24h
+        '/api/generations': { prerender: true },
+        '/api/types': { prerender: true },
         '/api/type/**': { isr: 86_400 },     // 24h
         '/api/pokemon/**': { isr: 86_400 },  // 24h
         '/api/search': { swr: 30 },          // 30s
