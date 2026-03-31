@@ -7,7 +7,7 @@ import { logger } from '@/utils/logger';
 import { mapPokemonData, mapTypeDetails } from '@/utils/mappers';
 
 const BATCH_SIZE = 25;
-const REQUEST_TIMEOUT_MS = 5000; // 5 seconds
+const REQUEST_TIMEOUT_MS = 15000; // 15 seconds
 const POKEAPI_BASE_URL = 'https://pokeapi.co/api/v2';
 
 async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {

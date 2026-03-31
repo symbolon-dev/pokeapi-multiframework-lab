@@ -1,6 +1,7 @@
 import type { EvolutionChain, MappedEvolution, PokemonData, PokemonDetails, TypeDetails, TypeDetailsApi } from '@/types/pokemon';
 
 import { ALL_TYPES } from '@/services/types';
+import { extractDominantColor } from '@/utils/color';
 
 export type TypeEffectiveness = {
     immune: { type: string; multiplier: 0 }[];
@@ -9,7 +10,10 @@ export type TypeEffectiveness = {
     weak: { type: string; multiplier: 2 | 4 }[];
 };
 
-export function mapPokemonData(parsed: PokemonDetails, generation: number): PokemonData {
+export async function mapPokemonData(parsed: PokemonDetails, generation: number): Promise<PokemonData> {
+    const artworkUrl = parsed.sprites.other['official-artwork'].front_default;
+    const dominantColor = (artworkUrl != null) ? await extractDominantColor(artworkUrl) : undefined;
+
     return {
         id: parsed.id,
         name: parsed.name,
@@ -23,8 +27,9 @@ export function mapPokemonData(parsed: PokemonDetails, generation: number): Poke
         ),
         sprites: {
             sprite: parsed.sprites.front_default,
-            default: parsed.sprites.other['official-artwork'].front_default,
+            default: artworkUrl,
             defaultShiny: parsed.sprites.other['official-artwork'].front_shiny,
+            dominantColor,
         },
         evolutions: parsed.chain
             ? mapEvolutionChain(parsed.chain)
@@ -39,7 +44,7 @@ function extractIdFromUrl(url: string): number {
     return Number(url.replace(/\/$/, '').split('/').pop());
 }
 
-function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | null): MappedEvolution[] {
+function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | undefined): MappedEvolution[] {
     const id = extractIdFromUrl(chain.species.url);
     const current: MappedEvolution = {
         name: chain.species.name,
@@ -53,7 +58,7 @@ function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | null): Map
     }
 
     const evolutions = chain.evolves_to.flatMap((evo: EvolutionChain) =>
-        mapEvolutionChain(evo, evo.evolution_details?.[0]?.min_level),
+        mapEvolutionChain(evo, evo.evolution_details?.[0]?.min_level ?? undefined),
     );
 
     return [current, ...evolutions];
