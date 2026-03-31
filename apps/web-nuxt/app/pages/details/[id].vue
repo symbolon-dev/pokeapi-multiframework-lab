@@ -23,7 +23,8 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
             <NuxtImg
                 v-if="data?.sprites.default"
                 :src="data.sprites.default"
-                class="my-4" :class="[isShiny ? 'hidden' : 'block']"
+                class="my-4 rounded-lg" :class="[isShiny ? 'hidden' : 'block']"
+                :style="{ backgroundColor: data.sprites.dominantColor ?? undefined }"
                 alt="Pokemon Image"
                 width="200"
                 height="200"
@@ -31,7 +32,8 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
             <NuxtImg
                 v-if="data?.sprites.defaultShiny"
                 :src="data.sprites.defaultShiny"
-                class="my-4" :class="[isShiny ? 'block' : 'hidden']"
+                class="my-4 rounded-lg" :class="[isShiny ? 'block' : 'hidden']"
+                :style="{ backgroundColor: data.sprites.dominantColor ?? undefined }"
                 alt="Pokemon Image"
                 width="200"
                 height="200"

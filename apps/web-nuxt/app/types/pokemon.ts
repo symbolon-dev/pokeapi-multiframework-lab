@@ -29,6 +29,7 @@ export type Pokemon = {
         sprite: string | null;
         default: string | null;
         defaultShiny: string | null;
+        dominantColor: string | undefined;
     };
     evolutions: {
         name: string;

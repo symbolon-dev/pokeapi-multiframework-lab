@@ -7,15 +7,24 @@ export function usePokemonVirtualizer(
     hasNextPage: Ref<boolean>,
     isFetchingNextPage: Ref<boolean>,
     fetchNextPage: () => unknown,
+    lanes: Ref<number>,
+    containerWidth: Ref<number>,
 ) {
     const savedScrollPosition = ref(0);
+    const columnWidth = computed(() => containerWidth.value / lanes.value);
 
     const virtualizer = useVirtualizer(computed(() => ({
         count: hasNextPage.value ? allPokemon.value.length + 1 : allPokemon.value.length,
         getScrollElement: () => parentRef.value,
-        estimateSize: () => 60, // estimated row height in px – adjust to match actual card height
-        overscan: 5, // items rendered outside viewport to prevent blank flashes
+        estimateSize: () => columnWidth.value + 42, // estimated row height in px – adjust to match actual card height
+        overscan: 12, // items rendered outside viewport to prevent blank flashes
+        lanes: lanes.value,
+        gap: 16,
     })));
+
+    watch([lanes, containerWidth], () => {
+        virtualizer.value.measure();
+    });
 
     const virtualItems = computed(() => virtualizer.value.getVirtualItems());
     const totalSize = computed(() => virtualizer.value.getTotalSize());
@@ -47,5 +56,5 @@ export function usePokemonVirtualizer(
         virtualizer.value.measure();
     });
 
-    return { virtualItems, totalSize };
+    return { virtualItems, totalSize, measureElement: virtualizer.value.measureElement };
 }
