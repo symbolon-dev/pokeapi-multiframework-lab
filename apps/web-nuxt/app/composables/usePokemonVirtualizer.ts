@@ -1,7 +1,6 @@
 import type { Pokemon } from '~/types/pokemon';
 import { useVirtualizer } from '@tanstack/vue-virtual';
 
-// TODO: Fix keepalive for <6 cards per row, which causes the virtualizer to lose track of scroll position. This is likely due to the way the virtualizer calculates item positions based on the number of lanes and container width, which can change when the number of cards per row changes.
 export function usePokemonVirtualizer(
     parentRef: Ref<HTMLElement | null>,
     allPokemon: ComputedRef<Pokemon[]>,
@@ -12,6 +11,8 @@ export function usePokemonVirtualizer(
     containerWidth: Ref<number>,
 ) {
     const savedScrollPosition = ref(0);
+    const hasRestored = ref(false);
+
     const columnWidth = computed(() => containerWidth.value / lanes.value);
 
     const virtualizer = useVirtualizer(computed(() => ({
@@ -22,10 +23,6 @@ export function usePokemonVirtualizer(
         lanes: lanes.value,
         gap: 16,
     })));
-
-    watch([lanes, containerWidth], () => {
-        virtualizer.value.measure();
-    });
 
     const virtualItems = computed(() => virtualizer.value.getVirtualItems());
     const totalSize = computed(() => virtualizer.value.getTotalSize());
@@ -49,13 +46,29 @@ export function usePokemonVirtualizer(
         }, { passive: true });
     });
 
-    onActivated(async () => {
-        await nextTick();
-        if (parentRef.value) {
-            parentRef.value.scrollTop = savedScrollPosition.value;
-        }
-        virtualizer.value.measure();
+    onActivated(() => {
+        hasRestored.value = false;
     });
 
-    return { virtualItems, totalSize, measureElement: virtualizer.value.measureElement };
+    watch([lanes, containerWidth], async () => {
+        if (containerWidth.value === 0)
+            return;
+        virtualizer.value.measure();
+        if (!hasRestored.value) {
+            hasRestored.value = true;
+            await nextTick(() => {
+                if (parentRef.value) {
+                    parentRef.value.scrollTop = savedScrollPosition.value;
+                }
+            });
+        }
+    });
+
+    const measureElement = (el: Element | ComponentPublicInstance | null) => {
+        if (el instanceof Element) {
+            virtualizer.value.measureElement(el);
+        }
+    };
+
+    return { virtualItems, totalSize, measureElement };
 }

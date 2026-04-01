@@ -136,7 +136,8 @@ useResizeObserver(parentRef, (entries) => {
                 <div
                     v-for="item in virtualItems"
                     :ref="measureElement"
-                    :key="item.key"
+                    :key="String(item.key)"
+                    :data-index="item.index"
                     :style="{
                         position: 'absolute',
                         top: 0,
