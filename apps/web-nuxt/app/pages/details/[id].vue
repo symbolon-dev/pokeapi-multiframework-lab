@@ -39,6 +39,7 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
                 height="200"
             />
             <div class="flex items-center gap-2">
+                <!-- eslint-disable-next-line vue-a11y/label-has-for -->
                 <Label for="switchId" aria-label="Shiny Toggle">
                     Shiny Toggle
                     <Switch id="switchId" v-model="isShiny" aria-label="Shiny Toggle" />

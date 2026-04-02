@@ -19,7 +19,7 @@ export default withNuxt(
                 semi: true,
             },
             formatters: true,
-            ignores: ['*.config.ts', '*.config.mts'],
+            ignores: ['playwright.config.ts'],
         },
         {
             name: 'project-strict',
@@ -33,7 +33,7 @@ export default withNuxt(
         },
         {
             name: 'tailwind-config',
-            files: ['**/*.vue'],
+            files: ['**/*.{ts,vue}'],
             plugins: {
                 'better-tailwindcss': tailwind,
             },
@@ -49,19 +49,12 @@ export default withNuxt(
                 }],
             },
         },
-        {
-            name: 'a11y-overrides',
-            files: ['**/*.vue'],
-            rules: {
-                'vue-a11y/label-has-for': ['error', {
-                    components: ['Label'],
-                    controlComponents: ['Switch'],
-                    required: {
-                        some: ['nesting', 'id'],
-                    },
-                    allowChildren: true,
-                }],
-            },
-        },
+        // {
+        //     name: 'a11y-overrides',
+        //     files: ['**/components/ui/**/*.vue'],
+        //     rules: {
+        //         'vue-a11y/label-has-for': 'off',
+        //     },
+        // },
     ),
 );

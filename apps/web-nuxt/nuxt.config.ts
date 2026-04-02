@@ -65,9 +65,9 @@ export default defineNuxtConfig({
         '/': { prerender: true },
         '/api/generations': { prerender: true },
         '/api/types': { prerender: true },
-        '/api/type/**': { isr: 86_400 },     // 24h
-        '/api/pokemon/**': { isr: 86_400 },  // 24h
-        '/api/search': { swr: 30 },          // 30s
+        '/api/type/**': { isr: 86_400 }, // 24h
+        '/api/pokemon/**': { isr: 86_400 }, // 24h
+        '/api/search': { swr: 30 }, // 30s
     },
 
     vite: {
