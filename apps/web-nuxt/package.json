@@ -20,6 +20,7 @@
         "test:e2e:playwright": "playwright test"
     },
     "dependencies": {
+        "@lucide/vue": "^1.7.0",
         "@nuxt/eslint": "1.12.1",
         "@nuxt/fonts": "0.12.1",
         "@nuxt/hints": "1.0.0-alpha.4",
@@ -33,7 +34,6 @@
         "clsx": "^2.1.1",
         "dayjs-nuxt": "^2.1.2",
         "eslint": "^9.0.0",
-        "lucide-vue-next": "^1.0.0",
         "nuxt": "^4.2.2",
         "reka-ui": "^2.9.3",
         "tailwind-merge": "^3.5.0",

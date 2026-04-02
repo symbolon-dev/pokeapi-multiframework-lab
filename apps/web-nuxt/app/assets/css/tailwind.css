@@ -2,6 +2,13 @@
 @import 'tw-animate-css';
 @import '@repo/styles/tokens.css';
 
+/* Animated Theme Toggler */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
