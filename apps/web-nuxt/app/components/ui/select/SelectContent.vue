@@ -36,8 +36,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
             :class="cn(
                 `
                     relative z-50 max-h-(--reka-select-content-available-height)
-                    min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-md
-                    border bg-popover text-popover-foreground shadow-md
+                    min-w-32 overflow-x-hidden overflow-y-auto rounded-md border
+                    bg-popover text-popover-foreground shadow-md
                     data-[side=bottom]:slide-in-from-top-2
                     data-[side=left]:slide-in-from-right-2
                     data-[side=right]:slide-in-from-left-2
@@ -62,8 +62,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
             <SelectScrollUpButton />
             <SelectViewport
                 :class="cn('p-1', position === 'popper' && `
-                    h-[var(--reka-select-trigger-height)] w-full
-                    min-w-[var(--reka-select-trigger-width)] scroll-my-1
+                    h-(--reka-select-trigger-height) w-full
+                    min-w-(--reka-select-trigger-width) scroll-my-1
                 `)"
             >
                 <slot />
