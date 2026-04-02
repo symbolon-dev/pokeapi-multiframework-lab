@@ -13,7 +13,7 @@ const props = defineProps<{
         :class="
             cn(
                 `
-                    flex flex-col gap-6 rounded-xl border bg-card py-6
+                    flex flex-col overflow-hidden rounded-xl border bg-card
                     text-card-foreground shadow-sm
                 `,
                 props.class,

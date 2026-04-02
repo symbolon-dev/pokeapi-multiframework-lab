@@ -18,8 +18,8 @@ export function usePokemonVirtualizer(
     const virtualizer = useVirtualizer(computed(() => ({
         count: hasNextPage.value ? allPokemon.value.length + 1 : allPokemon.value.length,
         getScrollElement: () => parentRef.value,
-        estimateSize: () => columnWidth.value + 42, // estimated row height in px – adjust to match actual card height
-        overscan: 6, // items rendered outside viewport to prevent blank flashes
+        estimateSize: () => columnWidth.value + 48,
+        overscan: 6,
         lanes: lanes.value,
         gap: 16,
     })));
@@ -64,11 +64,5 @@ export function usePokemonVirtualizer(
         }
     });
 
-    const measureElement = (el: Element | ComponentPublicInstance | null) => {
-        if (el instanceof Element) {
-            virtualizer.value.measureElement(el);
-        }
-    };
-
-    return { virtualItems, totalSize, measureElement };
+    return { virtualItems, totalSize };
 }

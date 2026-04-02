@@ -32,7 +32,7 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage } = usePokemo
 
 const containerWidth = ref(0);
 
-const { virtualItems, totalSize, measureElement } = usePokemonVirtualizer(
+const { virtualItems, totalSize } = usePokemonVirtualizer(
     parentRef,
     allPokemon,
     hasNextPage,
@@ -56,75 +56,77 @@ useResizeObserver(parentRef, (entries) => {
 
 <template>
     <div class="flex h-full flex-col">
-        <div class="mb-3 flex flex-wrap items-center gap-2">
-            <label for="search">
-                <input
-                    id="search"
+        <div class="my-4 flex flex-wrap gap-2">
+            <Label for="search">
+                <Input
                     v-model="searchTerm"
-                    placeholder="Search..."
-                    class="rounded border border-gray-300 px-2 py-1"
-                >
-            </label>
+                    placeholder="Search by name or ID..."
+                />
+            </Label>
 
-            <label for="generation">
-                <select id="generation" v-model="generation">
-                    <option :value="undefined">All Generations</option>
-                    <option
-                        v-for="gen in generations"
-                        :key="gen"
-                        :value="gen"
-                    >
-                        Gen {{ gen }}
-                    </option>
-                </select>
-            </label>
+            <Label for="generation">
+                <Select v-model="generation" default-value="undefined">
+                    <SelectTrigger>
+                        <SelectValue placeholder="All Generations" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem :value="undefined">
+                            All Generations
+                        </SelectItem>
+                        <SelectItem v-for="gen in generations" :key="gen" :value="gen">
+                            Gen {{ gen }}
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
+            </Label>
 
-            <label for="sort">
-                <select id="sort" v-model="sortOrder">
-                    <option value="id-asc">
-                        ID asc
-                    </option>
-                    <option value="id-desc">
-                        ID desc
-                    </option>
-                    <option value="name-asc">
-                        Name A-Z
-                    </option>
-                    <option value="name-desc">
-                        Name Z-A
-                    </option>
-                </select>
-            </label>
-
-            <p v-if="selectedTypes.length >= 2" class="text-xs text-gray-400">
-                Max. 2 types selected
-            </p>
+            <Label for="sort">
+                <Select v-model="sortOrder" default-value="id-asc">
+                    <SelectTrigger>
+                        <SelectValue placeholder="ID ↑" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="id-asc">
+                            ID ↑
+                        </SelectItem>
+                        <SelectItem value="id-desc">
+                            ID ↓
+                        </SelectItem>
+                        <SelectItem value="name-asc">
+                            Name ↑
+                        </SelectItem>
+                        <SelectItem value="name-desc">
+                            Name ↓
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
+            </Label>
         </div>
 
-        <div class="mb-3 flex flex-wrap gap-2">
-            <button
-                v-for="type in types"
-                :key="type"
-                type="button"
-                :disabled="!selectedTypes.includes(type) && selectedTypes.length >= 2"
-                class="
-                    rounded-full border px-3 py-1 text-sm capitalize
-                    transition-colors
-                " :class="[
-                    selectedTypes.includes(type)
-                        ? 'border-transparent bg-blue-500 text-white'
-                        : `
-                            border-gray-300 bg-white text-gray-700
-                            hover:border-blue-400
-                        `,
-                    !selectedTypes.includes(type) && selectedTypes.length >= 2
-                        ? 'cursor-not-allowed opacity-40'
-                        : 'cursor-pointer',
-                ]"
-                @click="toggleType(type)"
-            >
-                {{ type }}
-            </button>
+        <div class="mb-6">
+            <div class="mb-3 flex flex-wrap gap-2">
+                <Badge
+                    v-for="type in types"
+                    :key="type"
+                    :variant="[
+                        selectedTypes.includes(type)
+                            ? 'default'
+                            : 'outline',
+                    ]"
+                    :disabled="!selectedTypes.includes(type) && selectedTypes.length >= 2"
+                    :class="[
+                        !selectedTypes.includes(type) && selectedTypes.length >= 2
+                            ? 'cursor-not-allowed opacity-40'
+                            : 'cursor-pointer',
+                    ]"
+                    @click="toggleType(type)"
+                >
+                    {{ type }}
+                </Badge>
+            </div>
+            <p v-if="selectedTypes.length >= 2" class="text-sm text-gray-500">
+                Max. 2 types selected
+            </p>
         </div>
 
         <!-- Virtual scroller: inline styles required – TanStack Virtual needs exact px values at runtime, Tailwind classes won't work here -->
@@ -135,7 +137,6 @@ useResizeObserver(parentRef, (entries) => {
             <div :style="{ height: `${totalSize}px`, position: 'relative' }">
                 <div
                     v-for="item in virtualItems"
-                    :ref="measureElement"
                     :key="String(item.key)"
                     :data-index="item.index"
                     :style="{
@@ -150,37 +151,35 @@ useResizeObserver(parentRef, (entries) => {
                     <NuxtLink
                         :to="`/details/${allPokemon[item.index]?.id}`"
                     >
-                        <div class="overflow-hidden rounded-lg bg-white">
-                            <NuxtImg
-                                v-if="allPokemon[item.index]?.sprites.default"
-                                :src="allPokemon[item.index]?.sprites.default ?? ''"
-                                :style="{
-                                    backgroundColor: allPokemon[item.index]?.sprites.dominantColor ?? undefined,
-                                }"
-                                class="aspect-square w-full object-cover"
-                                :alt="allPokemon[item.index]?.name ?? ''"
-                            />
-                            <div class="px-2 py-1">
+                        <Card>
+                            <CardContent>
+                                <NuxtImg
+                                    v-if="allPokemon[item.index]?.sprites.default"
+                                    :src="allPokemon[item.index]?.sprites.default ?? ''"
+                                    :style="{
+                                        backgroundColor: allPokemon[item.index]?.sprites.dominantColor ?? undefined,
+                                    }"
+                                    class="aspect-square w-full object-cover"
+                                    :alt="allPokemon[item.index]?.name ?? ''"
+                                />
+                            </CardContent>
+                            <CardFooter>
                                 <span class="text-xs text-gray-400">
                                     #{{ String(allPokemon[item.index]?.id).padStart(4, '0') }}
                                 </span>
-                                <span class="ml-1 capitalize">
+                                <span class="font-semibold">
                                     {{ allPokemon[item.index]?.name }}
                                 </span>
-                                <div class="mt-1 flex gap-1">
+                                <div class="flex gap-1">
                                     <span
                                         v-for="type in allPokemon[item.index]?.types"
                                         :key="type"
-                                        class="
-                                            rounded-full bg-gray-100 px-2 py-0.5
-                                            text-xs capitalize
-                                        "
                                     >
                                         {{ type }}
                                     </span>
                                 </div>
-                            </div>
-                        </div>
+                            </CardFooter>
+                        </Card>
                     </NuxtLink>
                 </div>
             </div>

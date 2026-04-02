@@ -11,7 +11,7 @@ const props = defineProps<{
     <div
         data-slot="card-footer"
         :class="cn(`
-            flex items-center px-6
+            flex flex-col items-start px-2 py-1 capitalize
             [.border-t]:pt-6
         `, props.class)"
     >

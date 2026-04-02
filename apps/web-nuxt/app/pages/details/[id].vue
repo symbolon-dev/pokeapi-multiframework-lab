@@ -15,9 +15,9 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
 
 <template>
     <div class="p-4">
-        <button @click="router.push('/')">
+        <Button @click="router.push('/')">
             Back
-        </button>
+        </Button>
 
         <div>
             <NuxtImg
@@ -42,7 +42,7 @@ const { data } = await useAsyncData(`pokemon-detail-${id}`, async () => {
                 <!-- eslint-disable-next-line vue-a11y/label-has-for -->
                 <Label for="switchId" aria-label="Shiny Toggle">
                     Shiny Toggle
-                    <Switch id="switchId" v-model="isShiny" aria-label="Shiny Toggle" />
+                    <Switch v-model="isShiny" aria-label="Shiny Toggle" />
                 </Label>
             </div>
         </div>

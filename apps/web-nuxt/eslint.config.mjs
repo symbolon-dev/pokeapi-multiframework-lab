@@ -49,12 +49,5 @@ export default withNuxt(
                 }],
             },
         },
-        // {
-        //     name: 'a11y-overrides',
-        //     files: ['**/components/ui/**/*.vue'],
-        //     rules: {
-        //         'vue-a11y/label-has-for': 'off',
-        //     },
-        // },
     ),
 );
