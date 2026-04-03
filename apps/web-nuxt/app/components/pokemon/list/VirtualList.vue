@@ -66,5 +66,28 @@ useResizeObserver(parentRef, (entries) => {
                 <PokemonListItem :pokemon="allPokemon[item.index]" />
             </div>
         </div>
+
+        <div
+            v-if="isFetchingNextPage" class="
+                flex items-center justify-center py-4
+            "
+        >
+            <div class="flex items-center gap-2">
+                <div
+                    class="
+                        h-5 w-5 animate-spin rounded-full border-2
+                        border-gray-300 border-t-red-500
+                    "
+                />
+                <span
+                    class="
+                        text-sm text-gray-500
+                        dark:text-gray-400
+                    "
+                >
+                    Loading more...
+                </span>
+            </div>
+        </div>
     </div>
 </template>

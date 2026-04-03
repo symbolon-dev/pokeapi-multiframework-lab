@@ -7,9 +7,20 @@ function toParamTuples(key: string, value: unknown): [string, string][] {
 }
 
 export default defineEventHandler(async (event) => {
-    const query = getQuery(event);
-    const params = new URLSearchParams(
-        Object.entries(query).flatMap(([key, value]) => toParamTuples(key, value)),
-    );
-    return $fetch(`http://localhost:8000/api/pokemon?${params.toString()}`);
+    try {
+        const query = getQuery(event);
+        const params = new URLSearchParams(
+            Object.entries(query).flatMap(([key, value]) => toParamTuples(key, value)),
+        );
+        return await $fetch(`http://localhost:8000/api/pokemon?${params.toString()}`);
+    }
+    catch (error: unknown) {
+        const err = error as { statusCode?: number; status?: number; statusMessage?: string; message?: string };
+        const status = err?.statusCode ?? err?.status ?? 500;
+        const message = err?.statusMessage ?? err?.message ?? 'Internal Server Error';
+        throw createError({
+            statusCode: status,
+            statusMessage: message,
+        });
+    }
 });
