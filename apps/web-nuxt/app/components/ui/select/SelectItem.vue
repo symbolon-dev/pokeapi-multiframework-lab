@@ -11,6 +11,12 @@ import {
 } from 'reka-ui';
 import { cn } from '@/lib/utils';
 
+/**
+ * False-positive @nuxt/hints hydration warning — reka-ui renders Select content
+ * into a teleported <div> in <body> only on user interaction, leaving the component
+ * tree empty pre-hydration. Not an actual hydration issue.
+ */
+
 const props = defineProps<SelectItemProps & { class?: HTMLAttributes['class'] }>();
 
 const delegatedProps = reactiveOmit(props, 'class');
