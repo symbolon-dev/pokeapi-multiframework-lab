@@ -17,7 +17,7 @@ function buildParams(filters: Filters, page: number): URLSearchParams {
         ['sort', filters.sort],
         ['order', filters.order],
         ...(filters.name ? [['name', filters.name] as [string, string]] : []),
-        ...(filters.generation != null ? [['generation', String(filters.generation)] as [string, string]] : []),
+        ...(filters.generation != null && filters.generation !== 'all' ? [['generation', String(filters.generation)] as [string, string]] : []),
         ...filters.types.map((type): [string, string] => ['types', type]),
     ];
     return new URLSearchParams(entries);
@@ -26,7 +26,7 @@ function buildParams(filters: Filters, page: number): URLSearchParams {
 export function usePokemonQuery(
     searchTerm: Ref<string>,
     selectedTypes: Ref<string[]>,
-    generation: Ref<number | undefined>,
+    generation: Ref<string | number>,
     sortOrder: Ref<SortOrder>,
 ) {
     const filters = computed(() => ({

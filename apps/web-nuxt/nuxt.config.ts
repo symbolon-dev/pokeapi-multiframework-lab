@@ -21,6 +21,13 @@ export default defineNuxtConfig({
 
     compatibilityDate: '2025-07-15',
 
+    colorMode: {
+        classSuffix: '',
+        preference: 'system',
+        fallback: 'light',
+        storage: 'cookie',
+    },
+
     css: ['~/assets/css/tailwind.css'],
 
     // dayjs: {
@@ -35,6 +42,7 @@ export default defineNuxtConfig({
         '@nuxt/hints',
         '@nuxt/icon',
         '@nuxt/image',
+        '@nuxtjs/color-mode',
         '@vueuse/nuxt',
         'shadcn-nuxt',
         // 'dayjs-nuxt',

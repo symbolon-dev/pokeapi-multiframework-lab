@@ -3,7 +3,7 @@ export type SortOrder = 'id-asc' | 'id-desc' | 'name-asc' | 'name-desc';
 export type Filters = {
     name: string;
     types: string[];
-    generation: number | undefined;
+    generation: string | number;
     sort: string;
     order: string;
 };

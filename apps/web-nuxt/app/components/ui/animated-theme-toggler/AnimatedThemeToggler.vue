@@ -19,48 +19,49 @@ async function toggle(e: MouseEvent) {
         Math.max(y, window.innerHeight - y),
     );
 
-    const next = isDark.value ? 'light' : 'dark';
+    const currentlyDark = colorMode.value === 'dark';
+    const next = currentlyDark ? 'light' : 'dark';
 
     if (!('startViewTransition' in document)) {
-        colorMode.value = next;
+        colorMode.preference = next;
         return;
     }
 
     const transition = document.startViewTransition(() => {
-        colorMode.value = next;
+        colorMode.preference = next;
     });
 
     await transition.ready;
 
-    const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-    ];
-
     document.documentElement.animate(
-        { clipPath: isDark.value ? [...clipPath].reverse() : clipPath },
+        {
+            clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+            ],
+        },
         {
             duration: props.duration,
-            easing: 'ease-in',
-            pseudoElement: isDark.value
-                ? '::view-transition-old(root)'
-                : '::view-transition-new(root)',
+            easing: 'ease-out',
+            pseudoElement: '::view-transition-new(root)',
         },
     );
 }
 </script>
 
 <template>
-    <button
-        class="
-            relative flex items-center justify-center rounded-full p-2
-            transition-colors
-            hover:bg-muted
-        "
-        aria-label="Toggle theme"
-        @click="toggle"
-    >
-        <Sun v-if="isDark" class="size-5" />
-        <Moon v-else class="size-5" />
-    </button>
+    <ClientOnly>
+        <button
+            class="
+                relative flex items-center justify-center rounded-full p-2
+                transition-colors
+                hover:bg-muted
+            "
+            aria-label="Toggle theme"
+            @click="toggle"
+        >
+            <Sun v-if="isDark" class="size-5" />
+            <Moon v-else class="size-5" />
+        </button>
+    </ClientOnly>
 </template>

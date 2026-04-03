@@ -5,7 +5,7 @@ import { usePokemonVirtualizer } from '../composables/usePokemonVirtualizer';
 
 const searchTerm = ref('');
 const selectedTypes = ref<string[]>([]);
-const generation = ref<number | undefined>();
+const generation = ref<string | number>('all');
 const sortOrder = ref<SortOrder>('id-asc');
 const parentRef = ref<HTMLElement | null>(null);
 const columns = ref(4);
@@ -65,12 +65,12 @@ useResizeObserver(parentRef, (entries) => {
             </Label>
 
             <Label for="generation">
-                <Select v-model="generation" default-value="undefined">
+                <Select v-model="generation" default-value="all">
                     <SelectTrigger>
                         <SelectValue placeholder="All Generations" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem :value="undefined">
+                        <SelectItem value="all">
                             All Generations
                         </SelectItem>
                         <SelectItem v-for="gen in generations" :key="gen" :value="gen">
