@@ -8,6 +8,8 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.vue';
             PokéDex
         </NuxtLink>
 
-        <AnimatedThemeToggler />
+        <div class="min-h-9">
+            <AnimatedThemeToggler />
+        </div>
     </header>
 </template>

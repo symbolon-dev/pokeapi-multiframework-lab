@@ -9,9 +9,14 @@ const props = withDefaults(defineProps<{
 
 const colorMode = useColorMode();
 
+const isAnimating = ref(false);
+
 const isDark = computed(() => colorMode.value === 'dark');
 
 async function toggle(e: MouseEvent) {
+    if (isAnimating.value)
+        return;
+
     const x = e.clientX;
     const y = e.clientY;
     const endRadius = Math.hypot(
@@ -26,6 +31,8 @@ async function toggle(e: MouseEvent) {
         colorMode.preference = next;
         return;
     }
+
+    isAnimating.value = true;
 
     const transition = document.startViewTransition(() => {
         colorMode.preference = next;
@@ -46,22 +53,26 @@ async function toggle(e: MouseEvent) {
             pseudoElement: '::view-transition-new(root)',
         },
     );
+
+    await transition.finished;
+    isAnimating.value = false;
 }
 </script>
 
 <template>
-    <ClientOnly>
-        <button
-            class="
-                relative flex items-center justify-center rounded-full p-2
-                transition-colors
-                hover:bg-muted
-            "
-            aria-label="Toggle theme"
-            @click="toggle"
-        >
+    <button
+        class="
+            relative flex cursor-pointer items-center justify-center
+            rounded-full p-2 transition-colors
+        "
+        :class="isAnimating ? 'cursor-not-allowed opacity-50' : 'hover:bg-muted'"
+        :disabled="isAnimating"
+        aria-label="Toggle theme"
+        @click="toggle"
+    >
+        <ClientOnly>
             <Sun v-if="isDark" class="size-5" />
             <Moon v-else class="size-5" />
-        </button>
-    </ClientOnly>
+        </ClientOnly>
+    </button>
 </template>
