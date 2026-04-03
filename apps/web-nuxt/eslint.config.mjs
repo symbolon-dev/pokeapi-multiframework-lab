@@ -1,6 +1,7 @@
 // @ts-check
 import antfu from '@antfu/eslint-config';
 import tailwind from 'eslint-plugin-better-tailwindcss';
+import vueA11y from 'eslint-plugin-vuejs-accessibility';
 import withNuxt from './.nuxt/eslint.config.mjs';
 
 export default withNuxt(
@@ -46,6 +47,20 @@ export default withNuxt(
                 ...tailwind.configs.stylistic.rules, // recommended has some issues with false positives, so using stylistic as a base
                 'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', {
                     indent: 4,
+                }],
+            },
+        },
+        {
+            name: 'a11y-overrides',
+            files: ['**/*.vue'],
+            plugins: {
+                'vuejs-accessibility': vueA11y,
+            },
+            rules: {
+                'vue-a11y/label-has-for': ['error', {
+                    components: ['Label'],
+                    controlComponents: ['Input', 'Select', 'Switch'],
+                    required: { some: ['nesting', 'id'] },
                 }],
             },
         },

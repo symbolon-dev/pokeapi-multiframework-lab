@@ -1,0 +1,13 @@
+<script setup lang="ts">
+import AnimatedThemeToggler from './AnimatedThemeToggler.vue';
+</script>
+
+<template>
+    <header class="flex items-center justify-between px-4 py-3">
+        <NuxtLink to="/" class="text-lg font-semibold">
+            PokéDex
+        </NuxtLink>
+
+        <AnimatedThemeToggler />
+    </header>
+</template>
