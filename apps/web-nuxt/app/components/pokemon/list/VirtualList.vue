@@ -67,7 +67,7 @@ useResizeObserver(parentRef, (entries) => {
             </div>
         </div>
 
-        <div
+        <!-- <div
             v-if="isFetchingNextPage" class="
                 flex items-center justify-center py-4
             "
@@ -88,6 +88,6 @@ useResizeObserver(parentRef, (entries) => {
                     Loading more...
                 </span>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>

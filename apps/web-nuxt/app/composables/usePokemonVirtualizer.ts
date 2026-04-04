@@ -56,9 +56,24 @@ export function usePokemonVirtualizer(
         virtualizer.value.measure();
         if (!hasRestored.value) {
             hasRestored.value = true;
+            virtualizer.value.measure();
+
+            await until(totalSize).toMatch(v => v > savedScrollPosition.value);
+
+            if (parentRef.value) {
+                parentRef.value.scrollTop = savedScrollPosition.value;
+
+                await nextTick();
+                if (parentRef.value.scrollTop !== savedScrollPosition.value) {
+                    parentRef.value.scrollTop = savedScrollPosition.value;
+                }
+            }
+        }
+        else {
+            const current = parentRef.value?.scrollTop ?? 0;
             await nextTick(() => {
                 if (parentRef.value) {
-                    parentRef.value.scrollTop = savedScrollPosition.value;
+                    parentRef.value.scrollTop = current;
                 }
             });
         }
