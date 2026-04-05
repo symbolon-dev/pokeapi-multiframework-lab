@@ -15,7 +15,7 @@ defineProps<Props>();
         </h2>
 
         <div class="flex items-center gap-4">
-            <template v-for="(evo, index) in data.evolutions" :key="JSON.stringify(evo)">
+            <template v-for="(evo, index) in data.evolutions" :key="evo.id">
                 <NuxtLink
                     :to="`/details/${evo.id}`"
                     class="flex flex-col items-center"
