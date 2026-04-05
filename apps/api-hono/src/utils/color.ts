@@ -9,8 +9,9 @@ export async function extractDominantColor(spriteUrl: string): Promise<string | 
         if (!res.ok)
             return undefined;
 
+        const contentType = res.headers.get('content-type') ?? 'image/png';
         const buffer = Buffer.from(await res.arrayBuffer());
-        const color = await getColor(buffer);
+        const color = await getColor({ buffer, type: contentType });
         return color?.css('oklch') ?? undefined;
     }
     catch (err) {

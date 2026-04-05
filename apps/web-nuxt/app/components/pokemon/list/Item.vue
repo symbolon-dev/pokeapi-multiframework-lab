@@ -12,15 +12,17 @@ defineProps<Props>();
     <NuxtLink :to="`/details/${pokemon?.id}`">
         <Card>
             <CardContent>
-                <NuxtImg
+                <div
                     v-if="pokemon?.sprites.default"
-                    :src="pokemon.sprites.default"
-                    :style="{
-                        backgroundColor: pokemon.sprites.dominantColor ?? undefined,
-                    }"
-                    class="aspect-square w-full object-cover"
-                    :alt="pokemon.name"
-                />
+                    :style="{ backgroundColor: pokemon.sprites.dominantColor ?? undefined }"
+                    class="aspect-square w-full"
+                >
+                    <img
+                        :src="pokemon.sprites.default"
+                        class="aspect-square w-full object-cover"
+                        :alt="pokemon.name"
+                    >
+                </div>
             </CardContent>
             <CardFooter>
                 <span class="text-xs text-gray-400">

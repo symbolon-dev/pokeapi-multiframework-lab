@@ -12,24 +12,30 @@ const isShiny = defineModel<boolean>('isShiny', { required: true });
 
 <template>
     <div>
-        <NuxtImg
+        <div
             v-if="data?.sprites.default"
-            :src="data.sprites.default"
-            class="my-4 rounded-lg" :class="[isShiny ? 'hidden' : 'block']"
             :style="{ backgroundColor: data.sprites.dominantColor ?? undefined }"
-            alt="Pokemon Image"
-            width="200"
-            height="200"
-        />
-        <NuxtImg
+            class="my-4 rounded-lg"
+            :class="[isShiny ? 'hidden' : 'block']"
+        >
+            <img
+                :src="data.sprites.default"
+                class="aspect-square w-full rounded-lg object-cover"
+                alt="Pokemon Image"
+            >
+        </div>
+        <div
             v-if="data?.sprites.defaultShiny"
-            :src="data.sprites.defaultShiny"
-            class="my-4 rounded-lg" :class="[isShiny ? 'block' : 'hidden']"
             :style="{ backgroundColor: data.sprites.dominantColor ?? undefined }"
-            alt="Pokemon Image"
-            width="200"
-            height="200"
-        />
+            class="my-4 rounded-lg"
+            :class="[isShiny ? 'block' : 'hidden']"
+        >
+            <img
+                :src="data.sprites.defaultShiny"
+                class="aspect-square w-full rounded-lg object-cover"
+                alt="Pokemon Image"
+            >
+        </div>
         <div class="flex items-center gap-2">
             <Label for="switch" aria-label="Shiny Toggle">
                 Shiny Toggle
