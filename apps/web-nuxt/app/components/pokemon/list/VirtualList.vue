@@ -12,9 +12,12 @@ type Props = {
     errorMessage?: string;
 };
 
-const props = defineProps<Props>();
+type Emits = {
+    (e: 'retry'): void;
+};
 
-const emit = defineEmits<{ retry: [] }>();
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 const parentRef = ref<HTMLElement | null>(null);
 const columns = ref(4);

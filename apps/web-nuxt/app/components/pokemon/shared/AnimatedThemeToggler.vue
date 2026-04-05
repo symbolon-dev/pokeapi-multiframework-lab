@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { Moon, Sun } from '@lucide/vue';
 
-const props = withDefaults(defineProps<{
+type Props = {
     duration?: number;
-}>(), {
+};
+
+const props = withDefaults(defineProps<Props>(), {
     duration: 400,
 });
 

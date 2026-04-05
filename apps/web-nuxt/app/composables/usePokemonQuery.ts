@@ -1,4 +1,3 @@
-import type { InfiniteData, InfiniteQueryObserverResult, QueryObserverResult } from '@tanstack/vue-query';
 import type { Ref } from 'vue';
 import type { Filters, PokemonPage, SortOrder } from '../types/pokemon';
 import { useInfiniteQuery } from '@tanstack/vue-query';
@@ -10,17 +9,6 @@ const SORT_MAP: Record<SortOrder, { sort: string; order: string }> = {
     'id-desc': { sort: 'id', order: 'desc' },
     'name-asc': { sort: 'name', order: 'asc' },
     'name-desc': { sort: 'name', order: 'desc' },
-};
-
-type UsePokemonQueryReturn = {
-    allPokemon: Readonly<Ref<PokemonPage['pokemon']>>;
-    hasNextPage: Readonly<Ref<boolean>>;
-    isFetchingNextPage: Readonly<Ref<boolean>>;
-    fetchNextPage: () => Promise<InfiniteQueryObserverResult<InfiniteData<PokemonPage, unknown>, Error>>;
-    status: Readonly<Ref<string>>;
-    error: Readonly<Ref<Error | null>>;
-    isFetching: Readonly<Ref<boolean>>;
-    refetch: () => Promise<QueryObserverResult<InfiniteData<PokemonPage, unknown>, Error>>;
 };
 
 function buildParams(filters: Filters, page: number): URLSearchParams {
@@ -41,7 +29,7 @@ export function usePokemonQuery(
     selectedTypes: Ref<string[]>,
     generation: Ref<string | number>,
     sortOrder: Ref<SortOrder>,
-): UsePokemonQueryReturn {
+) {
     const filters = computed(() => ({
         name: searchTerm.value,
         types: selectedTypes.value,
@@ -65,7 +53,7 @@ export function usePokemonQuery(
         data.value?.pages.flatMap(p => p.pokemon) ?? [],
     );
 
-    const result: UsePokemonQueryReturn = {
+    const result = {
         allPokemon,
         hasNextPage,
         isFetchingNextPage,
