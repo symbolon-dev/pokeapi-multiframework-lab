@@ -1,4 +1,13 @@
+import type { MappedEvolution } from '@/types/pokemon';
 import { z } from '@hono/zod-openapi';
+
+export const MappedEvolutionSchema: z.ZodType<MappedEvolution> = z.object({
+    name: z.string().openapi({ example: 'bulbasaur' }),
+    id: z.number().openapi({ example: 1 }),
+    sprite: z.string().openapi({ example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png' }),
+    minLevel: z.number().optional(),
+    children: z.lazy(() => MappedEvolutionSchema.array()),
+}).openapi({ description: 'Evolution chain node' }) as z.ZodType<MappedEvolution>;
 
 export const PokemonDataSchema = z.object({
     id: z.number().openapi({ example: 25 }),
@@ -26,14 +35,7 @@ export const PokemonDataSchema = z.object({
             description: 'Dominant color extracted from sprite, in CSS oklch() notation',
         }),
     }).openapi({ description: 'Pokemon sprite URLs and dominant color' }),
-    evolutions: z.array(
-        z.object({
-            name: z.string().openapi({ example: 'raichu' }),
-            id: z.number().openapi({ example: 26 }),
-            sprite: z.string().openapi({ example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png' }),
-            minLevel: z.number().optional().openapi({ example: 16 }),
-        }).openapi({ description: 'Evolution details' }),
-    ).openapi({ description: 'List of possible evolutions' }),
+    evolutions: MappedEvolutionSchema.nullable().openapi({ description: 'Evolution chain as a tree' }),
 }).openapi('PokemonData');
 
 export const PokemonListResponseSchema = z.object({
@@ -51,13 +53,6 @@ export const TypesResponseSchema = z.object({
 export const GenerationsResponseSchema = z.object({
     generations: z.array(z.number()).openapi({ example: [1, 2, 3, 4, 5], description: 'List of all Pokemon generations' }),
 }).openapi('GenerationsResponse');
-
-export const MappedEvolutionSchema = z.object({
-    name: z.string(),
-    id: z.number(),
-    sprite: z.string(),
-    minLevel: z.number().optional(),
-});
 
 export const DamageRelationsSchema = z.object({
     doubleDamageTo: z.array(z.string()).openapi({

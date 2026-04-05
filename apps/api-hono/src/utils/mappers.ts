@@ -33,7 +33,7 @@ export async function mapPokemonData(parsed: PokemonDetails, generation: number)
         },
         evolutions: parsed.chain
             ? mapEvolutionChain(parsed.chain)
-            : [],
+            : null,
 
     };
 }
@@ -44,24 +44,20 @@ function extractIdFromUrl(url: string): number {
     return Number(url.replace(/\/$/, '').split('/').pop());
 }
 
-function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | undefined): MappedEvolution[] {
+function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | undefined): MappedEvolution {
     const id = extractIdFromUrl(chain.species.url);
-    const current: MappedEvolution = {
+
+    const children = chain.evolves_to?.map((evo: EvolutionChain) =>
+        mapEvolutionChain(evo, evo.evolution_details?.[0]?.min_level ?? undefined),
+    ) ?? [];
+
+    return {
         name: chain.species.name,
         id,
         sprite: `${ARTWORK_BASE_URL}/${id}.png`,
-        minLevel: minLevel ?? undefined,
+        ...(minLevel != null && { minLevel }),
+        children,
     };
-
-    if (!chain.evolves_to?.length) {
-        return [current];
-    }
-
-    const evolutions = chain.evolves_to.flatMap((evo: EvolutionChain) =>
-        mapEvolutionChain(evo, evo.evolution_details?.[0]?.min_level ?? undefined),
-    );
-
-    return [current, ...evolutions];
 }
 
 export function mapTypeDetails(apiData: TypeDetailsApi): TypeDetails {

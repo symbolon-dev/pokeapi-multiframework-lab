@@ -16,6 +16,14 @@ export type PokemonPage = {
     pokemon: Pokemon[];
 };
 
+export type EvolutionNode = {
+    name: string;
+    id: number;
+    sprite: string;
+    minLevel?: number;
+    children: EvolutionNode[];
+};
+
 export type Pokemon = {
     id: number;
     name: string;
@@ -31,12 +39,7 @@ export type Pokemon = {
         defaultShiny: string | null;
         dominantColor: string | undefined;
     };
-    evolutions: {
-        name: string;
-        id: number;
-        sprite: string;
-        minLevel?: number;
-    }[];
+    evolutions: EvolutionNode | null;
 };
 
 export type DamageRelations = {
