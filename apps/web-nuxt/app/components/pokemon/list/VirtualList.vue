@@ -6,9 +6,15 @@ type Props = {
     hasNextPage: boolean;
     isFetchingNextPage: boolean;
     fetchNextPage: () => void;
+    isLoading: boolean;
+    isError: boolean;
+    isEmpty: boolean;
+    errorMessage?: string;
 };
 
 const props = defineProps<Props>();
+
+const emit = defineEmits<{ retry: [] }>();
 
 const parentRef = ref<HTMLElement | null>(null);
 const columns = ref(4);
@@ -47,7 +53,7 @@ useResizeObserver(parentRef, (entries) => {
 <template>
     <div
         ref="parentRef"
-        style="flex: 1; overflow-y: auto; min-height: 0;"
+        style="flex: 1; overflow-y: auto; min-height: 0; position: relative;"
     >
         <div v-if="isMounted" :style="{ height: `${totalSize}px`, position: 'relative' }">
             <div
@@ -67,27 +73,22 @@ useResizeObserver(parentRef, (entries) => {
             </div>
         </div>
 
-        <!-- <div
-            v-if="isFetchingNextPage" class="
-                flex items-center justify-center py-4
-            "
+        <div
+            v-if="isMounted && (isLoading || isError || isEmpty)"
+            style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"
         >
-            <div class="flex items-center gap-2">
-                <div
-                    class="
-                        h-5 w-5 animate-spin rounded-full border-2
-                        border-gray-300 border-t-red-500
-                    "
-                />
-                <span
-                    class="
-                        text-sm text-gray-500
-                        dark:text-gray-400
-                    "
-                >
-                    Loading more...
-                </span>
+            <div v-if="isLoading">
+                Loading...
             </div>
-        </div> -->
+            <div v-else-if="isError">
+                <p>{{ errorMessage ?? 'Something went wrong' }}</p>
+                <Button @click="emit('retry')">
+                    Retry
+                </Button>
+            </div>
+            <div v-else-if="isEmpty">
+                No Pokémon found
+            </div>
+        </div>
     </div>
 </template>
