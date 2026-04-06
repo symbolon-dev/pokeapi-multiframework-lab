@@ -30,7 +30,7 @@ export const PokemonDataSchema = z.object({
         defaultShiny: z.string().nullable().openapi({
             example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/25.png',
         }),
-        dominantColor: z.string().optional().openapi({
+        dominantColor: z.string().nullable().openapi({
             example: 'oklch(0.78 0.16 95)',
             description: 'Dominant color extracted from sprite, in CSS oklch() notation',
         }),

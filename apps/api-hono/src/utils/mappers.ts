@@ -29,7 +29,7 @@ export async function mapPokemonData(parsed: PokemonDetails, generation: number)
             sprite: parsed.sprites.front_default,
             default: artworkUrl,
             defaultShiny: parsed.sprites.other['official-artwork'].front_shiny,
-            dominantColor,
+            dominantColor: dominantColor ?? null,
         },
         evolutions: parsed.chain
             ? mapEvolutionChain(parsed.chain)
