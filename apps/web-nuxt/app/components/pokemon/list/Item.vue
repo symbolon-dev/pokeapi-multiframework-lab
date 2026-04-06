@@ -15,11 +15,17 @@ defineProps<Props>();
                 <div
                     v-if="pokemon?.sprites.default"
                     :style="{ backgroundColor: pokemon.sprites.dominantColor ?? undefined }"
-                    class="aspect-square w-full"
+                    class="relative aspect-square w-full"
                 >
+                    <div
+                        class="
+                            absolute inset-0 z-0 bg-white/25
+                            dark:bg-white/5
+                        "
+                    />
                     <img
                         :src="pokemon.sprites.default"
-                        class="aspect-square w-full object-cover"
+                        class="relative z-10 aspect-square w-full object-cover"
                         :alt="pokemon.name"
                     >
                 </div>
