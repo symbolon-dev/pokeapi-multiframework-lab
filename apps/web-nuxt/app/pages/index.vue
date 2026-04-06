@@ -46,7 +46,7 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, erro
             :is-fetching-next-page="isFetchingNextPage"
             :fetch-next-page="fetchNextPage"
             :is-loading="status === 'pending' || isFetching"
-            :is-error="error !== null"
+            :is-error="error != null"
             :is-empty="status === 'success' && allPokemon.length === 0"
             :error-message="error?.message"
             @retry="refetchPokemon"

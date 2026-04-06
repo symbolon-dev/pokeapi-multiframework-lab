@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
     const id = getRouterParam(event, 'id');
-    if (id === undefined || id === null || id.trim() === '') {
+    if (id == null || id.trim() === '') {
         throw createError({
             statusCode: 400,
             statusMessage: 'Pokemon ID is required',
