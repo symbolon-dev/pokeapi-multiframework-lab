@@ -2,6 +2,7 @@
 // import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
+import svgLoader from 'vite-svg-loader';
 
 export default defineNuxtConfig({
     ssr: true,
@@ -80,7 +81,7 @@ export default defineNuxtConfig({
 
     vite: {
         // @ts-expect-error - Vite plugin types are not compatible with Nuxt's Vite configuration
-        plugins: [tailwindcss()],
+        plugins: [tailwindcss(), svgLoader()],
         resolve: {
             alias: {
                 // Bun workspaces don't create node_modules symlinks — postcss-import needs this for CSS @import

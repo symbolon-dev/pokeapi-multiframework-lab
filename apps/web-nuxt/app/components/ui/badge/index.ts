@@ -7,7 +7,7 @@ export const badgeVariants = cva(
     `
         inline-flex w-fit shrink-0 items-center justify-center gap-1
         overflow-hidden rounded-full border px-2 py-0.5 text-xs font-medium
-        whitespace-nowrap capitalize transition-[color,box-shadow]
+        whitespace-nowrap capitalize transition-[color,box-shadow] select-none
         focus-visible:border-ring focus-visible:ring-[3px]
         focus-visible:ring-ring/50
         aria-invalid:border-destructive aria-invalid:ring-destructive/20
@@ -17,23 +17,27 @@ export const badgeVariants = cva(
     {
         variants: {
             variant: {
-                default: `
+                'default': `
                     border-transparent bg-primary text-primary-foreground
                     [a&]:hover:bg-primary/90
                 `,
-                secondary: `
+                'secondary': `
                     border-transparent bg-secondary text-secondary-foreground
                     [a&]:hover:bg-secondary/90
                 `,
-                destructive: `
+                'destructive': `
                     border-transparent bg-destructive text-white
                     focus-visible:ring-destructive/20
                     dark:bg-destructive/60
                     dark:focus-visible:ring-destructive/40
                     [a&]:hover:bg-destructive/90
                 `,
-                outline: `
-                    text-foreground
+                'outline': `
+                    border-border text-foreground
+                    [a&]:hover:bg-accent [a&]:hover:text-accent-foreground
+                `,
+                'outline-border': `
+                    border-primary text-foreground
                     [a&]:hover:bg-accent [a&]:hover:text-accent-foreground
                 `,
             },
