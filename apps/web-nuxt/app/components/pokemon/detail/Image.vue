@@ -7,7 +7,7 @@ type Props = {
 
 defineProps<Props>();
 
-const isShiny = defineModel<boolean>('isShiny', { required: true });
+const isShiny = ref(false);
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const isShiny = defineModel<boolean>('isShiny', { required: true });
                 alt="Pokemon Image"
             >
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 self-end">
             <Label for="switch" aria-label="Shiny Toggle">
                 Shiny Toggle
                 <Switch v-model="isShiny" aria-label="Shiny Toggle" />

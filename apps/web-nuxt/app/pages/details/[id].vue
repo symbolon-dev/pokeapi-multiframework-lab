@@ -6,8 +6,6 @@ const router = useRouter();
 const route = useRoute();
 const id = route.params.id as string;
 
-const isShiny = ref(false);
-
 const { data, pending, error, refresh } = await useAsyncData(`pokemon-detail-${id}`, async () => {
     return $fetch<PokemonDetail>(`/api/pokemon/${id}`);
 });
@@ -21,7 +19,7 @@ async function retry() {
 </script>
 
 <template>
-    <div class="p-4">
+    <div>
         <Button @click="router.push('/')">
             Back
         </Button>
@@ -121,19 +119,17 @@ async function retry() {
             </Button>
         </div>
 
-        <template v-else-if="data">
+        <div v-else-if="data" class="pb-4">
             <PokemonDetailImage
-                v-model:is-shiny="isShiny"
                 :data="data"
+                class="mx-auto flex w-96 flex-col items-center"
             />
 
             <PokemonDetailInfo :data="data" />
 
-            <PokemonDetailStats :data="data" />
-
             <PokemonDetailEvolutions :data="data" />
 
             <PokemonDetailTypeEffectiveness :data="data" />
-        </template>
+        </div>
     </div>
 </template>

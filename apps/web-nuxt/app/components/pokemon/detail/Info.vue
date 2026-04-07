@@ -10,8 +10,11 @@ defineProps<Props>();
 
 <template>
     <div>
-        <p class="text-2xl font-bold capitalize">
-            #{{ String(data?.id).padStart(3, '0') }} {{ data?.name }}
+        <p>
+            ID: #{{ String(data?.id).padStart(4, '0') }}
+        </p>
+        <p class="capitalize">
+            Name: {{ data?.name }}
         </p>
         <p>
             Height: {{ data?.height ? `${(data.height / 10).toFixed(1)} m` : '—' }}
