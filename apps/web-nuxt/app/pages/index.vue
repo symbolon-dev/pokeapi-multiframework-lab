@@ -19,24 +19,28 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, erro
 </script>
 
 <template>
-    <div class="flex min-h-0 flex-1 flex-col">
-        <div class="my-4 flex flex-wrap gap-2">
+    <div class="flex h-svh flex-col overflow-hidden">
+        <div class="flex flex-wrap justify-between gap-4 pb-4">
             <PokemonListSearchInput
                 v-model="searchTerm"
+                class="min-w-80"
             />
 
-            <PokemonListGenerationSelect
-                v-model="generation"
-                :generations="generations"
-            />
+            <div class="flex gap-4">
+                <PokemonListGenerationSelect
+                    v-model="generation"
+                    :generations="generations"
+                />
 
-            <PokemonListSortSelect
-                v-model="sortOrder"
-            />
+                <PokemonListSortSelect
+                    v-model="sortOrder"
+                />
+            </div>
         </div>
 
         <PokemonListTypeFilter
             v-model:selected-types="selectedTypes"
+            class="pb-4"
             :types="types"
         />
 

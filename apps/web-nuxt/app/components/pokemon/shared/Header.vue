@@ -3,7 +3,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.vue';
 </script>
 
 <template>
-    <header class="flex items-center justify-between px-4 py-3">
+    <header class="flex items-center justify-between py-4">
         <NuxtLink to="/" class="text-lg font-semibold">
             PokéDex
         </NuxtLink>

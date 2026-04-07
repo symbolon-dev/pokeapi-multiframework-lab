@@ -56,6 +56,7 @@ useResizeObserver(parentRef, (entries) => {
 <template>
     <div
         ref="parentRef"
+        class="virtual-list"
         style="flex: 1; overflow-y: auto; min-height: 0; position: relative;"
     >
         <div v-if="isMounted" :style="{ height: `${totalSize}px`, position: 'relative' }">
@@ -95,3 +96,14 @@ useResizeObserver(parentRef, (entries) => {
         </div>
     </div>
 </template>
+
+<style scoped>
+.virtual-list::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+.virtual-list {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+</style>

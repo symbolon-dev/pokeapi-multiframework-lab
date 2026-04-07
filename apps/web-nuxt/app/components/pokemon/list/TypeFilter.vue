@@ -25,8 +25,8 @@ function toggleType(type: string) {
 </script>
 
 <template>
-    <div class="mb-6">
-        <div class="mb-3 flex flex-wrap gap-2">
+    <div>
+        <div class="flex flex-wrap gap-2">
             <Badge
                 v-for="type in types"
                 :key="type"
