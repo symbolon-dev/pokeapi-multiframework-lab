@@ -72,18 +72,7 @@ export const PokemonDetailsSchema = z.object({
             }),
         }),
     ),
-    stats: z.array(
-        z.object({
-            base_stat: z.number().openapi({ example: 35 }),
-            stat: z.object({
-                name: z.string().openapi({ example: 'hp' }),
-            }),
-        }),
-    ),
     sprites: z.object({
-        front_default: z.string().nullable().openapi({
-            example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
-        }),
         other: z.object({
             'official-artwork': z.object({
                 front_default: z.string().nullable().openapi({

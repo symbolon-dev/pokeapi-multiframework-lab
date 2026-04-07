@@ -17,18 +17,12 @@ export const PokemonDataSchema = z.object({
     generation: z.number().openapi({ example: 1 }),
     is_default: z.boolean().openapi({ example: true }),
     types: z.array(z.string()).openapi({ example: ['electric'] }),
-    stats: z.record(z.string(), z.number()).openapi({
-        example: { 'hp': 35, 'attack': 55, 'defense': 40, 'special-attack': 50, 'special-defense': 50, 'speed': 90 },
-    }),
     sprites: z.object({
-        sprite: z.string().nullable().openapi({
-            example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
-        }),
         default: z.string().nullable().openapi({
             example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
         }),
         defaultShiny: z.string().nullable().openapi({
-            example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/25.png',
+            example: 'https://raw.githubusercontent.com/PokeAPI/sprites.master/sprites/pokemon/other/official-artwork/shiny/25.png',
         }),
         dominantColor: z.string().nullable().openapi({
             example: 'oklch(0.78 0.16 95)',

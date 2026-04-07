@@ -22,11 +22,7 @@ export async function mapPokemonData(parsed: PokemonDetails, generation: number)
         generation,
         is_default: parsed.is_default,
         types: parsed.types.map(t => t.type.name),
-        stats: Object.fromEntries(
-            parsed.stats.map(s => [s.stat.name, s.base_stat]),
-        ),
         sprites: {
-            sprite: parsed.sprites.front_default,
             default: artworkUrl,
             defaultShiny: parsed.sprites.other['official-artwork'].front_shiny,
             dominantColor: dominantColor ?? null,
