@@ -20,21 +20,21 @@ defineEmits<Emits>();
             :model-value="modelValue"
             @update:model-value="$emit('update:modelValue', $event)"
         >
-            <SelectTrigger>
-                <SelectValue placeholder="ID ↑" />
+            <SelectTrigger class="w-40">
+                <SelectValue placeholder="ID (Ascending)" />
             </SelectTrigger>
             <SelectContent>
                 <SelectItem value="id-asc">
-                    ID ↑
+                    ID (Ascending)
                 </SelectItem>
                 <SelectItem value="id-desc">
-                    ID ↓
+                    ID (Descending)
                 </SelectItem>
                 <SelectItem value="name-asc">
-                    Name ↑
+                    Name (A → Z)
                 </SelectItem>
                 <SelectItem value="name-desc">
-                    Name ↓
+                    Name (Z → A)
                 </SelectItem>
             </SelectContent>
         </Select>

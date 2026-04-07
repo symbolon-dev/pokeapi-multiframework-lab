@@ -20,19 +20,19 @@ defineEmits<Emits>();
             :model-value="modelValue"
             @update:model-value="$emit('update:modelValue', $event)"
         >
-            <SelectTrigger>
-                <SelectValue placeholder="All Generations" />
+            <SelectTrigger class="w-28">
+                <SelectValue placeholder="All Gens" />
             </SelectTrigger>
             <SelectContent>
                 <SelectItem value="all">
-                    All Generations
+                    All Gens
                 </SelectItem>
                 <SelectItem
                     v-for="gen in generations"
                     :key="gen"
                     :value="gen"
                 >
-                    Gen {{ gen }}
+                    {{ gen }}. Gen
                 </SelectItem>
             </SelectContent>
         </Select>

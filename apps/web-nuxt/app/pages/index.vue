@@ -23,7 +23,7 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, erro
         <div class="flex flex-wrap justify-between gap-4 pb-4">
             <PokemonListSearchInput
                 v-model="searchTerm"
-                class="min-w-80"
+                class="w-80"
             />
 
             <div class="flex gap-4">
