@@ -20,7 +20,7 @@ export default withNuxt(
                 semi: true,
             },
             formatters: true,
-            ignores: ['playwright.config.ts'],
+            ignores: ['playwright.config.ts', 'vitest.config.ts'],
         },
         {
             name: 'project-strict',

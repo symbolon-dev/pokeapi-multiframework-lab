@@ -10,8 +10,8 @@ const { data, pending, error, refresh } = await useAsyncData(`pokemon-detail-${i
     return $fetch<PokemonDetail>(`/api/pokemon/${id}`);
 });
 
-const isNotFound = computed(() => error.value?.statusCode === 404);
-const isServerError = computed(() => error.value && error.value.statusCode && error.value.statusCode >= 500);
+const isNotFound = computed(() => error.value?.status === 404);
+const isServerError = computed(() => error.value?.status !== undefined && error.value.status >= 500);
 
 async function retry() {
     await refresh();

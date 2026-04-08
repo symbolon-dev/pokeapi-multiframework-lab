@@ -88,7 +88,7 @@ export function getTypes(c: Context): any {
 
 // eslint-disable-next-line ts/no-explicit-any
 export async function getTypeByName(c: Context): Promise<any> {
-    const typeName = c.req.param('type').toLowerCase();
+    const typeName = c.req.param('type')?.toLowerCase();
 
     const typeDetails = await fetchTypeDetails(typeName);
 

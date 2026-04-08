@@ -37,9 +37,9 @@ export default defineNuxtConfig({
     // },
 
     modules: [
-        '@nuxt/test-utils/module',
+        // '@nuxt/test-utils/module',
         '@nuxt/eslint',
-        '@nuxt/fonts',
+        // '@nuxt/fonts',
         '@nuxt/hints',
         '@nuxt/icon',
         '@nuxt/image',
@@ -90,6 +90,17 @@ export default defineNuxtConfig({
         },
         build: {
             sourcemap: false,
+        },
+        optimizeDeps: {
+            include: [
+                '@tanstack/vue-query',
+                '@tanstack/vue-virtual',
+                'class-variance-authority',
+                'reka-ui',
+                '@lucide/vue',
+                'clsx',
+                'tailwind-merge',
+            ],
         },
     },
 });
