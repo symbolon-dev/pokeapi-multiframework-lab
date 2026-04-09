@@ -1,5 +1,5 @@
 <template>
-    <NuxtAnnouncer />
+    <!-- <NuxtAnnouncer /> -->
     <NuxtRouteAnnouncer />
     <NuxtLayout>
         <NuxtPage keepalive />
