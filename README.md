@@ -21,8 +21,8 @@ Testing and comparing different web frameworks by building the same app with eac
 ## Setup
 
 ```bash
-bun install
-bun run dev
+pnpm install
+pnpm run dev
 ```
 
 ## What I want to compare

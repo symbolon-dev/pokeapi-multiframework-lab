@@ -80,11 +80,10 @@ export default defineNuxtConfig({
     },
 
     vite: {
-        // @ts-expect-error - Vite plugin types are not compatible with Nuxt's Vite configuration
         plugins: [tailwindcss(), svgLoader()],
         resolve: {
             alias: {
-                // Bun workspaces don't create node_modules symlinks — postcss-import needs this for CSS @import
+                // Workspaces don't create node_modules symlinks — postcss-import needs this for CSS @import
                 '@repo/styles': fileURLToPath(new URL('../../packages/styles/src', import.meta.url)),
             },
         },

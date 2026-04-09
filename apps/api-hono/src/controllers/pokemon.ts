@@ -90,7 +90,7 @@ export function getTypes(c: Context): any {
 export async function getTypeByName(c: Context): Promise<any> {
     const typeName = c.req.param('type')?.toLowerCase();
 
-    const typeDetails = await fetchTypeDetails(typeName);
+    const typeDetails = await fetchTypeDetails(typeName as string);
 
     if (!typeDetails) {
         return c.json({ error: 'Type not found', status: 404 }, 404);

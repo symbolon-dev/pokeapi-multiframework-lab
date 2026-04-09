@@ -7,38 +7,39 @@
         "apps/*",
         "packages/*"
     ],
-    "packageManager": "bun@1.1.38",
-    "engines": {
-        "bun": ">=1.1.0"
-    },
+    "packageManager": "pnpm@9.0.0",
     "scripts": {
-        "dev": "bun run --filter './apps/*' dev",
-        "build": "bun run --filter './apps/*' build",
-        "lint": "bun run --filter './apps/*' lint",
-        "lint:fix": "bun run --filter './apps/*' lint:fix",
-        "typecheck": "bun run --filter './apps/*' typecheck",
-        "check": "bun run --filter './apps/*' check",
-        "clean": "bun run --filter './apps/*' --filter './packages/*' clean",
+        "dev": "pnpm --filter './apps/*' run dev",
+        "build": "pnpm --filter './apps/*' run build",
+        "lint": "pnpm --filter './apps/*' run lint",
+        "lint:fix": "pnpm --filter './apps/*' run lint:fix",
+        "typecheck": "pnpm --filter './apps/*' run typecheck",
+        "check": "pnpm --filter './apps/*' run lint && pnpm --filter './apps/*' run typecheck",
+        "clean": "pnpm run --filter './apps/*' --filter './packages/*' run clean",
         "prepare": "husky"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,vue,astro,svelte}": [
-            "bun run lint:fix"
+            "pnpm run lint:fix"
         ],
         "*.{css,less,scss}": [
-            "bun run lint:fix"
+            "pnpm run lint:fix"
         ],
         "*.html": [
-            "bun run lint:fix"
+            "pnpm run lint:fix"
         ],
         "*.md": [
-            "bun run lint:fix"
+            "pnpm run lint:fix"
         ]
     },
     "devDependencies": {
+        "@antfu/eslint-config": "^8.1.1",
         "@types/bun": "latest",
         "eslint": "^9.39.1",
         "husky": "^9.1.7",
         "lint-staged": "^16.2.7"
+    },
+    "dependencies": {
+        "esbuild": "0.27.7"
     }
 }
