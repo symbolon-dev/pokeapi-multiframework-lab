@@ -19,18 +19,12 @@
         "prepare": "husky"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,vue,astro,svelte}": [
-            "pnpm run lint:fix"
-        ],
-        "*.{css,less,scss}": [
-            "pnpm run lint:fix"
-        ],
-        "*.html": [
-            "pnpm run lint:fix"
-        ],
-        "*.md": [
-            "pnpm run lint:fix"
-        ]
+        "apps/api-hono/**/*.{js,ts}": "pnpm --filter ./apps/api-hono run lint:fix",
+        "apps/web-next/**/*.{js,jsx,ts,tsx}": "pnpm --filter ./apps/web-next run lint:fix",
+        "apps/web-nuxt/**/*.{js,ts,vue}": "pnpm --filter ./apps/web-nuxt run lint:fix",
+        "apps/web-sveltekit/**/*.{js,ts,svelte}": "pnpm --filter ./apps/web-sveltekit run lint:fix",
+        "apps/web-tanstack-start/**/*.{js,jsx,ts,tsx}": "pnpm --filter ./apps/web-tanstack-start run lint:fix",
+        "apps/comparison-astro/**/*.{js,ts,astro}": "pnpm --filter ./apps/comparison-astro run lint:fix"
     },
     "devDependencies": {
         "husky": "^9.1.7",
