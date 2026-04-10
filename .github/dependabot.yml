@@ -1,0 +1,219 @@
+version: 2
+updates:
+  # Root – Tooling (husky, lint-staged, eslint, @antfu/eslint-config)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      root-tooling:
+        patterns:
+          - "husky"
+          - "lint-staged"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "@types/bun"
+          - "esbuild"
+
+  # BFF – Hono
+  - package-ecosystem: "npm"
+    directory: "/apps/api-hono"
+    schedule:
+      interval: "weekly"
+    groups:
+      hono:
+        patterns:
+          - "hono"
+          - "@hono/*"
+          - "hono-pino"
+      logging:
+        patterns:
+          - "pino"
+          - "pino-pretty"
+      zod:
+        patterns:
+          - "zod"
+      image-processing:
+        patterns:
+          - "sharp"
+          - "colorthief"
+      tooling:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "@types/*"
+          - "lodash-es"
+
+  # Next.js
+  - package-ecosystem: "npm"
+    directory: "/apps/web-next"
+    schedule:
+      interval: "weekly"
+    groups:
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "eslint-plugin-better-tailwindcss"
+      tooling:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "@eslint-react/eslint-plugin"
+          - "@tanstack/eslint-plugin-query"
+          - "babel-plugin-react-compiler"
+          - "@types/node"
+
+  # Nuxt
+  - package-ecosystem: "npm"
+    directory: "/apps/web-nuxt"
+    schedule:
+      interval: "weekly"
+    groups:
+      nuxt:
+        patterns:
+          - "nuxt"
+          - "@nuxt/*"
+          - "@nuxtjs/*"
+          - "dayjs-nuxt"
+          - "shadcn-nuxt"
+      vue:
+        patterns:
+          - "vue"
+          - "vue-router"
+          - "reka-ui"
+          - "@vueuse/*"
+          - "@lucide/vue"
+      tanstack:
+        patterns:
+          - "@tanstack/vue-query"
+          - "@tanstack/vue-virtual"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "tw-animate-css"
+          - "tailwind-merge"
+          - "eslint-plugin-better-tailwindcss"
+      testing:
+        patterns:
+          - "vitest"
+          - "@nuxt/test-utils"
+          - "@vue/test-utils"
+          - "@playwright/test"
+          - "playwright-core"
+          - "happy-dom"
+      tooling:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "eslint-plugin-format"
+          - "eslint-plugin-vuejs-accessibility"
+          - "vite-svg-loader"
+          - "class-variance-authority"
+          - "clsx"
+
+  # SvelteKit
+  - package-ecosystem: "npm"
+    directory: "/apps/web-sveltekit"
+    schedule:
+      interval: "weekly"
+    groups:
+      svelte:
+        patterns:
+          - "svelte"
+          - "@sveltejs/*"
+          - "svelte-check"
+          - "eslint-plugin-svelte"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "eslint-plugin-better-tailwindcss"
+      cloudflare:
+        patterns:
+          - "wrangler"
+      tooling:
+        patterns:
+          - "typescript"
+          - "typescript-eslint"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "@eslint/*"
+          - "vite"
+          - "vite-plugin-devtools-json"
+          - "globals"
+          - "@types/node"
+
+  # TanStack Start
+  - package-ecosystem: "npm"
+    directory: "/apps/web-tanstack-start"
+    schedule:
+      interval: "weekly"
+    groups:
+      tanstack:
+        patterns:
+          - "@tanstack/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+          - "@vitejs/plugin-react"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "eslint-plugin-better-tailwindcss"
+      testing:
+        patterns:
+          - "vitest"
+          - "@testing-library/*"
+          - "jsdom"
+      tooling:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "vite"
+          - "vite-tsconfig-paths"
+          - "@types/node"
+          - "lucide-react"
+          - "web-vitals"
+
+  # Astro
+  - package-ecosystem: "npm"
+    directory: "/apps/comparison-astro"
+    schedule:
+      interval: "weekly"
+    groups:
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+          - "eslint-plugin-astro"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "eslint-plugin-better-tailwindcss"
+      tooling:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "eslint-plugin-jsx-a11y"
