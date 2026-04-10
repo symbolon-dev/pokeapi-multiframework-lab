@@ -27,19 +27,19 @@ async function retry() {
         <div v-if="pending" class="mt-8 flex flex-col items-center gap-4">
             <div
                 class="
-                    h-48 w-48 animate-pulse rounded-lg bg-gray-200
+                    size-48 animate-pulse rounded-lg bg-gray-200
                     dark:bg-gray-700
                 "
             />
             <div
                 class="
-                    h-6 w-32 animate-pulse rounded bg-gray-200
+                    h-6 w-32 animate-pulse rounded-sm bg-gray-200
                     dark:bg-gray-700
                 "
             />
             <div
                 class="
-                    h-4 w-48 animate-pulse rounded bg-gray-200
+                    h-4 w-48 animate-pulse rounded-sm bg-gray-200
                     dark:bg-gray-700
                 "
             />

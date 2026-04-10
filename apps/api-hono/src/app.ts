@@ -1,7 +1,8 @@
+import type { PinoLogger } from 'hono-pino';
 import type { PokemonData, TypeDetails } from '@/types/pokemon';
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
-import { type PinoLogger, pinoLogger } from 'hono-pino';
+import { pinoLogger } from 'hono-pino';
 import { cors } from 'hono/cors';
 import { etag } from 'hono/etag';
 import { secureHeaders } from 'hono/secure-headers';

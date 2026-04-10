@@ -3,6 +3,8 @@ import type { EvolutionChain, MappedEvolution, PokemonData, PokemonDetails, Type
 import { ALL_TYPES } from '@/services/types';
 import { extractDominantColor } from '@/utils/color';
 
+const TRAILING_SLASH_RE = /\/$/;
+
 export type TypeEffectiveness = {
     immune: { type: string; multiplier: 0 }[];
     resistant: { type: string; multiplier: 0.25 | 0.5 }[];
@@ -37,7 +39,7 @@ export async function mapPokemonData(parsed: PokemonDetails, generation: number)
 const ARTWORK_BASE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 
 function extractIdFromUrl(url: string): number {
-    return Number(url.replace(/\/$/, '').split('/').pop());
+    return Number(url.replace(TRAILING_SLASH_RE, '').split('/').pop());
 }
 
 function mapEvolutionChain(chain: EvolutionChain, minLevel?: number | undefined): MappedEvolution {

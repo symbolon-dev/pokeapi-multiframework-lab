@@ -64,5 +64,12 @@ export default withNuxt(
                 }],
             },
         },
+        {
+            name: 'shadcn-ui-component-overrides',
+            files: ['**/components/ui/**/*.vue'],
+            rules: {
+                'vue/require-valid-default-prop': 'off',
+            },
+        },
     ),
 );

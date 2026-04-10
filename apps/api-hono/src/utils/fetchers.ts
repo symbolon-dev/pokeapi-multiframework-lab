@@ -9,6 +9,7 @@ import { mapPokemonData, mapTypeDetails } from '@/utils/mappers';
 const BATCH_SIZE = 25;
 const REQUEST_TIMEOUT_MS = 15000; // 15 seconds
 const POKEAPI_BASE_URL = 'https://pokeapi.co/api/v2';
+const TRAILING_SLASH_RE = /\/$/;
 
 async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
     const timeout = new Promise<never>((_, reject) =>
@@ -23,7 +24,7 @@ async function fetchJson<T>(url: string): Promise<T | undefined> {
         if (!res.ok) {
             logger.warn({ status: res.status, url }, 'HTTP error');
             if (res.status === 500) {
-                const fallbackUrl = url.replace(/\/$/, '');
+                const fallbackUrl = url.replace(TRAILING_SLASH_RE, '');
                 if (fallbackUrl !== url) {
                     logger.warn({ url }, 'Retry without trailing slash');
                     res = await withTimeout(fetch(fallbackUrl), REQUEST_TIMEOUT_MS);

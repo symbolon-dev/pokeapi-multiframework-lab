@@ -28,15 +28,15 @@ export default function Home() {
                 `}
                 >
                     <h1 className={`
-                        max-w-xs text-3xl leading-10 font-semibold
-                        tracking-tight text-black
+                        max-w-xs text-3xl/10 font-semibold tracking-tight
+                        text-black
                         dark:text-zinc-50
                     `}
                     >
                         To get started, edit the page.tsx file.
                     </h1>
                     <p className={`
-                        max-w-md text-lg leading-8 text-zinc-600
+                        max-w-md text-lg/8 text-zinc-600
                         dark:text-zinc-400
                     `}
                     >
@@ -101,7 +101,8 @@ export default function Home() {
                             transition-colors
                             hover:border-transparent hover:bg-black/4
                             md:w-39.5
-                            dark:border-white/[.145] dark:hover:bg-[#1a1a1a]
+                            dark:border-white/[.145]
+                            dark:hover:bg-[#1a1a1a]
                         `}
                         href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
                         target="_blank"

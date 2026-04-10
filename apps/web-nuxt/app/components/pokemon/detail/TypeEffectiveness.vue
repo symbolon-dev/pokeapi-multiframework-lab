@@ -24,8 +24,8 @@ defineProps<Props>();
                         v-for="item in data.typeEffectiveness.weak"
                         :key="item.type"
                         class="
-                            rounded bg-red-500/20 px-2 py-1 text-xs text-red-600
-                            capitalize
+                            rounded-sm bg-red-500/20 px-2 py-1 text-xs
+                            text-red-600 capitalize
                         "
                     >
                         {{ item.type }} ({{ item.multiplier }}×)
@@ -42,7 +42,7 @@ defineProps<Props>();
                         v-for="item in data.typeEffectiveness.resistant"
                         :key="item.type"
                         class="
-                            rounded bg-green-500/20 px-2 py-1 text-xs
+                            rounded-sm bg-green-500/20 px-2 py-1 text-xs
                             text-green-600 capitalize
                         "
                     >
@@ -60,7 +60,7 @@ defineProps<Props>();
                         v-for="item in data.typeEffectiveness.immune"
                         :key="item.type"
                         class="
-                            rounded bg-gray-500/20 px-2 py-1 text-xs
+                            rounded-sm bg-gray-500/20 px-2 py-1 text-xs
                             text-gray-600 capitalize
                         "
                     >
@@ -78,7 +78,7 @@ defineProps<Props>();
                         v-for="item in data.typeEffectiveness.normal"
                         :key="item.type"
                         class="
-                            rounded bg-secondary px-2 py-1 text-xs
+                            rounded-sm bg-secondary px-2 py-1 text-xs
                             text-foreground capitalize
                         "
                     >
