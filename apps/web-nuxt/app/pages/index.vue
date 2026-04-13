@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { SortOrder } from '../types/pokemon';
 import { usePokemonQuery } from '../composables/usePokemonQuery';
+import { usePokemonUrlState } from '../composables/usePokemonUrlState';
 
-const searchTerm = ref('');
-const selectedTypes = ref<string[]>([]);
-const generation = ref<string | number>('all');
-const sortOrder = ref<SortOrder>('id-asc');
+const { searchTerm, selectedTypes, generation, sortOrder } = usePokemonUrlState();
 
 const { data: generations } = useFetch<number[]>('/api/generations');
 const { data: types } = useFetch<string[]>('/api/types');
