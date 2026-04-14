@@ -18,11 +18,13 @@ const isShiny = ref(false);
             class="my-4 rounded-lg"
             :class="[isShiny ? 'hidden' : 'block']"
         >
-            <img
+            <NuxtImg
                 :src="data.sprites.default"
+                :alt="`${data.name} sprite`"
+                width="512"
+                height="512"
                 class="aspect-square w-full rounded-lg object-cover"
-                alt="Pokemon Image"
-            >
+            />
         </div>
         <div
             v-if="data?.sprites.defaultShiny"
@@ -30,11 +32,13 @@ const isShiny = ref(false);
             class="my-4 rounded-lg"
             :class="[isShiny ? 'block' : 'hidden']"
         >
-            <img
+            <NuxtImg
                 :src="data.sprites.defaultShiny"
+                :alt="`${data.name} shiny sprite`"
+                width="512"
+                height="512"
                 class="aspect-square w-full rounded-lg object-cover"
-                alt="Pokemon Image"
-            >
+            />
         </div>
         <div class="flex items-center gap-2 self-end">
             <Label for="switch" aria-label="Shiny Toggle">

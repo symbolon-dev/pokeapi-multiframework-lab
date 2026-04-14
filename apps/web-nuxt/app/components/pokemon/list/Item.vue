@@ -23,11 +23,14 @@ defineProps<Props>();
                             dark:bg-white/5
                         "
                     />
-                    <img
+                    <NuxtImg
                         :src="pokemon.sprites.default"
-                        class="relative z-10 aspect-square w-full object-cover"
                         :alt="pokemon.name"
-                    >
+                        width="256"
+                        height="256"
+                        loading="lazy"
+                        class="relative z-10 aspect-square w-full object-cover"
+                    />
                 </div>
             </CardContent>
             <CardFooter>
