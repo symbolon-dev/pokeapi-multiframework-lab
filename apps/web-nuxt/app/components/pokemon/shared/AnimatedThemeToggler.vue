@@ -13,8 +13,6 @@ const colorMode = useColorMode();
 
 const isAnimating = ref(false);
 
-const isDark = computed(() => colorMode.value === 'dark');
-
 async function toggle(e: MouseEvent) {
     if (isAnimating.value)
         return;
@@ -72,9 +70,17 @@ async function toggle(e: MouseEvent) {
         aria-label="Toggle theme"
         @click="toggle"
     >
-        <ClientOnly>
-            <Sun v-if="isDark" class="size-5" />
-            <Moon v-else class="size-5" />
-        </ClientOnly>
+        <Sun
+            class="
+                block size-5
+                dark:hidden
+            "
+        />
+        <Moon
+            class="
+                hidden size-5
+                dark:block
+            "
+        />
     </button>
 </template>

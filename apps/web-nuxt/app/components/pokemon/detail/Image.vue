@@ -41,10 +41,8 @@ const isShiny = ref(false);
             />
         </div>
         <div class="flex items-center gap-2 self-end">
-            <Label for="switch" aria-label="Shiny Toggle">
-                Shiny Toggle
-                <Switch v-model="isShiny" aria-label="Shiny Toggle" />
-            </Label>
+            <span class="text-sm font-medium">Shiny Toggle</span>
+            <Switch v-model="isShiny" />
         </div>
     </div>
 </template>

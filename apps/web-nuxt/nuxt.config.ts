@@ -6,7 +6,18 @@ import svgLoader from 'vite-svg-loader';
 
 export default defineNuxtConfig({
     ssr: true,
+
     devtools: { enabled: true },
+    hints: {
+        features: {
+            // logs disabled: false positives from reka-ui (shadcn-vue)
+            hydration: { logs: false },
+            lazyLoad: { logs: false },
+            webVitals: { logs: false },
+            thirdPartyScripts: { logs: false },
+            htmlValidate: { logs: false },
+        },
+    },
 
     app: {
         head: {
