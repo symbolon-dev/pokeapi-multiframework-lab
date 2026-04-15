@@ -74,9 +74,7 @@ function toggleType(type: string) {
                         [&>svg]:block [&>svg]:size-full
                     "
                 >
-                    <ClientOnly>
-                        <component :is="typeIcons[type]" :style="{ color: typeColors[type] }" />
-                    </ClientOnly>
+                    <component :is="typeIcons[type]" :style="{ color: typeColors[type] }" />
                 </span>
                 <span class="px-0.5">
                     {{ type }}

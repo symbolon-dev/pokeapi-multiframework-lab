@@ -14,7 +14,6 @@ defineEmits<Emits>();
 <template>
     <Label for="search">
         <Input
-            id="search"
             :model-value="modelValue"
             placeholder="Search by name or ID..."
             @update:model-value="$emit('update:modelValue', $event)"
