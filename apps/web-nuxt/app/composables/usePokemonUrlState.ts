@@ -100,10 +100,26 @@ export function usePokemonUrlState() {
         },
     );
 
+    const hasNonDefaultValues = computed(() => {
+        return searchTerm.value !== ''
+            || selectedTypes.value.length > 0
+            || generation.value !== 'all'
+            || sortOrder.value !== 'id-asc';
+    });
+
+    const resetFilters = () => {
+        searchTerm.value = '';
+        selectedTypes.value = [];
+        generation.value = 'all';
+        sortOrder.value = 'id-asc';
+    };
+
     return {
         searchTerm,
         selectedTypes,
         generation,
         sortOrder,
+        hasNonDefaultValues,
+        resetFilters,
     };
 }

@@ -19,12 +19,14 @@ async function retry() {
 </script>
 
 <template>
-    <div>
-        <Button @click="router.push('/')">
-            Back
-        </Button>
+    <div class="flex h-full flex-col overflow-y-auto">
+        <div class="sticky top-0 z-10 border-b bg-background pb-3">
+            <Button variant="outline" @click="router.push('/')">
+                Back
+            </Button>
+        </div>
 
-        <div v-if="pending" class="mt-8 flex flex-col items-center gap-4">
+        <div v-if="pending" class="mt-6 flex flex-col items-center gap-4">
             <div
                 class="
                     size-48 animate-pulse rounded-lg bg-gray-200
@@ -53,7 +55,7 @@ async function retry() {
             </p>
         </div>
 
-        <div v-else-if="isNotFound" class="mt-8 text-center">
+        <div v-else-if="isNotFound" class="mt-6 text-center">
             <p
                 class="
                     mb-2 text-2xl font-bold text-gray-700
@@ -75,7 +77,7 @@ async function retry() {
             </Button>
         </div>
 
-        <div v-else-if="isServerError" class="mt-8 text-center">
+        <div v-else-if="isServerError" class="mt-6 text-center">
             <p
                 class="
                     mb-2 text-xl font-semibold text-red-600
@@ -97,7 +99,7 @@ async function retry() {
             </Button>
         </div>
 
-        <div v-else-if="error" class="mt-8 text-center">
+        <div v-else-if="error" class="mt-6 text-center">
             <p
                 class="
                     mb-2 text-xl font-semibold text-red-600
@@ -119,17 +121,25 @@ async function retry() {
             </Button>
         </div>
 
-        <div v-else-if="data" class="pb-4">
-            <PokemonDetailImage
-                :data="data"
-                class="mx-auto flex w-96 flex-col items-center"
-            />
+        <div v-else-if="data" class="mt-6 pb-8">
+            <div class="mx-auto max-w-6xl">
+                <div
+                    class="
+                        grid gap-8
+                        lg:grid-cols-[400px_1fr]
+                    "
+                >
+                    <div class="lg:sticky lg:top-16 lg:self-start">
+                        <PokemonDetailImage :data="data" />
+                    </div>
 
-            <PokemonDetailInfo :data="data" />
-
-            <PokemonDetailEvolutions :data="data" />
-
-            <PokemonDetailTypeEffectiveness :data="data" />
+                    <div class="flex flex-col gap-6">
+                        <PokemonDetailInfo :data="data" />
+                        <PokemonDetailTypeEffectiveness :data="data" />
+                        <PokemonDetailEvolutions :data="data" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
