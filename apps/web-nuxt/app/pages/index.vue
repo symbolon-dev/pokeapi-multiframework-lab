@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { X } from '@lucide/vue';
 import { usePokemonQuery } from '../composables/usePokemonQuery';
 import { usePokemonUrlState } from '../composables/usePokemonUrlState';
 
-const { searchTerm, selectedTypes, generation, sortOrder } = usePokemonUrlState();
+const { searchTerm, selectedTypes, generation, sortOrder, hasNonDefaultValues, resetFilters } = usePokemonUrlState();
 
 const { data: generations } = useFetch<number[]>('/api/generations');
 const { data: types } = useFetch<string[]>('/api/types');
@@ -32,6 +33,15 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, erro
                 <PokemonListSortSelect
                     v-model="sortOrder"
                 />
+
+                <Button
+                    v-if="hasNonDefaultValues"
+                    variant="outline"
+                    size="icon"
+                    @click="resetFilters"
+                >
+                    <X :size="16" />
+                </Button>
             </div>
         </div>
 
