@@ -16,11 +16,56 @@ export type PokemonPage = {
     pokemon: Pokemon[];
 };
 
+export type EvolutionRequirement = {
+    trigger: string;
+    item?: {
+        name: string;
+        url: string;
+    };
+    minLevel?: number;
+    location?: {
+        name: string;
+        url: string;
+    };
+    minHappiness?: number;
+    minAffection?: number;
+    timeOfDay?: string;
+    knownMoveType?: {
+        name: string;
+        url: string;
+    };
+    minBeauty?: number;
+    relativePhysicalStats?: number;
+    needsOverworldRain?: boolean;
+    turnUpsideDown?: boolean;
+    gender?: number;
+    heldItem?: {
+        name: string;
+        url: string;
+    };
+    knownMove?: {
+        name: string;
+        url: string;
+    };
+    partySpecies?: {
+        name: string;
+        url: string;
+    };
+    partyType?: {
+        name: string;
+        url: string;
+    };
+    tradeSpecies?: {
+        name: string;
+        url: string;
+    };
+};
+
 export type EvolutionNode = {
     name: string;
     id: number;
     sprite: string;
-    minLevel?: number;
+    requirement?: EvolutionRequirement;
     children: EvolutionNode[];
 };
 

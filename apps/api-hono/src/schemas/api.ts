@@ -20,9 +20,35 @@ export const GenerationSchema = z.object({
     ),
 }).openapi('Generation');
 
+const NameUrlSchema = z.object({
+    name: z.string(),
+    url: z.string(),
+});
+
+const EvolutionDetailSchema = z.object({
+    min_level: z.number().nullable().optional().openapi({ example: 16 }),
+    item: NameUrlSchema.nullable().optional().openapi({ example: { name: 'water-stone', url: 'https://pokeapi.co/api/v2/item/84/' } }),
+    trigger: NameUrlSchema.openapi({ example: { name: 'level-up', url: 'https://pokeapi.co/api/v2/evolution-trigger/1/' } }),
+    location: NameUrlSchema.nullable().optional().openapi({ example: { name: 'eterna-forest', url: 'https://pokeapi.co/api/v2/location/8/' } }),
+    min_happiness: z.number().nullable().optional().openapi({ example: 160 }),
+    min_affection: z.number().nullable().optional().openapi({ example: 2 }),
+    time_of_day: z.string().optional().openapi({ example: 'day' }),
+    known_move_type: NameUrlSchema.nullable().optional().openapi({ example: { name: 'fairy', url: 'https://pokeapi.co/api/v2/type/18/' } }),
+    min_beauty: z.number().nullable().optional(),
+    relative_physical_stats: z.number().nullable().optional(),
+    needs_overworld_rain: z.boolean().optional(),
+    turn_upside_down: z.boolean().optional(),
+    gender: z.number().nullable().optional(),
+    held_item: NameUrlSchema.nullable().optional(),
+    known_move: NameUrlSchema.nullable().optional(),
+    party_species: NameUrlSchema.nullable().optional(),
+    party_type: NameUrlSchema.nullable().optional(),
+    trade_species: NameUrlSchema.nullable().optional(),
+});
+
 type EvolutionChainType = {
     species: { name: string; url: string };
-    evolution_details: { min_level?: number | null | undefined }[];
+    evolution_details: z.infer<typeof EvolutionDetailSchema>[];
     evolves_to: EvolutionChainType[];
 };
 
@@ -31,11 +57,7 @@ export const EvolutionChainSchema: z.ZodType<EvolutionChainType> = z.object({
         name: z.string().openapi({ example: 'bulbasaur' }),
         url: z.string().openapi({ example: 'https://pokeapi.co/api/v2/pokemon-species/1/' }),
     }),
-    evolution_details: z.array(
-        z.object({
-            min_level: z.number().nullable().optional().openapi({ example: 16 }),
-        }),
-    ),
+    evolution_details: z.array(EvolutionDetailSchema),
     evolves_to: z.array(
         z.lazy(() => EvolutionChainSchema),
     ),
