@@ -5,15 +5,7 @@ type Props = {
     data: PokemonDetail | undefined;
 };
 
-const props = defineProps<Props>();
-
-useHead({
-    link: computed(() =>
-        ((props.data?.sprites.defaultShiny) != null)
-            ? [{ rel: 'preload', as: 'image', href: props.data.sprites.defaultShiny }]
-            : [],
-    ),
-});
+defineProps<Props>();
 
 const isShiny = ref(false);
 </script>
