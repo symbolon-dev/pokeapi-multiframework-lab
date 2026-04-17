@@ -1,13 +1,38 @@
-import type { MappedEvolution } from '@/types/pokemon';
 import { z } from '@hono/zod-openapi';
 
-export const MappedEvolutionSchema: z.ZodType<MappedEvolution> = z.object({
+const NameUrlSchema = z.object({
+    name: z.string(),
+    url: z.string(),
+});
+
+export const EvolutionRequirementSchema = z.object({
+    trigger: z.string().openapi({ example: 'level-up' }),
+    item: NameUrlSchema.optional(),
+    minLevel: z.number().optional(),
+    location: NameUrlSchema.optional(),
+    minHappiness: z.number().optional(),
+    minAffection: z.number().optional(),
+    timeOfDay: z.string().optional(),
+    knownMoveType: NameUrlSchema.optional(),
+    minBeauty: z.number().optional(),
+    relativePhysicalStats: z.number().optional(),
+    needsOverworldRain: z.boolean().optional(),
+    turnUpsideDown: z.boolean().optional(),
+    gender: z.number().optional(),
+    heldItem: NameUrlSchema.optional(),
+    knownMove: NameUrlSchema.optional(),
+    partySpecies: NameUrlSchema.optional(),
+    partyType: NameUrlSchema.optional(),
+    tradeSpecies: NameUrlSchema.optional(),
+}).openapi({ description: 'Evolution requirements' });
+
+export const MappedEvolutionSchema: z.ZodSchema = z.lazy(() => z.object({
     name: z.string().openapi({ example: 'bulbasaur' }),
     id: z.number().openapi({ example: 1 }),
     sprite: z.string().openapi({ example: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png' }),
-    minLevel: z.number().optional(),
-    children: z.lazy(() => MappedEvolutionSchema.array()),
-}).openapi({ description: 'Evolution chain node' }) as z.ZodType<MappedEvolution>;
+    requirement: EvolutionRequirementSchema.optional(),
+    children: z.array(MappedEvolutionSchema),
+}).openapi({ description: 'Evolution chain node' }));
 
 export const PokemonDataSchema = z.object({
     id: z.number().openapi({ example: 25 }),
