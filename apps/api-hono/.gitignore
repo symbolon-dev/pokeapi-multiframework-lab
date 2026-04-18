@@ -37,7 +37,6 @@ ehthumbs.db
 Desktop.ini
 
 # Cache / data files
-src/data/*.json
 .cache/
 .tmp/
 
