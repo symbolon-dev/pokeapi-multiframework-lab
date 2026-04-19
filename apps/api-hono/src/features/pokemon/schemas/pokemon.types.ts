@@ -1,8 +1,8 @@
 import type { z } from 'zod';
 
-import type { EvolutionChainSchema, GenerationSchema, PokemonDetailsSchema, PokemonSpeciesSchema, TypeDetailsApiSchema } from '@/schemas/api';
-import type { DamageRelationsSchema, EvolutionRequirementSchema, MappedEvolutionSchema, PokemonDataSchema, TypeDetailsSchema } from '@/schemas/pokemon';
-import type { QueryParamsSchema } from '@/schemas/query';
+import type { EvolutionChainSchema, GenerationSchema, PokemonDetailsSchema, PokemonSpeciesSchema, TypeDetailsApiSchema } from './pokemon.external';
+import type { DamageRelationsSchema, EvolutionRequirementSchema, MappedEvolutionSchema, PokemonDataSchema, TypeDetailsSchema } from './pokemon.internal';
+import type { QueryParamsSchema } from './pokemon.request';
 
 export type PokemonData = z.infer<typeof PokemonDataSchema>;
 export type GenerationData = z.infer<typeof GenerationSchema>;

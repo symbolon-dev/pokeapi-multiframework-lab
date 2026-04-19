@@ -1,7 +1,7 @@
-import type { PokemonData } from '@/types/pokemon';
+import type { PokemonData } from '@/features/pokemon/schemas/pokemon.types';
 
-import { fetchAllPokemon } from '@/utils/fetchers';
-import { logger } from '@/utils/logger';
+import { logger } from '@/lib/logger';
+import { fetchAllPokemon } from './data';
 
 export async function initializePokemonCache(): Promise<PokemonData[]> {
     logger.info('Initializing Pokemon cache...');

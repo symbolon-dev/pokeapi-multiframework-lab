@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer';
 import { getColor } from 'colorthief';
 
-import { logger } from '@/utils/logger';
+import { logger } from './logger';
 
 export async function extractDominantColor(spriteUrl: string): Promise<string | undefined> {
     try {

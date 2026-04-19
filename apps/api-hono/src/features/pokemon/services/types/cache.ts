@@ -1,7 +1,7 @@
-import type { TypeDetails } from '@/types/pokemon';
+import type { TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
 
-import { fetchTypeDetails } from '@/utils/fetchers';
-import { logger } from '@/utils/logger';
+import { logger } from '@/lib/logger';
+import { fetchTypeDetails } from './data';
 
 export const ALL_TYPES = [
     'normal',

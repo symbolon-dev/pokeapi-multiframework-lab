@@ -1,4 +1,4 @@
-import type { PokemonData, QueryParams } from '@/types/pokemon';
+import type { PokemonData, QueryParams } from '@/features/pokemon/schemas/pokemon.types';
 
 function matchesSearchTerm(pokemon: PokemonData, searchTerm: string): boolean {
     const term = searchTerm.toLowerCase();
