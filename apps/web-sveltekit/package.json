@@ -16,13 +16,13 @@
         "types": "wrangler types"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^8.1.1",
+        "@antfu/eslint-config": "^8.2.0",
         "@sveltejs/adapter-cloudflare": "^7.2.4",
         "@sveltejs/kit": "^2.49.1",
         "@sveltejs/vite-plugin-svelte": "^7.0.0",
         "@tailwindcss/vite": "^4.1.17",
         "@types/node": "^25.6.0",
-        "eslint": "^10.2.0",
+        "eslint": "^10.2.1",
         "eslint-plugin-better-tailwindcss": "^4.4.0",
         "eslint-plugin-svelte": "^3.14.0",
         "globals": "^17.4.0",
