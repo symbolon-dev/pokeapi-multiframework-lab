@@ -83,7 +83,7 @@ export function getTypes(c: Context): any {
         pokemonCache.flatMap(p => p.types),
     )].sort();
 
-    return c.json({ types }, 200);
+    return c.json(types, 200);
 }
 
 // eslint-disable-next-line ts/no-explicit-any
@@ -114,5 +114,5 @@ export function getGenerations(c: Context): any {
         pokemonCache.map(p => p.generation),
     )].sort((a, b) => a - b);
 
-    return c.json({ generations }, 200);
+    return c.json(generations, 200);
 }

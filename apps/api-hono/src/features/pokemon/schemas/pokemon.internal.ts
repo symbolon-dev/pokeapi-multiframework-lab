@@ -110,13 +110,15 @@ export const PokemonListResponseSchema = z.object({
     pokemon: z.array(PokemonDataSchema).openapi({ description: 'List of Pokemon on this page' }),
 }).openapi('PokemonListResponse');
 
-export const TypesResponseSchema = z.object({
-    types: z.array(z.string()).openapi({ example: ['electric', 'fire', 'water'], description: 'List of all Pokemon types' }),
-}).openapi('TypesResponse');
+export const TypesResponseSchema = z.array(z.string()).openapi({
+    example: ['electric', 'fire', 'water'],
+    description: 'List of all Pokemon types',
+});
 
-export const GenerationsResponseSchema = z.object({
-    generations: z.array(z.number()).openapi({ example: [1, 2, 3, 4, 5], description: 'List of all Pokemon generations' }),
-}).openapi('GenerationsResponse');
+export const GenerationsResponseSchema = z.array(z.number()).openapi({
+    example: [1, 2, 3, 4, 5],
+    description: 'List of all Pokemon generations',
+});
 
 export const PokemonDetailResponseSchema = PokemonDataSchema.extend({
     typeEffectiveness: TypeEffectivenessSchema,
