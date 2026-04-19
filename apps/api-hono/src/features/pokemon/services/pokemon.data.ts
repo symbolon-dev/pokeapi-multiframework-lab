@@ -1,10 +1,10 @@
-import type { GenerationData, PokemonData, PokemonDetails, TypeDetails } from '@/types/pokemon';
+import type { GenerationData, PokemonData, PokemonDetails, TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
 
 import { chunk } from 'lodash-es';
-import { EvolutionSchema, GenerationSchema, GenerationsListSchema, PokemonDetailsSchema, PokemonSpeciesSchema, TypeDetailsApiSchema } from '@/schemas/api';
-import { cacheGet, cacheSet } from '@/utils/cache';
-import { logger } from '@/utils/logger';
-import { mapPokemonData, mapTypeDetails } from '@/utils/mappers';
+import { EvolutionSchema, GenerationSchema, GenerationsListSchema, PokemonDetailsSchema, PokemonSpeciesSchema, TypeDetailsApiSchema } from '@/features/pokemon/schemas/pokemon.external';
+import { cacheGet, cacheSet } from '@/lib/cache';
+import { logger } from '@/lib/logger';
+import { mapPokemonData, mapTypeDetails } from './pokemon.transform';
 
 const BATCH_SIZE = 25;
 const REQUEST_TIMEOUT_MS = 15000; // 15 seconds
@@ -96,7 +96,7 @@ async function fetchPokemonBatch(speciesList: Array<{ name: string; url: string 
         }),
     );
 
-    return results.filter((p): p is PokemonData => p !== undefined);
+    return results.filter((p: PokemonData | undefined): p is PokemonData => p !== undefined);
 }
 
 async function loadGenerationPokemon(genId: number): Promise<PokemonData[]> {

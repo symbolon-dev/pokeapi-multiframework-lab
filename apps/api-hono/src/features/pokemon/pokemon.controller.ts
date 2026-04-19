@@ -1,9 +1,9 @@
 import type { Context } from 'hono';
 
-import type { PokemonData, QueryParams, TypeDetails } from '@/types/pokemon';
-import { fetchTypeDetails } from '@/utils/fetchers';
-import { queryPokemon } from '@/utils/filters';
-import { calculateTypeEffectiveness } from '@/utils/mappers';
+import type { PokemonData, QueryParams, TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
+import { fetchTypeDetails } from '@/features/pokemon/services/pokemon.data';
+import { queryPokemon } from '@/features/pokemon/services/pokemon.query';
+import { calculateTypeEffectiveness } from '@/features/pokemon/services/pokemon.transform';
 
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 20;
@@ -83,7 +83,7 @@ export function getTypes(c: Context): any {
         pokemonCache.flatMap(p => p.types),
     )].sort();
 
-    return c.json(types, 200);
+    return c.json({ types }, 200);
 }
 
 // eslint-disable-next-line ts/no-explicit-any
@@ -114,5 +114,5 @@ export function getGenerations(c: Context): any {
         pokemonCache.map(p => p.generation),
     )].sort((a, b) => a - b);
 
-    return c.json(generations, 200);
+    return c.json({ generations }, 200);
 }

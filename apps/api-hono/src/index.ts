@@ -2,9 +2,8 @@ import process from 'node:process';
 
 import { createApp } from '@/app';
 import { env } from '@/config/env';
-import { initializePokemonCache } from '@/services/pokemon';
-import { initializeTypeCache } from '@/services/types';
-import { logger } from '@/utils/logger';
+import { initializePokemonCache, initializeTypeCache } from '@/features/pokemon/services/pokemon.cache';
+import { logger } from '@/lib/logger';
 
 async function startServer(): Promise<void> {
     const port = env.PORT;

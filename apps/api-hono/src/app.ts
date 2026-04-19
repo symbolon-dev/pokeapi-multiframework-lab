@@ -1,5 +1,5 @@
 import type { PinoLogger } from 'hono-pino';
-import type { PokemonData, TypeDetails } from '@/types/pokemon';
+import type { PokemonData, TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { pinoLogger } from 'hono-pino';
@@ -9,8 +9,10 @@ import { secureHeaders } from 'hono/secure-headers';
 
 import pino from 'pino';
 import { env } from '@/config/env';
+import { generationsRoutes } from '@/features/pokemon/routes/generations.routes';
+import { pokemonRoutes } from '@/features/pokemon/routes/pokemon.routes';
+import { typesRoutes } from '@/features/pokemon/routes/types.routes';
 import { rateLimiter } from '@/middleware/rate-limiter';
-import { pokemonRoutes } from '@/routes/pokemon';
 
 type AppVariables = {
     Variables: {
@@ -62,7 +64,9 @@ export function createApp(pokemonCache: PokemonData[], typeCache: Record<string,
     // Health check
     app.get('/health', c => c.json({ status: 'ok', timestamp: Date.now() }));
 
-    // Routes
+    // Routes - more specific routes first to avoid catch-all /{id} matching
+    app.route('/api/pokemon', typesRoutes);
+    app.route('/api/pokemon', generationsRoutes);
     app.route('/api/pokemon', pokemonRoutes);
 
     // OpenAPI documentation
