@@ -1,5 +1,5 @@
 import { createRoute, OpenAPIHono } from '@hono/zod-openapi';
-import { getGenerations } from '@/features/pokemon/pokemon.controller';
+import { getGenerations } from '@/features/pokemon/controllers/generations.controller';
 import { GenerationsResponseSchema } from '@/features/pokemon/schemas/pokemon.internal';
 import { ErrorResponseSchema } from '@/features/pokemon/schemas/pokemon.request';
 

@@ -1,7 +1,7 @@
-import type { PokemonData, TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
+import type { TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
 
 import { logger } from '@/lib/logger';
-import { fetchAllPokemon, fetchTypeDetails } from './pokemon.data';
+import { fetchTypeDetails } from './data';
 
 export const ALL_TYPES = [
     'normal',
@@ -23,17 +23,6 @@ export const ALL_TYPES = [
     'steel',
     'fairy',
 ];
-
-export async function initializePokemonCache(): Promise<PokemonData[]> {
-    logger.info('Initializing Pokemon cache...');
-
-    const data = await fetchAllPokemon();
-    const sortedData = [...data].sort((a, b) => a.id - b.id);
-
-    logger.info(`Pokemon cache initialized with ${sortedData.length} Pokémon`);
-
-    return sortedData;
-}
 
 export async function initializeTypeCache(): Promise<Record<string, TypeDetails>> {
     logger.info('Initializing type cache...');
