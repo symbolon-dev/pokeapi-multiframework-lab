@@ -1,4 +1,4 @@
-import type { TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
+import type { TypeData } from '@repo/types';
 import { ALL_TYPES } from './cache';
 
 export type TypeEffectiveness = {
@@ -10,7 +10,7 @@ export type TypeEffectiveness = {
 
 export function calculateTypeEffectiveness(
     pokemonTypes: string[],
-    typeCache: Record<string, TypeDetails>,
+    typeCache: Record<string, TypeData>,
 ): TypeEffectiveness {
     const multipliers = pokemonTypes
         .map(type => typeCache[type]?.damageRelations)

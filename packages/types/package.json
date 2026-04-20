@@ -1,0 +1,19 @@
+{
+  "name": "@repo/types",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./pokemon": "./src/schemas/pokemon.schema.ts",
+    "./pokemon-external": "./src/schemas/pokemon.external.ts",
+    "./pokemon-request": "./src/schemas/pokemon.request.ts"
+  },
+  "dependencies": {
+    "zod": "^4.1.12",
+    "@hono/zod-openapi": "^1.1.5"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}

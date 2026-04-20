@@ -1,6 +1,6 @@
-import type { Context } from 'hono';
+import type { Pokemon, QueryParams } from '@repo/types';
 
-import type { PokemonData, QueryParams } from '@/features/pokemon/schemas/pokemon.types';
+import type { Context } from 'hono';
 import { queryPokemon } from '@/features/pokemon/services/pokemon/query';
 import { calculateTypeEffectiveness } from '@/features/pokemon/services/types/effectiveness';
 import { validatePokemonCache } from '@/features/pokemon/utils/cache-validation';
@@ -13,7 +13,7 @@ const DEFAULT_LIMIT = 20;
 
 // eslint-disable-next-line ts/no-explicit-any
 export function getPokemon(c: Context): any {
-    const pokemonCache = c.get('pokemonCache') as PokemonData[];
+    const pokemonCache = c.get('pokemonCache') as Pokemon[];
 
     const validation = validatePokemonCache(c, pokemonCache);
     if (!validation.valid)
@@ -46,7 +46,7 @@ export function getPokemon(c: Context): any {
 
 // eslint-disable-next-line ts/no-explicit-any
 export function getPokemonById(c: Context): any {
-    const pokemonCache = c.get('pokemonCache') as PokemonData[];
+    const pokemonCache = c.get('pokemonCache') as Pokemon[];
     const typeCache = c.get('typeCache') as Record<string, any>;
 
     const validation = validatePokemonCache(c, pokemonCache);
@@ -54,7 +54,7 @@ export function getPokemonById(c: Context): any {
         return validation.response;
 
     const id = Number(c.req.param('id'));
-    const result = pokemonCache.find((pokemon: PokemonData) => pokemon.id === id);
+    const result = pokemonCache.find((pokemon: Pokemon) => pokemon.id === id);
 
     if (!result) {
         return c.json({ error: 'Pokémon not found', status: 404 }, 404);

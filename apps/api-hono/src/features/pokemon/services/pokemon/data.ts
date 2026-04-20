@@ -1,6 +1,6 @@
-import type { PokemonData, PokemonDetails } from '@/features/pokemon/schemas/pokemon.types';
+import type { Pokemon, PokemonDetails } from '@repo/types';
 
-import { EvolutionSchema, GenerationsListSchema, PokemonDetailsSchema, PokemonSpeciesSchema } from '@/features/pokemon/schemas/pokemon.external';
+import { EvolutionSchema, GenerationsListSchema, PokemonDetailsSchema, PokemonSpeciesSchema } from '@repo/types';
 import { fetchJson, POKEAPI_BASE_URL } from '@/features/pokemon/utils/fetcher';
 import { logger } from '@/lib/logger';
 import { loadGenerationPokemon } from '../generations/data';
@@ -30,7 +30,7 @@ async function fetchPokemon(url: string): Promise<PokemonDetails | undefined> {
     }
 }
 
-export async function fetchPokemonBatch(speciesList: Array<{ name: string; url: string }>, generation: number): Promise<PokemonData[]> {
+export async function fetchPokemonBatch(speciesList: Array<{ name: string; url: string }>, generation: number): Promise<Pokemon[]> {
     const results = await Promise.all(
         speciesList.map(async (species) => {
             const pokemon = await fetchPokemon(species.url);
@@ -38,10 +38,10 @@ export async function fetchPokemonBatch(speciesList: Array<{ name: string; url: 
         }),
     );
 
-    return results.filter((p: PokemonData | undefined): p is PokemonData => p !== undefined);
+    return results.filter((p: Pokemon | undefined): p is Pokemon => p !== undefined);
 }
 
-export async function fetchAllPokemon(): Promise<PokemonData[]> {
+export async function fetchAllPokemon(): Promise<Pokemon[]> {
     logger.info('Fetching all Pokémon from PokeAPI...');
 
     const data = await fetchJson(`${POKEAPI_BASE_URL}/generation/`);

@@ -1,4 +1,4 @@
-import type { TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
+import type { TypeData } from '@repo/types';
 
 import { logger } from '@/lib/logger';
 import { fetchTypeDetails } from './data';
@@ -24,7 +24,7 @@ export const ALL_TYPES = [
     'fairy',
 ];
 
-export async function initializeTypeCache(): Promise<Record<string, TypeDetails>> {
+export async function initializeTypeCache(): Promise<Record<string, TypeData>> {
     logger.info('Initializing type cache...');
 
     const results = await Promise.all(
@@ -36,7 +36,7 @@ export async function initializeTypeCache(): Promise<Record<string, TypeDetails>
 
     const typeCache = Object.fromEntries(
         results
-            .filter((r): r is { type: string; details: TypeDetails } => r.details !== undefined)
+            .filter((r): r is { type: string; details: TypeData } => r.details !== undefined)
             .map(r => [r.type, r.details]),
     );
 

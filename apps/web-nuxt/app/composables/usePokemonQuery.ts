@@ -1,5 +1,5 @@
+import type { Filters, PokemonPage, SortOrder } from '@repo/types';
 import type { Ref } from 'vue';
-import type { Filters, PokemonPage, SortOrder } from '../types/pokemon';
 import { useInfiniteQuery } from '@tanstack/vue-query';
 
 const LIMIT = 20;

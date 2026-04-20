@@ -1,5 +1,5 @@
+import type { SortOrder } from '@repo/types';
 import type { LocationQueryValue } from 'vue-router';
-import type { SortOrder } from '@/types/pokemon';
 import { useDebounceFn } from '@vueuse/core';
 import { useRoute, useRouter } from 'vue-router';
 

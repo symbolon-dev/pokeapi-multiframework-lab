@@ -1,4 +1,4 @@
-import type { Pokemon } from '~/types/pokemon';
+import type { Pokemon } from '@repo/types';
 import { useVirtualizer } from '@tanstack/vue-virtual';
 
 export function usePokemonVirtualizer(

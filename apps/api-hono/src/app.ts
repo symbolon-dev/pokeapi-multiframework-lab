@@ -1,5 +1,5 @@
+import type { Pokemon, TypeData } from '@repo/types';
 import type { PinoLogger } from 'hono-pino';
-import type { PokemonData, TypeDetails } from '@/features/pokemon/schemas/pokemon.types';
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { pinoLogger } from 'hono-pino';
@@ -16,13 +16,13 @@ import { rateLimiter } from '@/middleware/rate-limiter';
 
 type AppVariables = {
     Variables: {
-        pokemonCache: PokemonData[];
-        typeCache: Record<string, TypeDetails>;
+        pokemonCache: Pokemon[];
+        typeCache: Record<string, TypeData>;
         logger: PinoLogger;
     };
 };
 
-export function createApp(pokemonCache: PokemonData[], typeCache: Record<string, TypeDetails>): OpenAPIHono<AppVariables> {
+export function createApp(pokemonCache: Pokemon[], typeCache: Record<string, TypeData>): OpenAPIHono<AppVariables> {
     const app = new OpenAPIHono<AppVariables>();
 
     // Global middleware

@@ -1,7 +1,6 @@
 import { createRoute, OpenAPIHono } from '@hono/zod-openapi';
+import { ErrorResponseSchema, PokemonIdParamSchema, PokemonListQuerySchema, PokemonPageSchema, PokemonSchema } from '@repo/types';
 import { getPokemon, getPokemonById } from '@/features/pokemon/controllers/pokemon.controller';
-import { PokemonDataSchema, PokemonListResponseSchema } from '@/features/pokemon/schemas/pokemon.internal';
-import { ErrorResponseSchema, PokemonIdParamSchema, PokemonListQuerySchema } from '@/features/pokemon/schemas/pokemon.request';
 
 export const pokemonRoutes = new OpenAPIHono();
 
@@ -15,7 +14,7 @@ const getPokemonRoute = createRoute({
         200: {
             content: {
                 'application/json': {
-                    schema: PokemonListResponseSchema,
+                    schema: PokemonPageSchema,
                 },
             },
             description: 'Retrieve paginated and filtered list of Pokemon',
@@ -57,7 +56,7 @@ const getPokemonByIdRoute = createRoute({
         200: {
             content: {
                 'application/json': {
-                    schema: PokemonDataSchema,
+                    schema: PokemonSchema,
                 },
             },
             description: 'Retrieve a Pokemon by ID',

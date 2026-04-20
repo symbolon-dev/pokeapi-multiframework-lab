@@ -1,6 +1,6 @@
-import type { Context } from 'hono';
+import type { Pokemon, TypeData } from '@repo/types';
 
-import type { PokemonData } from '@/features/pokemon/schemas/pokemon.types';
+import type { Context } from 'hono';
 import { fetchTypeDetails } from '@/features/pokemon/services/types/data';
 import { validatePokemonCache } from '@/features/pokemon/utils/cache-validation';
 
@@ -9,7 +9,7 @@ import { validatePokemonCache } from '@/features/pokemon/utils/cache-validation'
 
 // eslint-disable-next-line ts/no-explicit-any
 export function getTypes(c: Context): any {
-    const pokemonCache = c.get('pokemonCache') as PokemonData[];
+    const pokemonCache = c.get('pokemonCache') as Pokemon[];
 
     const validation = validatePokemonCache(c, pokemonCache);
     if (!validation.valid)
@@ -26,9 +26,13 @@ export function getTypes(c: Context): any {
 export async function getTypeByName(c: Context): Promise<any> {
     const typeName = c.req.param('type')?.toLowerCase();
 
-    const typeDetails = await fetchTypeDetails(typeName as string);
+    if (typeName == null) {
+        return c.json({ error: 'Type parameter is required', status: 400 }, 400);
+    }
 
-    if (!typeDetails) {
+    const typeDetails = await fetchTypeDetails(typeName) as TypeData;
+
+    if (typeDetails === undefined) {
         return c.json({ error: 'Type not found', status: 404 }, 404);
     }
 

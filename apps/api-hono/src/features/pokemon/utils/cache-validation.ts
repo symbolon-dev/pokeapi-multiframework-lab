@@ -1,9 +1,9 @@
+import type { Pokemon } from '@repo/types';
 import type { Context } from 'hono';
-import type { PokemonData } from '@/features/pokemon/schemas/pokemon.types';
 
 export function validatePokemonCache(
     c: Context,
-    pokemonCache: PokemonData[] | undefined,
+    pokemonCache: Pokemon[] | undefined,
 ): { valid: true } | { valid: false; response: Response } {
     if (pokemonCache === undefined || pokemonCache.length === 0) {
         const logger = c.get('logger') as { error: (message: string) => void };
