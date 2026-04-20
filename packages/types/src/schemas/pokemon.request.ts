@@ -1,13 +1,5 @@
 import { z } from '@hono/zod-openapi';
 
-export const QueryParamsSchema = z.object({
-    search: z.string().optional(),
-    types: z.union([z.string(), z.array(z.string())]).optional(),
-    generation: z.number().optional(),
-    sort: z.enum(['id', 'name']).optional(),
-    order: z.enum(['asc', 'desc']).optional(),
-});
-
 export const PokemonListQuerySchema = z.object({
     page: z.coerce.number().int().positive().optional().openapi({ example: 1, description: 'Page number' }),
     limit: z.coerce.number().int().positive().optional().openapi({ example: 20, description: 'Items per page' }),

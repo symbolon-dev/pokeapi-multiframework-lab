@@ -1,7 +1,7 @@
-import type { GenerationData, PokemonData } from '@/features/pokemon/schemas/pokemon.types';
+import type { GenerationData, Pokemon } from '@repo/types';
 
+import { GenerationSchema } from '@repo/types';
 import { chunk } from 'lodash-es';
-import { GenerationSchema } from '@/features/pokemon/schemas/pokemon.external';
 import { BATCH_SIZE, fetchJson, POKEAPI_BASE_URL } from '@/features/pokemon/utils/fetcher';
 import { logger } from '@/lib/logger';
 import { fetchPokemonBatch } from '../pokemon/data';
@@ -17,7 +17,7 @@ export async function fetchGenerationData(genId: number): Promise<GenerationData
     }
 }
 
-export async function loadGenerationPokemon(genId: number): Promise<PokemonData[]> {
+export async function loadGenerationPokemon(genId: number): Promise<Pokemon[]> {
     const genData = await fetchGenerationData(genId);
 
     if (!genData?.pokemon_species) {

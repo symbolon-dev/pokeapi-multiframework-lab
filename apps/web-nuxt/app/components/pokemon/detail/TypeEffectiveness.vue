@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PokemonDetail } from '~/types/pokemon';
+import type { PokemonDetail } from '@repo/types';
 
 type Props = {
     data: PokemonDetail | undefined;

@@ -1,4 +1,4 @@
-import type { EvolutionChain, EvolutionRequirement, MappedEvolution } from '@/features/pokemon/schemas/pokemon.types';
+import type { EvolutionChain, EvolutionNode, EvolutionRequirement } from '@repo/types';
 
 const ARTWORK_BASE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 const TRAILING_SLASH_RE = /\/$/;
@@ -71,7 +71,7 @@ function mapEvolutionRequirement(details: EvolutionChain['evolution_details'][0]
     return requirement;
 }
 
-export function mapEvolutionChain(chain: EvolutionChain): MappedEvolution {
+export function mapEvolutionChain(chain: EvolutionChain): EvolutionNode {
     const id = extractIdFromUrl(chain.species.url);
 
     const children = chain.evolves_to?.map((evo: EvolutionChain) =>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PokemonDetail } from '~/types/pokemon';
+import type { PokemonDetail } from '@repo/types';
 import { Ruler, Weight } from '@lucide/vue';
 
 type Props = {

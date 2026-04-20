@@ -1,6 +1,6 @@
-import type { TypeDetails, TypeDetailsApi } from '@/features/pokemon/schemas/pokemon.types';
+import type { TypeData, TypeDetailsApi } from '@repo/types';
 
-export function mapTypeDetails(apiData: TypeDetailsApi): TypeDetails {
+export function mapTypeDetails(apiData: TypeDetailsApi): TypeData {
     return {
         id: apiData.id,
         name: apiData.name,

@@ -1,6 +1,6 @@
-import type { Context } from 'hono';
+import type { Pokemon } from '@repo/types';
 
-import type { PokemonData } from '@/features/pokemon/schemas/pokemon.types';
+import type { Context } from 'hono';
 import { validatePokemonCache } from '@/features/pokemon/utils/cache-validation';
 
 // Using `any` as return type for all handlers - Hono's Context.json() returns complex
@@ -8,7 +8,7 @@ import { validatePokemonCache } from '@/features/pokemon/utils/cache-validation'
 
 // eslint-disable-next-line ts/no-explicit-any
 export function getGenerations(c: Context): any {
-    const pokemonCache = c.get('pokemonCache') as PokemonData[];
+    const pokemonCache = c.get('pokemonCache') as Pokemon[];
 
     const validation = validatePokemonCache(c, pokemonCache);
     if (!validation.valid)

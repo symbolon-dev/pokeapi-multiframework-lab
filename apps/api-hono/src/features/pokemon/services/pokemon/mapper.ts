@@ -1,9 +1,9 @@
-import type { PokemonData, PokemonDetails } from '@/features/pokemon/schemas/pokemon.types';
+import type { Pokemon, PokemonDetails } from '@repo/types';
 
 import { extractDominantColor } from '@/lib/color';
 import { mapEvolutionChain } from './evolution';
 
-export async function mapPokemonData(parsed: PokemonDetails, generation: number): Promise<PokemonData> {
+export async function mapPokemonData(parsed: PokemonDetails, generation: number): Promise<Pokemon> {
     const artworkUrl = parsed.sprites.other['official-artwork'].front_default;
     const dominantColor = (artworkUrl != null) ? await extractDominantColor(artworkUrl) : undefined;
 

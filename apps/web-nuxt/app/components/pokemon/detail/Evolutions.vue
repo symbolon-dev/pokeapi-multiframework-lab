@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EvolutionNode, EvolutionRequirement, PokemonDetail } from '~/types/pokemon';
+import type { EvolutionNode, EvolutionRequirement, PokemonDetail } from '@repo/types';
 import { ArrowRight } from '@lucide/vue';
 
 type Props = {
@@ -82,7 +82,7 @@ function formatRequirement(req: EvolutionRequirement | undefined): string[] {
 }
 
 const flatEvolutions = computed<FlatEvo[]>(() => {
-    if (!props.data?.evolutions)
+    if (props.data?.evolutions == null)
         return [];
     return flattenTree(props.data.evolutions);
 });

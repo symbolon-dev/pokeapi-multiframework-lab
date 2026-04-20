@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { SortOrder } from '@repo/types';
 import type { AcceptableValue } from 'reka-ui';
-import type { SortOrder } from '~/types/pokemon';
 
 type Props = {
     modelValue: SortOrder;

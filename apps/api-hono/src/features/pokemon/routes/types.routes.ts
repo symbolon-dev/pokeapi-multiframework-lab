@@ -1,7 +1,6 @@
 import { createRoute, OpenAPIHono } from '@hono/zod-openapi';
+import { ErrorResponseSchema, TypeDataSchema, TypeParamSchema, TypesResponseSchema } from '@repo/types';
 import { getTypeByName, getTypes } from '@/features/pokemon/controllers/types.controller';
-import { TypeDetailsSchema, TypesResponseSchema } from '@/features/pokemon/schemas/pokemon.internal';
-import { ErrorResponseSchema, TypeParamSchema } from '@/features/pokemon/schemas/pokemon.request';
 
 export const typesRoutes = new OpenAPIHono();
 
@@ -46,7 +45,7 @@ const getTypeByNameRoute = createRoute({
         200: {
             content: {
                 'application/json': {
-                    schema: TypeDetailsSchema,
+                    schema: TypeDataSchema,
                 },
             },
             description: 'Retrieve detailed information about a specific type including damage relations',
