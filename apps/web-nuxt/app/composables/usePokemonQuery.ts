@@ -32,12 +32,15 @@ export function usePokemonQuery(
     sortOrder: Ref<SortOrder>,
 ) {
     const debouncedSearchTerm = refDebounced(searchTerm, 300); // ms
+    const debouncedTypes = refDebounced(selectedTypes, 200); // ms
+    const debouncedGeneration = refDebounced(generation, 100); // ms
+    const debouncedSortOrder = refDebounced(sortOrder, 100); // ms
 
     const filters = computed(() => ({
         name: debouncedSearchTerm.value,
-        types: selectedTypes.value,
-        generation: generation.value,
-        ...SORT_MAP[sortOrder.value],
+        types: debouncedTypes.value,
+        generation: debouncedGeneration.value,
+        ...SORT_MAP[debouncedSortOrder.value],
     }));
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, error, isFetching, refetch } = useInfiniteQuery({
