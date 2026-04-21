@@ -1,6 +1,7 @@
 import type { Filters, PokemonPage, SortOrder } from '@repo/types';
 import type { Ref } from 'vue';
 import { useInfiniteQuery } from '@tanstack/vue-query';
+import { refDebounced } from '@vueuse/core';
 
 const LIMIT = 20;
 
@@ -30,8 +31,10 @@ export function usePokemonQuery(
     generation: Ref<string | number>,
     sortOrder: Ref<SortOrder>,
 ) {
+    const debouncedSearchTerm = refDebounced(searchTerm, 300); // ms
+
     const filters = computed(() => ({
-        name: searchTerm.value,
+        name: debouncedSearchTerm.value,
         types: selectedTypes.value,
         generation: generation.value,
         ...SORT_MAP[sortOrder.value],
