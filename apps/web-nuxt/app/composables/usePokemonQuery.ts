@@ -1,6 +1,6 @@
 import type { Filters, PokemonPage, SortOrder } from '@repo/types';
 import type { Ref } from 'vue';
-import { useInfiniteQuery } from '@tanstack/vue-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/vue-query';
 import { refDebounced } from '@vueuse/core';
 
 const LIMIT = 20;
@@ -32,12 +32,15 @@ export function usePokemonQuery(
     sortOrder: Ref<SortOrder>,
 ) {
     const debouncedSearchTerm = refDebounced(searchTerm, 300); // ms
+    const debouncedTypes = refDebounced(selectedTypes, 200); // ms
+    const debouncedGeneration = refDebounced(generation, 100); // ms
+    const debouncedSortOrder = refDebounced(sortOrder, 100); // ms
 
     const filters = computed(() => ({
         name: debouncedSearchTerm.value,
-        types: selectedTypes.value,
-        generation: generation.value,
-        ...SORT_MAP[sortOrder.value],
+        types: debouncedTypes.value,
+        generation: debouncedGeneration.value,
+        ...SORT_MAP[debouncedSortOrder.value],
     }));
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, error, isFetching, refetch } = useInfiniteQuery({
@@ -47,6 +50,7 @@ export function usePokemonQuery(
         getNextPageParam: lastPage =>
             lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
         initialPageParam: 1,
+        placeholderData: keepPreviousData,
         staleTime: 30_000, // 30 seconds
         gcTime: 5 * 60_000, // 5 minutes
         retry: 2,
