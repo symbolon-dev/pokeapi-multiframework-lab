@@ -1,6 +1,6 @@
 import type { Filters, PokemonPage, SortOrder } from '@repo/types';
 import type { Ref } from 'vue';
-import { useInfiniteQuery } from '@tanstack/vue-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/vue-query';
 import { refDebounced } from '@vueuse/core';
 
 const LIMIT = 20;
@@ -50,6 +50,7 @@ export function usePokemonQuery(
         getNextPageParam: lastPage =>
             lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
         initialPageParam: 1,
+        placeholderData: keepPreviousData,
         staleTime: 30_000, // 30 seconds
         gcTime: 5 * 60_000, // 5 minutes
         retry: 2,

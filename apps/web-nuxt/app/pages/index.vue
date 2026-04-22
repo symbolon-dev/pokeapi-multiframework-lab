@@ -8,7 +8,7 @@ const { searchTerm, selectedTypes, generation, sortOrder, hasNonDefaultValues, r
 const { data: generations } = useFetch<number[]>('/api/generations');
 const { data: types } = useFetch<string[]>('/api/types');
 
-const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, error, isFetching, refetch: refetchPokemon } = usePokemonQuery(
+const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, error, refetch: refetchPokemon } = usePokemonQuery(
     searchTerm,
     selectedTypes,
     generation,
@@ -56,7 +56,7 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, erro
             :has-next-page="hasNextPage"
             :is-fetching-next-page="isFetchingNextPage"
             :fetch-next-page="fetchNextPage"
-            :is-loading="status === 'pending' || isFetching"
+            :is-loading="status === 'pending'"
             :is-error="error != null"
             :is-empty="status === 'success' && allPokemon.length === 0"
             :error-message="error?.message"
