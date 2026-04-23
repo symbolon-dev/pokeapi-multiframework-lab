@@ -19,7 +19,7 @@ async function retry() {
 </script>
 
 <template>
-    <div class="flex h-svh flex-col overflow-hidden">
+    <div class="flex h-svh flex-col overflow-hidden p-2">
         <div class="border-b bg-background pb-3">
             <Button variant="outline" @click="router.push('/')">
                 Back

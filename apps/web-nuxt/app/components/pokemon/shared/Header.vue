@@ -4,7 +4,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.vue';
 
 <template>
     <header class="flex items-center justify-between py-4">
-        <NuxtLink to="/" class="text-lg font-semibold">
+        <NuxtLink to="/" class="pl-2 text-lg font-semibold">
             PokéDex
         </NuxtLink>
 
