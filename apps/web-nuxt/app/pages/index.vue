@@ -17,7 +17,7 @@ const { allPokemon, hasNextPage, isFetchingNextPage, fetchNextPage, status, erro
 </script>
 
 <template>
-    <div class="flex h-svh flex-col overflow-hidden">
+    <div class="flex h-svh flex-col overflow-hidden p-2">
         <div class="flex flex-wrap justify-between gap-4 pb-4">
             <PokemonListSearchInput
                 v-model="searchTerm"
