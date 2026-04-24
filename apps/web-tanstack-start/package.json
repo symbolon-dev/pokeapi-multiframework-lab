@@ -13,7 +13,7 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.1.17",
+        "@tailwindcss/vite": "^4.2.4",
         "@tanstack/react-devtools": "^0.10.2",
         "@tanstack/react-router": "^1.132.0",
         "@tanstack/react-router-devtools": "^1.132.0",
@@ -24,7 +24,7 @@
         "nitro": "latest",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
-        "tailwindcss": "^4.1.17",
+        "tailwindcss": "^4.2.4",
         "vite-tsconfig-paths": "^6.0.2"
     },
     "devDependencies": {
@@ -41,7 +41,7 @@
         "@vitejs/plugin-react": "^5.2.0",
         "babel-plugin-react-compiler": "^1.0.0",
         "eslint": "^10.2.1",
-        "eslint-plugin-better-tailwindcss": "^4.4.0",
+        "eslint-plugin-better-tailwindcss": "^4.4.1",
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "jsdom": "^29.0.2",
         "typescript": "^6.0.2",
