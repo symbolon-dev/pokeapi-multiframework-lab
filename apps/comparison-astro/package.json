@@ -13,8 +13,8 @@
         "typecheck": "astro check"
     },
     "dependencies": {
-        "@astrojs/check": "^0.9.6",
-        "astro": "^6.1.6",
+        "@astrojs/check": "^0.9.9",
+        "astro": "^6.2.1",
         "typescript": "^6.0.2"
     },
     "devDependencies": {
