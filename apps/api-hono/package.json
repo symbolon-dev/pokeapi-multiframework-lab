@@ -29,10 +29,10 @@
         "zod": "^4.1.12"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^8.2.0",
-        "@types/bun": "^1.3.12",
+        "@antfu/eslint-config": "^9.0.0",
+        "@types/bun": "^1.3.14",
         "@types/lodash-es": "^4.17.12",
-        "eslint": "^10.2.1",
+        "eslint": "^10.4.0",
         "typescript": "^6.0.2"
     }
 }
