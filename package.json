@@ -3,7 +3,7 @@
     "type": "module",
     "version": "0.0.1",
     "private": true,
-    "packageManager": "pnpm@9.0.0",
+    "packageManager": "pnpm@11.13.1",
     "scripts": {
         "dev": "pnpm --filter './apps/*' run dev",
         "build": "pnpm --filter './apps/*' run build",
@@ -16,7 +16,6 @@
     },
     "lint-staged": {
         "apps/api-hono/**/*.{js,ts}": "pnpm --filter ./apps/api-hono run lint:fix",
-        "apps/web-next/**/*.{js,jsx,ts,tsx}": "pnpm --filter ./apps/web-next run lint:fix",
         "apps/web-nuxt/**/*.{js,ts,vue}": "pnpm --filter ./apps/web-nuxt run lint:fix",
         "apps/web-sveltekit/**/*.{js,ts,svelte}": "pnpm --filter ./apps/web-sveltekit run lint:fix",
         "apps/web-tanstack-start/**/*.{js,jsx,ts,tsx}": "pnpm --filter ./apps/web-tanstack-start run lint:fix",

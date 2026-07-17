@@ -56,28 +56,6 @@ updates:
         patterns:
           - "@types/lodash-es"
 
-  # Next.js
-  - package-ecosystem: "npm"
-    directory: "/apps/web-next"
-    schedule:
-      interval: "weekly"
-    groups:
-      next:
-        patterns:
-          - "next"
-          - "eslint-config-next"
-      react:
-        patterns:
-          - "react"
-          - "react-dom"
-          - "@types/react"
-          - "@types/react-dom"
-      tooling:
-        patterns:
-          - "@eslint-react/eslint-plugin"
-          - "@tanstack/eslint-plugin-query"
-          - "babel-plugin-react-compiler"
-
   # Nuxt
   - package-ecosystem: "npm"
     directory: "/apps/web-nuxt"

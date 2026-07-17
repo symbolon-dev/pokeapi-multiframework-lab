@@ -17,22 +17,22 @@
     },
     "devDependencies": {
         "@antfu/eslint-config": "catalog:",
-        "@sveltejs/adapter-cloudflare": "^7.2.4",
-        "@sveltejs/kit": "^2.49.1",
-        "@sveltejs/vite-plugin-svelte": "^7.0.0",
+        "@sveltejs/adapter-cloudflare": "catalog:",
+        "@sveltejs/kit": "catalog:",
+        "@sveltejs/vite-plugin-svelte": "catalog:",
         "@tailwindcss/vite": "catalog:",
         "@types/node": "catalog:",
         "eslint": "catalog:",
         "eslint-plugin-better-tailwindcss": "catalog:",
-        "eslint-plugin-svelte": "^3.14.0",
-        "globals": "^17.5.0",
-        "svelte": "^5.45.6",
-        "svelte-check": "^4.3.4",
+        "eslint-plugin-svelte": "catalog:",
+        "globals": "catalog:",
+        "svelte": "catalog:",
+        "svelte-check": "catalog:",
         "tailwindcss": "catalog:",
         "typescript": "catalog:",
-        "typescript-eslint": "^8.58.2",
-        "vite": "^8.0.8",
-        "vite-plugin-devtools-json": "^1.0.0",
-        "wrangler": "^4.56.0"
+        "typescript-eslint": "catalog:",
+        "vite": "catalog:",
+        "vite-plugin-devtools-json": "catalog:",
+        "wrangler": "catalog:"
     }
 }

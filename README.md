@@ -8,7 +8,6 @@ Testing and comparing different web frameworks by building the same app with eac
 
 ### Frontend Frameworks
 
-- Next.js
 - Nuxt
 - SvelteKit
 - TanStack Start
