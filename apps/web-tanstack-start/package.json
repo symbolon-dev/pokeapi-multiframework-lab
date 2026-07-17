@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "build": "vite build",
-        "check": "bun lint && bun typecheck",
+        "check": "pnpm lint && pnpm typecheck",
         "dev": "vite dev --port 3000",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",

@@ -1,5 +1,7 @@
 import process from 'node:process';
 
+import { serve } from '@hono/node-server';
+
 import { createApp } from '@/app';
 import { env } from '@/config/env';
 import { initializePokemonCache } from '@/features/pokemon/services/pokemon/cache';
@@ -7,13 +9,13 @@ import { initializeTypeCache } from '@/features/pokemon/services/types/cache';
 import { logger } from '@/lib/logger';
 
 async function startServer(): Promise<void> {
-    const port = env.PORT;
+    const port = Number.parseInt(env.PORT, 10);
     const pokemonCache = await initializePokemonCache();
     const typeCache = await initializeTypeCache();
 
     const app = createApp(pokemonCache, typeCache);
 
-    const server = Bun.serve({
+    const server = serve({
         fetch: app.fetch,
         port,
     });
@@ -25,7 +27,7 @@ async function startServer(): Promise<void> {
     const shutdown = async (signal: string): Promise<void> => {
         logger.info(`${signal} received, shutting down gracefully...`);
 
-        void server.stop();
+        server.close();
 
         logger.info('Server closed, exiting process');
         void process.exit(0);

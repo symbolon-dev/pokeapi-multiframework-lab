@@ -1,3 +1,5 @@
+import process from 'node:process';
+
 import { z } from 'zod';
 
 const envSchema = z.object({
@@ -6,4 +8,4 @@ const envSchema = z.object({
     CORS_ORIGINS: z.string().default('http://localhost:3000').transform(s => s.split(',').map(o => o.trim())),
 });
 
-export const env = envSchema.parse(Bun.env);
+export const env = envSchema.parse(process.env);

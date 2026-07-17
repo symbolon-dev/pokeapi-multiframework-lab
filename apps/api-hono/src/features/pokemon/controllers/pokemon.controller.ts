@@ -47,6 +47,7 @@ export function getPokemon(c: Context): any {
 // eslint-disable-next-line ts/no-explicit-any
 export function getPokemonById(c: Context): any {
     const pokemonCache = c.get('pokemonCache') as Pokemon[];
+    // eslint-disable-next-line ts/no-explicit-any
     const typeCache = c.get('typeCache') as Record<string, any>;
 
     const validation = validatePokemonCache(c, pokemonCache);

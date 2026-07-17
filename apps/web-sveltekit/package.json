@@ -5,12 +5,12 @@
     "private": true,
     "scripts": {
         "build": "vite build",
-        "check": "bun lint && bun typecheck",
+        "check": "pnpm lint && pnpm typecheck",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "dev": "vite dev",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "prepare": "bun run types && svelte-kit sync || echo ''",
+        "prepare": "pnpm run types && svelte-kit sync || echo ''",
         "preview": "wrangler dev .svelte-kit/cloudflare/_worker.js",
         "typecheck": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "types": "wrangler types"

@@ -5,7 +5,7 @@
     "scripts": {
         "astro": "astro",
         "build": "astro build",
-        "check": "bun lint && bun typecheck",
+        "check": "pnpm lint && pnpm typecheck",
         "dev": "astro dev",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",

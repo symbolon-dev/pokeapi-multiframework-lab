@@ -1,6 +1,6 @@
 # Pokemon API
 
-Cache layer for [PokeAPI](https://pokeapi.co/) built with [Hono](https://hono.dev/) + [Bun](https://bun.sh/).
+Cache layer for [PokeAPI](https://pokeapi.co/) built with [Hono](https://hono.dev/)
 
 ## Features
 
@@ -15,8 +15,8 @@ Cache layer for [PokeAPI](https://pokeapi.co/) built with [Hono](https://hono.de
 
 ```bash
 cp .env.example .env
-bun install
-bun dev
+pnpm install
+pnpm dev
 ```
 
 Server runs on `http://localhost:8000`. API docs at `/ui`.
