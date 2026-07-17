@@ -45,7 +45,7 @@
     },
     "devDependencies": {
         "@antfu/eslint-config": "^8.2.0",
-        "@nuxt/test-utils": "^4.0.2",
+        "@nuxt/test-utils": "^4.0.3",
         "@playwright/test": "^1.58.2",
         "@tailwindcss/vite": "^4.1.17",
         "@vue/test-utils": "^2.4.6",
