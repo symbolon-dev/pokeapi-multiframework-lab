@@ -1,6 +1,6 @@
 version: 2
 updates:
-  # Root – Tooling (husky, lint-staged, eslint, @antfu/eslint-config)
+  # Root – Workspace-level dependencies & Catalog
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -10,10 +10,25 @@ updates:
         patterns:
           - "husky"
           - "lint-staged"
+          - "esbuild"
+      catalog-devtools:
+        patterns:
+          - "typescript"
           - "eslint"
           - "@antfu/eslint-config"
-          - "@types/bun"
-          - "esbuild"
+          - "eslint-plugin-better-tailwindcss"
+          - "eslint-plugin-jsx-a11y"
+          - "@types/node"
+      catalog-tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/vite"
+          - "@tailwindcss/postcss"
+      catalog-utilities:
+        patterns:
+          - "clsx"
+          - "tailwind-merge"
+          - "class-variance-authority"
 
   # BFF – Hono
   - package-ecosystem: "npm"
@@ -39,11 +54,7 @@ updates:
           - "colorthief"
       tooling:
         patterns:
-          - "typescript"
-          - "eslint"
-          - "@antfu/eslint-config"
-          - "@types/*"
-          - "lodash-es"
+          - "@types/lodash-es"
 
   # Next.js
   - package-ecosystem: "npm"
@@ -61,20 +72,11 @@ updates:
           - "react-dom"
           - "@types/react"
           - "@types/react-dom"
-      tailwind:
-        patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
-          - "eslint-plugin-better-tailwindcss"
       tooling:
         patterns:
-          - "typescript"
-          - "eslint"
-          - "@antfu/eslint-config"
           - "@eslint-react/eslint-plugin"
           - "@tanstack/eslint-plugin-query"
           - "babel-plugin-react-compiler"
-          - "@types/node"
 
   # Nuxt
   - package-ecosystem: "npm"
@@ -100,13 +102,9 @@ updates:
         patterns:
           - "@tanstack/vue-query"
           - "@tanstack/vue-virtual"
-      tailwind:
+      tailwind-extras:
         patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
           - "tw-animate-css"
-          - "tailwind-merge"
-          - "eslint-plugin-better-tailwindcss"
       testing:
         patterns:
           - "vitest"
@@ -117,14 +115,9 @@ updates:
           - "happy-dom"
       tooling:
         patterns:
-          - "typescript"
-          - "eslint"
-          - "@antfu/eslint-config"
           - "eslint-plugin-format"
           - "eslint-plugin-vuejs-accessibility"
           - "vite-svg-loader"
-          - "class-variance-authority"
-          - "clsx"
 
   # SvelteKit
   - package-ecosystem: "npm"
@@ -138,25 +131,16 @@ updates:
           - "@sveltejs/*"
           - "svelte-check"
           - "eslint-plugin-svelte"
-      tailwind:
-        patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
-          - "eslint-plugin-better-tailwindcss"
       cloudflare:
         patterns:
           - "wrangler"
       tooling:
         patterns:
-          - "typescript"
           - "typescript-eslint"
-          - "eslint"
-          - "@antfu/eslint-config"
           - "@eslint/*"
           - "vite"
           - "vite-plugin-devtools-json"
           - "globals"
-          - "@types/node"
 
   # TanStack Start
   - package-ecosystem: "npm"
@@ -174,11 +158,9 @@ updates:
           - "@types/react"
           - "@types/react-dom"
           - "@vitejs/plugin-react"
-      tailwind:
+      tailwind-extras:
         patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
-          - "eslint-plugin-better-tailwindcss"
+          - "@tailwindcss/typography"
       testing:
         patterns:
           - "vitest"
@@ -186,12 +168,8 @@ updates:
           - "jsdom"
       tooling:
         patterns:
-          - "typescript"
-          - "eslint"
-          - "@antfu/eslint-config"
           - "vite"
           - "vite-tsconfig-paths"
-          - "@types/node"
           - "lucide-react"
           - "web-vitals"
 
@@ -206,14 +184,3 @@ updates:
           - "astro"
           - "@astrojs/*"
           - "eslint-plugin-astro"
-      tailwind:
-        patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
-          - "eslint-plugin-better-tailwindcss"
-      tooling:
-        patterns:
-          - "typescript"
-          - "eslint"
-          - "@antfu/eslint-config"
-          - "eslint-plugin-jsx-a11y"
