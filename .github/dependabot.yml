@@ -6,159 +6,122 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      root-tooling:
-        patterns:
-          - "husky"
-          - "lint-staged"
-          - "esbuild"
-      catalog-devtools:
-        patterns:
-          - "typescript"
-          - "eslint"
-          - "@antfu/eslint-config"
-          - "eslint-plugin-better-tailwindcss"
-          - "eslint-plugin-jsx-a11y"
-          - "@types/node"
-      catalog-tailwind:
-        patterns:
-          - "tailwindcss"
-          - "@tailwindcss/vite"
-          - "@tailwindcss/postcss"
-      catalog-utilities:
-        patterns:
-          - "clsx"
-          - "tailwind-merge"
-          - "class-variance-authority"
-
-  # BFF – Hono
-  - package-ecosystem: "npm"
-    directory: "/apps/api-hono"
-    schedule:
-      interval: "weekly"
-    groups:
-      hono:
-        patterns:
-          - "hono"
-          - "@hono/*"
-          - "hono-pino"
-      logging:
-        patterns:
-          - "pino"
-          - "pino-pretty"
-      zod:
-        patterns:
-          - "zod"
-      image-processing:
-        patterns:
-          - "sharp"
-          - "colorthief"
-      tooling:
-        patterns:
-          - "@types/lodash-es"
-
-  # Nuxt
-  - package-ecosystem: "npm"
-    directory: "/apps/web-nuxt"
-    schedule:
-      interval: "weekly"
-    groups:
-      nuxt:
+      # Framework versions (catalog entries)
+      frameworks:
         patterns:
           - "nuxt"
-          - "@nuxt/*"
-          - "@nuxtjs/*"
-          - "dayjs-nuxt"
-          - "shadcn-nuxt"
-      vue:
-        patterns:
+          - "astro"
+          - "@sveltejs/kit"
+          - "@sveltejs/adapter-cloudflare"
+          - "@sveltejs/vite-plugin-svelte"
+          - "@tanstack/react-start"
+          - "@tanstack/react-router"
+          - "@tanstack/react-router-devtools"
+          - "@tanstack/react-router-ssr-query"
+          - "@tanstack/router-plugin"
+          - "svelte"
+          - "svelte-check"
           - "vue"
           - "vue-router"
-          - "reka-ui"
-          - "@vueuse/*"
-          - "@lucide/vue"
-      tanstack:
+          - "@astrojs/check"
+          - "@astrojs/tailwind"
+
+      # Vite ecosystem (catalog)
+      vite:
         patterns:
-          - "@tanstack/vue-query"
-          - "@tanstack/vue-virtual"
-      tailwind-extras:
-        patterns:
-          - "tw-animate-css"
-      testing:
-        patterns:
+          - "vite"
           - "vitest"
-          - "@nuxt/test-utils"
-          - "@vue/test-utils"
-          - "@playwright/test"
-          - "playwright-core"
-          - "happy-dom"
-      tooling:
-        patterns:
-          - "eslint-plugin-format"
-          - "eslint-plugin-vuejs-accessibility"
+          - "@vitejs/*"
+          - "vite-tsconfig-paths"
+          - "vite-plugin-devtools-json"
           - "vite-svg-loader"
 
-  # SvelteKit
-  - package-ecosystem: "npm"
-    directory: "/apps/web-sveltekit"
-    schedule:
-      interval: "weekly"
-    groups:
-      svelte:
-        patterns:
-          - "svelte"
-          - "@sveltejs/*"
-          - "svelte-check"
-          - "eslint-plugin-svelte"
-      cloudflare:
-        patterns:
-          - "wrangler"
-      tooling:
-        patterns:
-          - "typescript-eslint"
-          - "@eslint/*"
-          - "vite"
-          - "vite-plugin-devtools-json"
-          - "globals"
-
-  # TanStack Start
-  - package-ecosystem: "npm"
-    directory: "/apps/web-tanstack-start"
-    schedule:
-      interval: "weekly"
-    groups:
-      tanstack:
-        patterns:
-          - "@tanstack/*"
+      # React ecosystem
       react:
         patterns:
           - "react"
           - "react-dom"
           - "@types/react"
           - "@types/react-dom"
-          - "@vitejs/plugin-react"
-      tailwind-extras:
+          - "babel-plugin-react-compiler"
+          - "lucide-react"
+
+      # Vue ecosystem
+      vue-ecosystem:
         patterns:
-          - "@tailwindcss/typography"
+          - "@vueuse/*"
+          - "@lucide/vue"
+          - "reka-ui"
+
+      # Nuxt modules
+      nuxt-modules:
+        patterns:
+          - "@nuxt/*"
+          - "@nuxtjs/*"
+          - "dayjs-nuxt"
+          - "shadcn-nuxt"
+
+      # Development tools (catalog)
+      devtools:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@antfu/eslint-config"
+          - "eslint-plugin-*"
+          - "typescript-eslint"
+          - "@eslint/*"
+          - "globals"
+
+      # TailwindCSS (catalog)
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "tw-animate-css"
+
+      # Utilities (catalog)
+      utilities:
+        patterns:
+          - "clsx"
+          - "tailwind-merge"
+          - "class-variance-authority"
+
+      # Testing
       testing:
         patterns:
           - "vitest"
           - "@testing-library/*"
+          - "@vue/test-utils"
+          - "@playwright/test"
+          - "playwright-core"
+          - "happy-dom"
           - "jsdom"
-      tooling:
-        patterns:
-          - "vite"
-          - "vite-tsconfig-paths"
-          - "lucide-react"
           - "web-vitals"
 
-  # Astro
-  - package-ecosystem: "npm"
-    directory: "/apps/comparison-astro"
-    schedule:
-      interval: "weekly"
-    groups:
-      astro:
+      # Hono backend
+      hono:
         patterns:
-          - "astro"
-          - "@astrojs/*"
-          - "eslint-plugin-astro"
+          - "hono"
+          - "@hono/*"
+          - "hono-pino"
+          - "pino"
+          - "pino-pretty"
+          - "sharp"
+          - "colorthief"
+          - "zod"
+          - "lodash-es"
+          - "@types/lodash-es"
+
+      # Server & deployment
+      server:
+        patterns:
+          - "nitro"
+          - "wrangler"
+
+      # Root workspace tools
+      root-tooling:
+        patterns:
+          - "husky"
+          - "lint-staged"
+          - "esbuild"
+          - "@types/node"
